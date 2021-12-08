@@ -25,6 +25,6 @@ This document contains a list of potential features for the PIFSC Resource Inven
     -   Platform/Software
 -   Another option would be to create a specific file that contains PIFSC Resource Inventory configuration information like display color, associating tags with versions of SOPs, Tools, DBs, etc.
     -   Principle: make it quick and easy to add the given repository project to the PRI system and allow configuration options.  This can identify multiple resources in a given project
-    -   e.g. PRI.config (the presence of this file could also serve as the opt-in)
-        -   e.g. DB Version Control Module SOP; db_vers_ctrl_v; #FFAA00
+    -   e.g. PRI.config (the presence of this file could also serve as the opt-in) maybe do a JSON file to make it flexible
+        -   e.g. {"PRI_resource_configuration": [{"tag_naming_convention": "db_vers_ctrl_v", "resource_type": "SOP", "resource_category": "Software", "project_color": "#FFAA00"}, {"tag_naming_convention": "DVM_db_v", "resource_type": "Tool", "resource_category": "Data Management", "project_color": "#AABBCC"}]}
 -   Can refresh DB using an Oracle job on a daily basis so data is reasonably up-to-date
