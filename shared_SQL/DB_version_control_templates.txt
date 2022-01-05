@@ -1,0 +1,147 @@
+**************************
+**CODE COMMIT TEMPLATES:**
+**************************
+
+**Project name qualifier for the heading of code commit messages for projects that have multiple applications/modules in one repository that use the same database**
+**[DATABASE NAME] is the name of the given database module that was updated in the code commit**
+**[SHORT DESCRIPTION] is the short description of the type of code commit (e.g. database upgrade, documentation update, new functionality, etc.)**
+**Example: --PIFSC Data Set Database: DB Version Control Module Upgrade--**
+**Note: There should only be one standard commit message heading so when there are application and database upgrades in the same commit combine the information from both into one standard heading (e.g. --PIFSC Data Set Database: Bulk Download Module Code Update--)**
+--[DATABASE NAME]: [SHORT DESCRIPTION]--
+
+
+**Heading that can be used to define which version of the database was used in a given code commit message:**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.  The exception to the rule is that the first version of a database should be 0.1.  Otherwise when each major version is incremented the minor version should be reset to 0 for that major version (e.g. version 3.0).**
+(this version uses version [MAJOR].[MINOR] of the database)
+
+
+**Heading that can be used to define which version of the database was defined and used in a given code commit message:**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.**
+(this version defines and uses version [MAJOR].[MINOR] of the database)
+
+
+**Standard commit message content for upgrading a database module**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+**[DATABASE NAME] is the name of the given database module**
+**Example: Version 0.3 of the Data Validation Module Database**
+Version [MAJOR].[MINOR] of the [DATABASE NAME] Database
+
+
+**Standard commit message content for installing/upgrading an external database module:**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+**[DATABASE NAME] is the name of the given external database module**
+**[GIT URL] is the git URL for the external database module**
+**[GIT TAG] is the Git tag for the revision that defines the external database module version**
+**Example: Installed Version 0.2 (Git tag: db_vers_ctrl_db_v0.2) of the DB Version Control Module database (Git URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git)**
+Installed Version [MAJOR].[MINOR] (Git tag: [GIT TAG]) of the [DATABASE NAME] Database (Git URL: [GIT URL])
+
+
+**Standard commit message content for requiring an external database module.  There are cases where standalone modules require a certain version of another database module but the standalone module does not install the required module directly (example: Data Validation Module requires the Database Version Control Module but they are both standalone modules):**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+**[DATABASE NAME] is the name of the given external database module**
+**[GIT URL] is the git URL for the external database module**
+**[GIT TAG] is the Git tag for the revision that defines the external database module version**
+**Example: Requires Version 0.2 (Git tag: db_vers_ctrl_db_v0.2) of the DB Version Control Module database (Git URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git)**
+Requires Version [MAJOR].[MINOR] (Git tag: [GIT TAG]) of the [DATABASE NAME] Database (Git URL: [GIT URL])
+
+
+
+	**************************
+	*******GIT TAGS:**********
+	**************************
+
+	**git tag name for upgrading a database module**
+	**[DATABASE ABBREVIATION] is the abbreviation for the database module**
+	**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+	**Example: DVM_db_v0.3**
+	[DATABASE ABBREVIATION]_db_v[MAJOR].[MINOR]
+
+	**git tag message for upgrading a database module**
+	**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+	**[DATABASE NAME] is the name of the database module**
+	**[GIT URL] is the git URL for the database module**
+	**Example: Version 0.3 of the Data Validation Module Database**
+	Version [MAJOR].[MINOR] of the [DATABASE NAME] Database
+
+
+	**git tag name for installing/upgrading an external database module:**
+	**[DATABASE ABBREVIATION] is the abbreviation for the external database module**
+	**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+	**Example: db_vers_ctrl_db_v0.2**
+	[DATABASE ABBREVIATION]_db_v[MAJOR].[MINOR]
+
+	**git tag message for installing/upgrading an external database module:**
+	**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+	**[DATABASE NAME] is the name of the given external database module**
+	**[GIT URL] is the git URL for the external database module**
+  **[GIT TAG] is the Git tag for the revision that defines the external database module version**
+	**Example: Installed Version 0.2 (Git tag: db_vers_ctrl_db_v0.2) of the DB Version Control Module database (Git URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git)**
+  Installed Version [MAJOR].[MINOR] (Git tag: [GIT TAG]) of the [DATABASE NAME] Database (Git URL: [GIT URL])
+
+
+	**git tag message for requiring an external database module.  There are cases where standalone modules require a certain version of another database module but the standalone module does not install the required module directly (example: Data Validation Module requires the Database Version Control Module but they are both standalone modules):**
+	**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database**
+	**[DATABASE NAME] is the name of the given external database module**
+	**[GIT URL] is the git URL for the external database module**
+	**[GIT TAG] is the Git tag for the revision that defines the external database module version**
+	**Example: Requires Version 0.2 (Git tag: db_vers_ctrl_db_v0.2) of the DB Version Control Module database (Git URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git)**
+	Requires Version [MAJOR].[MINOR] (Git tag: [GIT TAG]) of the [DATABASE NAME] Database (Git URL: [GIT URL])
+
+*******************************
+**DATABASE UPGRADE TEMPLATES:**
+*******************************
+
+**Template for database project information for inclusion at the top of every SQL DDL/DML file:**
+**[DATABASE NAME] is the name of the database that is being upgraded, the name can contain spaces and capitalizations**
+**[DATABASE DESCRIPTION] is a brief general description of what the database represents and what it is used for**
+--------------------------------------------------------
+--------------------------------------------------------
+--Database Name: [DATABASE NAME]
+--Database Description: [DATABASE DESCRIPTION]
+--------------------------------------------------------
+--------------------------------------------------------
+
+
+**Heading for the combined DDL/DML file:**
+--------------------------------------------------------
+--[DATABASE NAME] - Combined DDL/DML file:
+--------------------------------------------------------
+
+
+**Heading for a given database version's upgrade SQL statements**
+**[DATABASE NAME] is the name of the database that is being upgraded, the name can contain spaces and capitalizations**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.  The exception to the rule is that the first version of a database should be 0.1.  Otherwise when each major version is incremented the minor version should be reset to 0 for that major version (e.g. version 3.0).**
+--------------------------------------------------------
+--[DATABASE NAME] - version [MAJOR].[MINOR] updates:
+--------------------------------------------------------
+
+
+**database upgrade log entry**
+**[DATABASE NAME] is the name of the database that is being upgraded, the name can contain spaces and capitalizations**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.  The exception to the rule is that the first version of a database should be 0.1.  Otherwise when each major version is incremented the minor version should be reset to 0 for that major version (e.g. version 3.0).**
+**[UPGRADE DATE] is the date the upgrade was committed to version control in DD-MON-YY format**
+**[UPGRADE DESCRIPTION] is the description of the database upgrade that was developed**
+--define the upgrade version in the database upgrade log table:
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('[DATABASE NAME]', '[MAJOR].[MINOR]', TO_DATE('[UPGRADE_DATE]', 'DD-MON-YY'), '[UPGRADE DESCRIPTION]');
+
+--commit the DB_UPGRADE_LOGS record insertion
+COMMIT;
+
+
+**When installing a new external database module**
+**[DATABASE NAME] is the name of the database that is being upgraded, the name can contain spaces and capitalizations**
+**[MAJOR].[MINOR] is the major/minor version of the database where [MAJOR] is the major version of the database and [MINOR] is the minor version of the database, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.  The exception to the rule is that the first version of a database should be 0.1.  Otherwise when each major version is incremented the minor version should be reset to 0 for that major version (e.g. version 3.0).**
+**[GIT URL] is the git URL for the external database module**
+**[GIT TAG] is the Git tag for the revision that defines the external database module version**
+**Indent the database module code so it is clear that it is part of the database module installation**
+--Installing version [MAJOR].[MINOR] (Git tag: [GIT TAG]) of [DATABASE NAME] (Version Control URL: [GIT_URL])--
+
+**When upgrading an existing external database module**
+**[DATABASE NAME] is the name of the database that is being upgraded, the name can contain spaces and capitalizations**
+**[MAJOR FROM].[MINOR FROM] is the major/minor version of the database where [MAJOR FROM] is the major version of the database and [MINOR FROM] is the minor version of the database version being upgraded from, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.  The exception to the rule is that the first version of a database should be 0.1.  Otherwise when each major version is incremented the minor version should be reset to 0 for that major version (e.g. version 3.0).**
+**[GIT TAG FROM] is the Git tag for the revision that defines the external database module version that was upgraded from
+**[MAJOR TO].[MINOR TO] is the major/minor version of the database where [MAJOR TO] is the major version of the database and [MINOR TO] is the minor version of the database version being upgraded to, both the major and minor version values are integers starting from zero that are incremented by one without a leading zero.  The exception to the rule is that the first version of a database should be 0.1.  Otherwise when each major version is incremented the minor version should be reset to 0 for that major version (e.g. version 3.0).**
+**[GIT TAG TO] is the Git tag for the revision that defines the external database module version that was upgraded to
+**[GIT URL] is the git URL for the external database module**
+**Indent the database module code so it is clear that it is part of the database module installation**
+--Upgrading from version [MAJOR FROM].[MINOR FROM] (Git tag: [GIT TAG FROM]) to [MAJOR TO].[MINOR TO] (Git tag: [GIT TAG TO]) of [DATABASE NAME] (Version Control URL: [GIT_URL])--

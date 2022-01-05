@@ -1,0 +1,11 @@
+# PIFSC Resource Inventory - Installing or Upgrading the Database
+
+## Procedure:
+- New installation:
+  - If you are installing this module on a database instance for the first time run the [pifsc_resource_inventory_combined_DDL_DML.sql](../shared_SQL/pifsc_resource_inventory_combined_DDL_DML.sql) script using an automated SQL\*Plus script to deploy the database using SQL\*Plus.
+    - For example, the SQL\*Plus [deploy_dev.sql](../shared_SQL/deploy_dev.sql) script can be used to deploy the current version of the database schema to a blank schema on a development database instance.  Follow the instructions in the comments of the script to execute the automated installation script.
+- Upgrading an existing installation:
+  - You must first determine which version of the database is currently installed by querying the DB_UPGRADE_LOGS_V view with the UPGRADE_APP_NAME = 'PIFSC Resource Inventory'.  The highest UPGRADE_VERSION value is the currently installed database version (e.g. 0.3).  
+  - The scripts (pifsc_resource_inventory_DDL_DML_upgrade_v[MAJOR].[MINOR].sql where [MAJOR] is the major version number and [MINOR] is the minor version number) in the [upgrades](../shared_SQL/upgrades) folder will be run in order to upgrade the database to the desired version.  For instance if the current version of the database is 0.3 and the desired database version is 0.5 the pifsc_resource_inventory_DDL_DML_upgrade_v0.4.sql and pifsc_resource_inventory_DDL_DML_upgrade_v0.5.sql files will be executed on the database instance in that order to perform the upgrade.  
+  - The database upgrade can be automated by developing an automated SQL\*Plus script to upgrade the database from the given version to the desired version of the database.  Each database upgrade file required for the upgrade will be referenced in the SQL\*Plus script in addition to any required data or permissions scripts.  
+- **Note: This database utilizes the [Database Version Control Module (VCM)](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule), the [VCM SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule/blob/master/docs/DB%20Version%20Control%20Module%20SOP.MD) contains detailed information for the general database version control policies
