@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_DVM_ISS_SEVERITY_HIST" directorySegmentName="seg_0" id="EE39BC29-6405-229D-4CB8-C3FD897B76AF">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>TRG_DVM_ISS_SEVERITY_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO DVM_iss_SEVERITY_hist (
+      h_seqnum, iss_SEVERITY_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      DVM_iss_SEVERITY_hist_seq.NEXTVAL, :old.iss_SEVERITY_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO DVM_iss_SEVERITY_hist (
+      h_seqnum, iss_SEVERITY_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      DVM_iss_SEVERITY_hist_seq.NEXTVAL, :new.iss_SEVERITY_ID,
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'iss_severity_code', :old.iss_severity_code);
+    insert_data('DELETE', 'iss_severity_name', :old.iss_severity_name);
+    insert_data('DELETE', 'iss_severity_desc', :old.iss_severity_desc);
+  ELSE
+    check_update('iss_SEVERITY_CODE', :old.iss_severity_code, :new.iss_severity_code);
+    check_update('iss_SEVERITY_NAME', :old.iss_severity_name, :new.iss_severity_name);
+    check_update('iss_SEVERITY_DESC', :old.iss_severity_desc, :new.iss_severity_desc);
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>24888A01-C385-AB5D-CAD7-19C0BE32865A</table>
+</TriggerOraclev10g>

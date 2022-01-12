@@ -225,6 +225,11 @@ COMMENT ON COLUMN PRI_PROJ_TAGS_V.TAG_COMMIT_AUTHOR IS 'The author of the tagged
 COMMENT ON COLUMN PRI_PROJ_TAGS_V.TAG_COMMIT_DTM IS 'The date/time the tagged commit was authored';
 
 
+
+
+
+
+
 --define the upgrade version in the database upgrade log table:
 INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('PIFSC Resource Inventory', '0.1', TO_DATE('05-JAN-22', 'DD-MON-YY'), 'Installed Version 0.5 (Git tag: DMP_Scientific_v0.5) of the Scientific use case version of the DB Module Packager (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/db-module-packager.git).  Created two new tables (PRI_PROJ and PRI_PROJ_TAGS) to store the project and project tag information from the PIFSC GitLab server.  Created a new view PRI_PROJ_TAGS_V to relate the two tables');
 

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="444ECFEB-07E8-3E0C-3981-93246B8E1D0C" containerWithKeyObject="477F825A-B304-B55F-0375-EFB5264C6FF0" localFKIndex="AFCBF0EA-C6CB-0387-2ECA-FBE9395CA86C" name="DVM_RULE_SETS_FK1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_RULE_SETS_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<referredTableLongName>PRI.DVM_DATA_STREAMS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2F6669BE-CE63-F8C8-5321-0A3A64E81F57</referredTableID>
+<keyObject>2A50E5FD-DD96-B9AC-09AC-52F71270E2D0</keyObject>
+<referredKeyID>2A50E5FD-DD96-B9AC-09AC-52F71270E2D0</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>DATA_STREAM_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

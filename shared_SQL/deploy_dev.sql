@@ -35,10 +35,11 @@ PROMPT running DDL scripts
 @@pifsc_resource_inventory_combined_DDL_DML.sql
 
 PROMPT loading data
---@@LOAD_DATA.SQL
+@@queries/load_ref_data.sql
+--@@queries/load_test_data.sql
 
 PROMPT granting privileges
-@@queries/grant_PRI_APP_privs.sql
+@@../GIM/SQL/grant_PRI_GIM_APP_privs.sql
 
 
 DISCONNECT;

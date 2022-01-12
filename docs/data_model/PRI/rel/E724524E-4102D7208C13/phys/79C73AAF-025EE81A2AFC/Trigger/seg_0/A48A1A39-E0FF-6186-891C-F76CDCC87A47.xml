@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="DVM_DATA_STREAMS_AUTO_BRI" directorySegmentName="seg_0" id="A48A1A39-E0FF-6186-891C-F76CDCC87A47">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select DVM_DATA_STREAMS_SEQ.nextval into :new.DATA_STREAM_ID from dual;
+  :NEW.CREATE_DATE := SYSDATE;
+  :NEW.CREATED_BY := nvl(v('APP_USER'),user);
+end;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>2F6669BE-CE63-F8C8-5321-0A3A64E81F57</table>
+</TriggerOraclev10g>

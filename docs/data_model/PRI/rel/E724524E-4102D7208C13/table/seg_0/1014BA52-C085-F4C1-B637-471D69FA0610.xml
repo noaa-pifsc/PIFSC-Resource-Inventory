@@ -1,0 +1,196 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1014BA52-C085-F4C1-B637-471D69FA0610" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_QC_OBJECTS">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Data QC Objects
+
+This is a reference table that defines all of the QC validation views that are executed on the data model after a given data stream is loaded into the database (e.g. SPT_VESSEL_TRIPS, SPT_UL_TRANSACTIONS, SPT_APP_XML_FILES).]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="QC_OBJECT_ID" id="C13BAB74-F494-F4BF-FCB1-776E5C6CEE2D">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>QC_OBJECT_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the DVM_QC_OBJECTS table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBJECT_NAME" id="3B6091C9-1C10-E79B-9841-4542562DAADA">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>OBJECT_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The name of the object that is used in the given QC validation criteria]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="QC_OBJ_ACTIVE_YN" id="6B2DFC7D-E058-9E11-2A9B-90C64432169C">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>QC_OBJ_ACTIVE_YN</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate if the QC object is active (Y) or inactive (N)]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;Y&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="QC_SORT_ORDER" id="952A17F9-7BE4-456B-9BFC-61A37892FBBF">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>QC_SORT_ORDER</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Relative sort order for the QC object to be executed in]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="8202BA44-1721-81B7-24D5-3E7C2B610199">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="9900B722-87E2-6CDD-7E84-1B93679E10D7">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="7B45AFE2-8144-75D9-5281-0968AEED8CC6">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="4A1010C8-4DC8-04F4-C002-CA47ADACBF0C">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_QC_OBJECTS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8B5B8EBB-8B66-1678-8DA3-315416C94F69" name="DVM_QC_OBJECTS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C13BAB74-F494-F4BF-FCB1-776E5C6CEE2D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9ED3B504-4415-EE7F-40D0-70C674E8C7F2" name="DVM_QC_OBJECTS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B6091C9-1C10-E79B-9841-4542562DAADA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="904F13F3-639B-B6BB-B98B-14D74A4506C2" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_QC_OBJECTS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C13BAB74-F494-F4BF-FCB1-776E5C6CEE2D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="582E5CA6-F144-E9B5-B971-E436D684AAF6" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_QC_OBJECTS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B6091C9-1C10-E79B-9841-4542562DAADA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

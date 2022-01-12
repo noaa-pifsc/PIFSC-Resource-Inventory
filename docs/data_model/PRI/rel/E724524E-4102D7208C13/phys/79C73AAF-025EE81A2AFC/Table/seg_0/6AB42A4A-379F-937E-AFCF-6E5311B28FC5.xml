@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="PRI_PROJ_RES" directorySegmentName="seg_0" id="6AB42A4A-379F-937E-AFCF-6E5311B28FC5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>C48B9528-6D78-9F6B-6F61-8E8E48C870D4</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="LAST_MOD_BY" id="0B81DCCC-9502-0CD5-30AF-B87513338557">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_NAME" id="26D83EA6-E440-97A8-B58A-445E9C513F0B">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_ID" id="2EDA5E14-FA99-90CF-9E39-4A26468C4526">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_DATE" id="36E8959A-76A8-8CCC-F4D1-56DA51CDCFA6">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_CATEGORY" id="43D6CC94-2BB5-A9B0-B35F-42514B77DFFA">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_COLOR_CODE" id="57231701-8627-CBC3-506E-11158C2C03F1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_SCOPE_ID" id="6533FB49-C026-12B2-07EF-A9A901775943">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_URL" id="895954EA-03F3-D069-41FE-215DAEDB4E97">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="A75360CE-FC1D-C832-BEAF-B7262640FCCB">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PROJ_ID" id="AC834971-EEB5-9A1D-C989-7A788C7211C8">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_TYPE_ID" id="CCA538B6-C6AA-E060-B21A-4621867EB906">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_TAG_CONV" id="DA9ED6B8-FAA6-C561-63B7-27EF083049EF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="ED080186-AD3A-3D45-DEB6-FC77E7890FC2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_I3" id="31BD022F-A79D-F568-B1BE-99A3638076D3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_PK" id="606DCE65-B02A-4496-0770-1164AEB863EE">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_U1" id="A53D4779-4D15-BC8A-BDF0-DB9A2A736CE5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_I1" id="C171BF35-E1BF-5C7D-6891-856F50455155">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_I2" id="FD65DBA3-F018-415D-D479-CCFD3FA7A560">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PRI_PROJ_RES_FK3" id="404322E1-5192-FA8E-EF65-50EF3F91FBCD">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PRI_PROJ_RES_FK2" id="9063B1CC-E221-E9F7-BE45-6152AB6105C4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PRI_PROJ_RES_FK1" id="A90FB955-1191-16C1-2103-0DA07CE2EB5C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PRI_PROJ_RES_PK" id="99993745-3D68-79CB-6D63-C977BC65C55E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>606DCE65-B02A-4496-0770-1164AEB863EE</existingIndex>
+<indexSegment>4D1B58D9-2492-F90D-168A-D9C52079BA99</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="PRI_PROJ_RES_U1" id="602F70CD-FD15-6AE0-C31E-D2F2B32A320C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>A53D4779-4D15-BC8A-BDF0-DB9A2A736CE5</existingIndex>
+<indexSegment>4D1B58D9-2492-F90D-168A-D9C52079BA99</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

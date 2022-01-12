@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="56908ACA-DD05-0602-8141-A9DAD4258CA4" containerWithKeyObject="43BE7B02-EE80-1023-79D6-D7ADF04FFA6A" localFKIndex="57D42BCD-D20A-C9AB-379D-B7E06D4B9C2E" name="DVM_ISS_TYPES_FK1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISS_TYPES_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<referredTableLongName>PRI.DVM_QC_OBJECTS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>1014BA52-C085-F4C1-B637-471D69FA0610</referredTableID>
+<keyObject>8B5B8EBB-8B66-1678-8DA3-315416C94F69</keyObject>
+<referredKeyID>8B5B8EBB-8B66-1678-8DA3-315416C94F69</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>QC_OBJECT_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

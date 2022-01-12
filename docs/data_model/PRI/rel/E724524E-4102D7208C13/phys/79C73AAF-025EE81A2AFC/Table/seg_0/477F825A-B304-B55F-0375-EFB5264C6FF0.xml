@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DVM_RULE_SETS" directorySegmentName="seg_0" id="477F825A-B304-B55F-0375-EFB5264C6FF0">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>C48B9528-6D78-9F6B-6F61-8E8E48C870D4</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="RULE_SET_ID" id="0F2BFABD-7C43-C28D-4201-BCBEEED320E5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RULE_SET_CREATE_DATE" id="3A49F992-16FE-675E-066C-0071FC759D72">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RULE_SET_INACTIVE_DATE" id="3E181E31-CE14-6CAB-6AED-FF8DE357315F">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RULE_SET_ACTIVE_YN" id="8628586E-C9E1-1351-2065-444D34BEB3EF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_STREAM_ID" id="A92237C0-6651-79CF-D7D5-07D42128D6B1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_RULE_SETS_I1" id="8DE34231-41A2-4D34-71DE-82D2C80402E0">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_RULE_SETS_PK" id="97740A7D-8C98-98DC-9277-F1331A2226DC">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_RULE_SETS_FK1" id="AFCBF0EA-C6CB-0387-2ECA-FBE9395CA86C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_RULE_SETS_PK" id="55A1CD59-795B-37AA-9316-F40AFC9BF79E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>97740A7D-8C98-98DC-9277-F1331A2226DC</existingIndex>
+<indexSegment>4D1B58D9-2492-F90D-168A-D9C52079BA99</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

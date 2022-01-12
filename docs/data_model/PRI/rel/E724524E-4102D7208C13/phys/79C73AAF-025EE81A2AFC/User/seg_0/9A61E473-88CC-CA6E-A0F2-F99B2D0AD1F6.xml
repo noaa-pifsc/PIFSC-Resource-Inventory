@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="PRI" directorySegmentName="seg_0" id="9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjName>PRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:02 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+</UserOraclev10g>

@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="PRI_RES_SCOPES" directorySegmentName="seg_0" id="EB15ED58-2AC8-AD31-8E9B-486393729D66">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>2A3465EB-3103-47CA-4FF4-12B3F91ACDB4</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="RES_SCOPE_DESC" id="061701EC-4844-32D3-78C1-DF0192F280C4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_SCOPE_NAME" id="54964C46-4FC8-5083-C435-B8C74569EEAD">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="5C32E34D-B862-18E0-5517-ABE852F2CB83">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_DATE" id="655CEC18-AFD5-6B5C-1D8F-E9D64E8761BF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_SCOPE_CODE" id="6D47C47B-0547-3590-26F7-0C3A71EEAAE5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="945C805C-2145-2DEA-28AE-B57E4035A179">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_BY" id="AC9DE69E-FF4B-7A16-C872-E7505B76D69D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_SCOPE_ID" id="E9D1D136-B02C-1495-D5FC-128CB68736E9">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_RES_SCOPES_U2" id="5677D7BD-B76F-4AF9-02FB-6C1A2DF935C3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:12 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_RES_SCOPES_PK" id="CA6CE581-80D9-3A84-1201-03698FDC9D85">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:12 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_RES_SCOPES_U1" id="F1CA3B78-56EC-66E3-3769-8E00E5A399FE">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:12 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PRI_RES_SCOPES_PK" id="9AD45E0B-85AD-357D-310C-D9BF2A4696FE">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>CA6CE581-80D9-3A84-1201-03698FDC9D85</existingIndex>
+<indexSegment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="PRI_RES_SCOPES_U1" id="A49B3FB0-D204-DCC3-A243-6C7EF9F89763">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>F1CA3B78-56EC-66E3-3769-8E00E5A399FE</existingIndex>
+<indexSegment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="PRI_RES_SCOPES_U2" id="DDC80DB3-1830-E342-7EF8-32520B6D4EFF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>5677D7BD-B76F-4AF9-02FB-6C1A2DF935C3</existingIndex>
+<indexSegment>52A71FC2-BBB0-0D8D-2FEF-37473232B28D</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

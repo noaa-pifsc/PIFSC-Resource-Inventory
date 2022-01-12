@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_DVM_ISSUES_HIST" directorySegmentName="seg_0" id="73C4D669-11BB-A067-CFCD-865AA6354AAC">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>TRG_DVM_ISSUES_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO DVM_ISSUES_HIST (
+      h_seqnum, ISS_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      DVM_issueS_hist_seq.NEXTVAL, :old.ISS_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO DVM_ISSUES_hist (
+      h_seqnum, ISS_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      DVM_issueS_hist_seq.NEXTVAL, :new.ISS_ID,
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'pta_ISS_id', :old.pta_ISS_id);
+    insert_data('DELETE', 'ISS_type_id', :old.ISS_type_id);
+    insert_data('DELETE', 'ISS_notes', :old.ISS_notes);
+    insert_data('DELETE', 'iss_res_type_id', :old.iss_res_type_id);
+    insert_data('DELETE', 'APP_LINK_URL', :old.APP_LINK_URL);
+  ELSE
+    check_update('PTA_ISS_ID', :old.pta_ISS_id, :new.pta_ISS_id);
+    check_update('ISS_TYPE_ID', :old.ISS_type_id, :new.ISS_type_id);
+    check_update('ISS_NOTES', :old.ISS_notes, :new.ISS_notes);
+    check_update('iss_RES_TYPE_ID', :old.iss_res_type_id, :new.iss_res_type_id);
+    check_update('APP_LINK_URL', :old.APP_LINK_URL, :new.APP_LINK_URL);
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>0FC077E2-778C-C11F-D8CF-DFB344362B9B</table>
+</TriggerOraclev10g>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="79631472-694B-2026-7E4D-5D7CEB629CC0" containerWithKeyObject="6AB42A4A-379F-937E-AFCF-6E5311B28FC5" localFKIndex="404322E1-5192-FA8E-EF65-50EF3F91FBCD" name="PRI_PROJ_RES_FK3">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_PROJ_RES_FK3</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<referredTableLongName>PRI.PRI_RES_TYPES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>CD984AC1-A1BE-BE6B-B003-F3D22CEFE475</referredTableID>
+<keyObject>AF42FC85-9BD0-5D75-AA41-FC98B6F81B13</keyObject>
+<referredKeyID>AF42FC85-9BD0-5D75-AA41-FC98B6F81B13</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>RES_TYPE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

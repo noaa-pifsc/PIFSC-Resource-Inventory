@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="DVM_ISS_TYP_ASSOC_AUTO_BRI" directorySegmentName="seg_0" id="FA6B2135-56A2-5E0F-25A4-EB2E48A0C113">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISS_TYP_ASSOC_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select DVM_ISS_TYP_ASSOC_SEQ.nextval into :new.ISS_TYP_ASSOC_ID from dual;
+end;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>F27B03D7-246F-FEEE-C318-032F72989744</table>
+</TriggerOraclev10g>

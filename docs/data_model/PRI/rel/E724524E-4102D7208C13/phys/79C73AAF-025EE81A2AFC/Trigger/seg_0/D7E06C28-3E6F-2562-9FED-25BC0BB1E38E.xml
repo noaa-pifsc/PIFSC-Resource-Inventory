@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_DVM_QC_OBJECTS_HIST" directorySegmentName="seg_0" id="D7E06C28-3E6F-2562-9FED-25BC0BB1E38E">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>TRG_DVM_QC_OBJECTS_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO DVM_QC_OBJECTS_hist (
+      h_seqnum, QC_OBJECT_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      DVM_QC_OBJECTS_hist_seq.NEXTVAL, :old.QC_OBJECT_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO DVM_QC_OBJECTS_hist (
+      h_seqnum, QC_OBJECT_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      DVM_QC_OBJECTS_hist_seq.NEXTVAL, :new.QC_OBJECT_ID,
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'object_name', :old.object_name);
+    insert_data('DELETE', 'qc_obj_active_yn', :old.qc_obj_active_yn);
+    insert_data('DELETE', 'qc_sort_order', :old.qc_sort_order);
+  ELSE
+    NULL;
+    check_update('OBJECT_NAME', :old.object_name, :new.object_name);
+    check_update('QC_OBJ_ACTIVE_YN', :old.qc_obj_active_yn, :new.qc_obj_active_yn);
+    check_update('QC_SORT_ORDER', :old.qc_sort_order, :new.qc_sort_order);
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>1014BA52-C085-F4C1-B637-471D69FA0610</table>
+</TriggerOraclev10g>

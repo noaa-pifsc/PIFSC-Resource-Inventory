@@ -1,0 +1,160 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A7727A09-1EDE-F023-1709-3308F3857A04" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DB_LOG_ENTRIES">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_LOG_ENTRIES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Database Log Entries
+
+This table stores log entries for a given module to enable debugging, logging errors, etc.  This table is used in the Database Logging Module (DLM)]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LOG_ENTRY_ID" id="A99E4AC7-0DC0-966F-F49D-F0B17D895956">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_LOG_ENTRIES</sourceObjSchema>
+<sourceObjName>LOG_ENTRY_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the DB_LOG_ENTRIES table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTRY_TYPE_ID" id="58FA5B6F-5567-F843-6DC7-05EDB1C12EC4">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_LOG_ENTRIES</sourceObjSchema>
+<sourceObjName>ENTRY_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the DB_ENTRY_TYPES table that defines the type of database log entry]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B6E031F3-2214-9A1D-DF2F-E640D97E5907" referredColumn="D866E87E-9F69-E403-9E21-2FD33AACB0F5"/>
+</associations>
+</Column>
+<Column name="LOG_SOURCE" id="24D6D5D8-5175-608A-FBB6-B32851FAB107">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_LOG_ENTRIES</sourceObjSchema>
+<sourceObjName>LOG_SOURCE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The application/module/script that produced the database log entry]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTRY_CONTENT" id="84DC7202-6118-1525-2048-0024C1F15D5B">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_LOG_ENTRIES</sourceObjSchema>
+<sourceObjName>ENTRY_CONTENT</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The content of the database log entry]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENTRY_DTM" id="734CF8BF-50CB-DBDA-4235-EA2F7939E2A6">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_LOG_ENTRIES</sourceObjSchema>
+<sourceObjName>ENTRY_DTM</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time the database log entry was made]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="CA144A2B-CC50-8AE1-56A5-C1932452D8BC">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_LOG_ENTRIES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EE6C5DF0-5C93-54C1-6747-83DFC2E5B80E" name="DB_LOG_ENTRIES_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_LOG_ENTRIES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A99E4AC7-0DC0-966F-F49D-F0B17D895956"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DF9D8D11-D3F7-CA94-1390-FABC05602298" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DB_LOG_ENTRIES_I1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_LOG_ENTRIES_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58FA5B6F-5567-F843-6DC7-05EDB1C12EC4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="195EA168-2237-19CC-A159-E927D4FE350D" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DB_LOG_ENTRIES_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_LOG_ENTRIES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A99E4AC7-0DC0-966F-F49D-F0B17D895956"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3F844DA3-4FCE-D78C-4AF5-208239562DA0" name="DB_LOG_ENTRIES_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="58FA5B6F-5567-F843-6DC7-05EDB1C12EC4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

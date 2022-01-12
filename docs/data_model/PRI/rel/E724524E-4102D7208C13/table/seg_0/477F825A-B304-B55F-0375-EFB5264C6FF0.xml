@@ -1,0 +1,146 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="477F825A-B304-B55F-0375-EFB5264C6FF0" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_RULE_SETS">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_RULE_SETS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[DVM Rule Sets
+
+This table defines the different rule sets that were active over time.  As the active DVM validation criteria changes over time new rule set records will be added to define the time period that the corresponding error types were active.]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RULE_SET_ID" id="0F2BFABD-7C43-C28D-4201-BCBEEED320E5">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_RULE_SETS</sourceObjSchema>
+<sourceObjName>RULE_SET_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the DVM_RULE_SETS table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RULE_SET_ACTIVE_YN" id="8628586E-C9E1-1351-2065-444D34BEB3EF">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_RULE_SETS</sourceObjSchema>
+<sourceObjName>RULE_SET_ACTIVE_YN</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate if the given rule set is currently active (Y) or inactive (N).  Only one rule set can be active at any given time]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RULE_SET_CREATE_DATE" id="3A49F992-16FE-675E-066C-0071FC759D72">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_RULE_SETS</sourceObjSchema>
+<sourceObjName>RULE_SET_CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time that the given rule set was created]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RULE_SET_INACTIVE_DATE" id="3E181E31-CE14-6CAB-6AED-FF8DE357315F">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_RULE_SETS</sourceObjSchema>
+<sourceObjName>RULE_SET_INACTIVE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time that the given rule set was deactivated (due to a change in active rules)]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_STREAM_ID" id="A92237C0-6651-79CF-D7D5-07D42128D6B1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_RULE_SETS</sourceObjSchema>
+<sourceObjName>DATA_STREAM_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the DVM_DATA_STREAMS table that represents the rule set's data stream for the given DVM rule set]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="444ECFEB-07E8-3E0C-3981-93246B8E1D0C" referredColumn="35CA8C8F-B792-A7B0-FBC3-F05782C0FC9F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="55A1CD59-795B-37AA-9316-F40AFC9BF79E" name="DVM_RULE_SETS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_RULE_SETS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F2BFABD-7C43-C28D-4201-BCBEEED320E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8DE34231-41A2-4D34-71DE-82D2C80402E0" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_RULE_SETS_I1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_RULE_SETS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A92237C0-6651-79CF-D7D5-07D42128D6B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="97740A7D-8C98-98DC-9277-F1331A2226DC" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_RULE_SETS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_RULE_SETS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F2BFABD-7C43-C28D-4201-BCBEEED320E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AFCBF0EA-C6CB-0387-2ECA-FBE9395CA86C" name="DVM_RULE_SETS_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A92237C0-6651-79CF-D7D5-07D42128D6B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

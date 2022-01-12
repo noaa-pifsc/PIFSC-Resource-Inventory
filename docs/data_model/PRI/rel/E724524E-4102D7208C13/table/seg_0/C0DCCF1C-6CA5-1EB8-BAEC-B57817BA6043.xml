@@ -1,0 +1,198 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C0DCCF1C-6CA5-1EB8-BAEC-B57817BA6043" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_PTA_RULE_SETS">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[DVM PTA Rule Sets
+
+This table defines the relationship between validation rule sets (DVM_RULE_SETS) and the individual PTA parent error record (DVM_PTA_ERRORS) that is associated with a given parent record.  This table is used to track which rule sets were used to evaluate which parent records.]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PTA_RULE_SET_ID" id="A4D405C0-4DA0-9DB0-BE6B-3ADE08D5EC02">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_PTA_RULE_SETS</sourceObjSchema>
+<sourceObjName>PTA_RULE_SET_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The primary key field for the DVM_PTA_RULE_SETS table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RULE_SET_ID" id="9BD38C35-95F1-D671-6D5C-8F9C55550753">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_PTA_RULE_SETS</sourceObjSchema>
+<sourceObjName>RULE_SET_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the associated validation rule set (DVM_RULE_SETS)]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E56F9E9A-D666-637F-738B-D78BBC599AE1" referredColumn="0F2BFABD-7C43-C28D-4201-BCBEEED320E5"/>
+</associations>
+</Column>
+<Column name="PTA_ISS_ID" id="01FEB9BD-38CE-8A95-1C44-F55A20D2A14E">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_PTA_RULE_SETS</sourceObjSchema>
+<sourceObjName>PTA_ISS_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the PTA Issue record associated validation rule set (DVM_PTA_ISSUES)]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C1D38D31-7960-6AFC-980F-100C45F31583" referredColumn="088491EC-AE9A-DC3C-E2AC-845753C67E0F"/>
+</associations>
+</Column>
+<Column name="FIRST_EVAL_DATE" id="BB42769A-2C9F-F158-BAAD-3DD6EFC8F2EE">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_PTA_RULE_SETS</sourceObjSchema>
+<sourceObjName>FIRST_EVAL_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time the rule set was first evaluated for the given parent issue record]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_EVAL_DATE" id="7307B6E8-59E2-9E6C-F622-47C6FD837BD4">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_PTA_RULE_SETS</sourceObjSchema>
+<sourceObjName>LAST_EVAL_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time the rule set was most recently evaluated for the given parent issue record]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DF180206-D34D-D1D2-7593-F52BEDF58149" name="DVM_PTA_RULE_SETS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4D405C0-4DA0-9DB0-BE6B-3ADE08D5EC02"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="328664D6-FF47-042C-7578-9D797912A1B1" name="DVM_PTA_RULE_SETS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BD38C35-95F1-D671-6D5C-8F9C55550753"/>
+<colUsage columnID="01FEB9BD-38CE-8A95-1C44-F55A20D2A14E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7A23E7A0-3E8B-2FF9-E855-BBF7DA9EA41B" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_PTA_RULE_SETS_I1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BD38C35-95F1-D671-6D5C-8F9C55550753"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0BF68823-245C-4C22-180F-19FE3E86823C" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_PTA_RULE_SETS_I2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01FEB9BD-38CE-8A95-1C44-F55A20D2A14E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="130422AA-FDCE-62E9-2911-1857AE91AA33" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_PTA_RULE_SETS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4D405C0-4DA0-9DB0-BE6B-3ADE08D5EC02"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="247CC3FE-A3E6-3880-AA96-7D7F6EFF0F55" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_PTA_RULE_SETS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BD38C35-95F1-D671-6D5C-8F9C55550753"/>
+<colUsage columnID="01FEB9BD-38CE-8A95-1C44-F55A20D2A14E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DFC15393-3029-539B-AA59-0180385A3B7A" name="DVM_PTA_RULE_SETS_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BD38C35-95F1-D671-6D5C-8F9C55550753"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05CD8A10-7CAF-EBCA-11FB-8AF12C5D3850" name="DVM_PTA_RULE_SETS_FK2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01FEB9BD-38CE-8A95-1C44-F55A20D2A14E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

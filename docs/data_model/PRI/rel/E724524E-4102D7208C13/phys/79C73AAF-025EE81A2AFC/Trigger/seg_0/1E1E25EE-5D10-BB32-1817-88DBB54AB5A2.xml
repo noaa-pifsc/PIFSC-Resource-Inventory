@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="DVM_QC_OBJECTS_AUTO_BRI" directorySegmentName="seg_0" id="1E1E25EE-5D10-BB32-1817-88DBB54AB5A2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select DVM_QC_OBJECTS_SEQ.nextval into :new.QC_OBJECT_ID from dual;
+  :NEW.CREATE_DATE := SYSDATE;
+  :NEW.CREATED_BY := nvl(v('APP_USER'),user);
+end;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>1014BA52-C085-F4C1-B637-471D69FA0610</table>
+</TriggerOraclev10g>

@@ -1,0 +1,289 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0FC077E2-778C-C11F-D8CF-DFB344362B9B" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_ISSUES">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISSUES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Data Validation Issues
+
+This is an issue table that represents any specific data validation issue instances that a given data table/entity contains (e.g. SPT_VESSEL_TRIPS, SPT_UL_TRANSACTIONS, SPT_APP_XML_FILES, etc.).  These records will be used to communicate issues to the data entry and data management staff]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ISS_ID" id="34F53A93-2189-A7D0-535E-4B67B5921324">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>ISS_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the DVM_ISSUES table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PTA_ISS_ID" id="8E993099-FF7F-2088-F104-5C2CBAEE00BD">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>PTA_ISS_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The PTA Issue record the issue corresponds to, this indicates which parent record for the given data stream the issues are associated with]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="764C0CBF-601E-4AF1-B300-5593EBF7D188" referredColumn="088491EC-AE9A-DC3C-E2AC-845753C67E0F"/>
+</associations>
+</Column>
+<Column name="CREATE_DATE" id="94596971-6CF1-5B79-4831-F5B5E4DD2C3D">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="56EB11B7-0504-8520-646E-E18802194AE1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="8BF9AAD8-900B-EE3A-AAB3-F1761ED26DA3">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="33D292BD-D6E0-B161-FB0C-B32B23D84AA7">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ISS_TYPE_ID" id="B00C60CA-0A81-E940-6A39-32412E02217C">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>ISS_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Issue Type for the given issue]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="809BD743-0BAA-CB18-C78A-571EB3CD9CE3" referredColumn="3798B952-440A-ECDA-A23F-A319AE47ADA3"/>
+</associations>
+</Column>
+<Column name="ISS_NOTES" id="A205D4A2-CC45-4AE1-1564-4FBF9A62F26A">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>ISS_NOTES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Manually entered notes for the corresponding data issue]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ISS_RES_TYPE_ID" id="14263B39-B171-18E7-FA2D-A8D3113D1F86">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>ISS_RES_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the Issue Resolution Types reference table.  A non-null value indicates that the given issue is inactive and has been resolved/will be resolved]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8C4F47A9-94D2-BE44-E84B-18BC4FC3F033" referredColumn="DEB0F709-4117-BD61-3DEF-6E207D1D6500"/>
+</associations>
+</Column>
+<Column name="ISS_DESC" id="9391595F-2CCE-5DC7-A555-A2A0D74AB7F3">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>ISS_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The description of the given validation issue]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APP_LINK_URL" id="1F6CF6A8-85E6-FD90-BA9D-A40835DE0A55">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_ISSUES</sourceObjSchema>
+<sourceObjName>APP_LINK_URL</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The generated specific application link URL to resolve the given data issue.  This is generated at runtime of the DVM based on the values returned by the corresponding QC query and by the related DVM_ISS_TYPES record's APP_LINK_TEMPLATE value]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FD3EB0B0-F1CB-B466-6A26-2D3BEFCD05D5" name="DVM_ISSUES_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISSUES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34F53A93-2189-A7D0-535E-4B67B5921324"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="04DEE505-1846-E605-8EEB-D1FC21C00816" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_ISSUES_I1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISSUES_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E993099-FF7F-2088-F104-5C2CBAEE00BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="820806CB-9D64-481B-0324-10DD2E8A3C70" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_ISSUES_I2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISSUES_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B00C60CA-0A81-E940-6A39-32412E02217C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ED673AC1-7D86-8747-5C2E-23648A259896" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_ISSUES_I3">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISSUES_I3</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14263B39-B171-18E7-FA2D-A8D3113D1F86"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B83C70B6-A4A9-BD12-E19A-F42238AD29DF" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_ISSUES_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_ISSUES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34F53A93-2189-A7D0-535E-4B67B5921324"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C2C5B0B7-B82F-FBE8-E8C0-8780B04D70ED" name="DVM_ISSUES_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E993099-FF7F-2088-F104-5C2CBAEE00BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F819AE44-7D53-6623-314D-11D54F4D2C97" name="DVM_ISSUES_FK2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B00C60CA-0A81-E940-6A39-32412E02217C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="796620DF-BCBF-44FD-2AAE-FF3947A8B92C" name="DVM_ISS_FK3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:16 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14263B39-B171-18E7-FA2D-A8D3113D1F86"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

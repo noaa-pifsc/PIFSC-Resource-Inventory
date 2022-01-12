@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_DVM_PTA_RULE_SETS_HIST" directorySegmentName="seg_0" id="4EBA0D0A-88B1-08DF-07F8-1A940F9A206E">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>TRG_DVM_PTA_RULE_SETS_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:15 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO DVM_PTA_RULE_SETS_hist (
+      h_seqnum, PTA_RULE_SET_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      DVM_PTA_RULE_SETS_hist_seq.NEXTVAL, :old.PTA_RULE_SET_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO DVM_PTA_RULE_SETS_hist (
+      h_seqnum, PTA_RULE_SET_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      DVM_PTA_RULE_SETS_hist_seq.NEXTVAL, :new.PTA_RULE_SET_ID,
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'rule_set_id', :old.rule_set_id);
+    insert_data('DELETE', 'pta_iss_id', :old.pta_iss_id);
+    insert_data('DELETE', 'first_eval_date', 'MM/DD/YYYY HH24:MI:SS');
+    insert_data('DELETE', 'last_eval_date', 'MM/DD/YYYY HH24:MI:SS');
+  ELSE
+    NULL;
+    check_update('RULE_SET_ID', :old.rule_set_id, :new.rule_set_id);
+    check_update('PTA_ISS_ID', :old.pta_iss_id, :new.pta_iss_id);
+    check_update('FIRST_EVAL_DATE', TO_CHAR(:old.first_eval_date, 'MM/DD/YYYY HH24:MI:SS'), TO_CHAR(:new.first_eval_date, 'MM/DD/YYYY HH24:MI:SS'));
+    check_update('LAST_EVAL_DATE', TO_CHAR(:old.last_eval_date, 'MM/DD/YYYY HH24:MI:SS'), TO_CHAR(:new.last_eval_date, 'MM/DD/YYYY HH24:MI:SS'));
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>C0DCCF1C-6CA5-1EB8-BAEC-B57817BA6043</table>
+</TriggerOraclev10g>

@@ -1,0 +1,96 @@
+_ Compile SOP for how to prepare your project for inclusion into the inventory
+	Create JSON file w/ naming convention, etc.
+	Update to public
+	Tag your repository with all modules installed
+
+
+_ add a production flag to resources to indicate they have been deployed/marked for production use
+
+_ **naming conventions should be handled to escape special characters when used in regular expressions
+
+
+implement the json config files to indicate special resources for the given project
+
+	X Oracle function to extract the version number using regexp
+	X Oracle function to extract the major and minor version numbers using the naming convention
+		X establish the general naming convention (e.g. [prefix]_vX.X.X.X...) but we can allow folks to define their own prefix including the "_v" or "_v_" or whatever they prefer for flexibility
+
+		Or just allow them to define their own regexp?
+
+
+*_ document algorithm for assigning a version number score to a given version number string
+	* Parse the period-delimited numeric string into separate numbers.  Depending on the occurrence of the numeric string the number is multiplied by 1000 to the occurrence number (starting at 0) to the total score.  This allows three digit numbers for each major, minor, patch, etc. number to be sorted correctly.
+
+
+
+
+
+
+_ generate comma-delimited list of Resource Name - Version #, Resource Name - Version #, ...
+	--we want to be able to identify each instance of the defined resources that are installed/required for a given project
+		We need to do a join on the regexp for the naming convention and then match that up with the associated tags for the given project -> we need to take the max of each to ensure we are displaying the highest version of each installed module (this will help folks to understand how a given module version was installed in different projects)
+	generate an HTML-formatted one and one for DB result sets
+
+	QUERY LOGIC:
+		Join every project to all the resources on the regexp (excluding the projects associated with the resource) and pull the max parsed version number of each one.
+	_ rename the two sets of views since they are similar (one is for the resources themselves and the other is for the projects with associated resources) -> maybe we can combine them and in one query we just filter out the project recs by RES_ID IS NOT NULL?
+
+
+	What information do we want to pull for each project and associated tags? (resource versions)
+		We want to know the highest version of the resource within the project as well as the highest version of the resource within external projects
+
+		We need to join the resources table with the tags table to match up the regular expressions and
+
+		**determine the highest version at the resource level and then re-join with the projects/tags on the regexp to parse out the highest version of those as well
+
+
+		** We want to be able to pull information from both sides of the relationship.
+			all of the projects and their associated resources and all projects that use each of those resources (full result set as well as delimited lists)
+
+			all of the projects and installed/required resources (include the version number of the resource implemented for each of the projects) - we would also want to know what the maximum version of the resource currently is and if the maximum version is higher than the installed version (maybe show an asterisk or use "(UA)" in the interface to show an upgrade is available)
+
+
+
+			query for the projects (left outer join on resources to list project-specific resources)
+				inner join on resources to get all installed/required resources
+			detailed and summary view (comma-delimited lists or modules and version numbers)
+
+
+For resource report:
+Maybe just show the resources (not projects and resources - INNER JOIN)
+
+For project report:
+Show each project and associated tagged resources as well associated resources?
+
+
+
+
+
+
+
+	-- how are we going to
+
+Pull information from README
+
+
+
+
+Data/Software Project Inventory (from Google Keep: "Data/Software Project Inventory")
+	Standardize tag names and README.md files so they can be harvested to populate a DB that can be used to update the central inventory. This can then be embedded in a web page or used in a variety of other ways to post this information
+	e.g. DVM_db_v as a prefix and then parse the number and sort them accordingly to determine maximum version number
+	production URL
+	test/demo URL
+	version control URL (SSH and HTTPS)
+	Last Update
+	Review the GitLab repositories to determine if we can pull info via GitLab API
+	Review the GitLab repositories to see which are not in the Centralized Data Inventory
+	Look at the fields in the Data Projects Google Sheet and see if we can populate those reliably using the GitLab API or use PHP (cURL) to parse the readme.md file
+	Filter out based on private/open visibility
+	Allow flags to be set to include the given repository in the inventory
+	Add a category tag so it shows if it's a Software Developer, Data Management Tool/SOP, etc.
+	Query the GitLab server for tags so we can tell which version is the most recent (may have to be manually defined/determined per project or a naming convention should be used - can parse for the version number and then sort it numerically to determine the most recent version)
+	Query the Git Lab server for each instance of a GitLab tag that matches a version of the given tag for a project (e.g. template application has version 1.0 of the DB version control module installed) - we could have a list of dependencies that people can see (color coded or other visual representation)
+	Can run reports and refresh the DB based on an update process that will parse the
+	Use API to pull info from README.md file under specific pre-defined headings (e.g. current version number, summary, )
+	Pull project-specific information like the last update date/time, or last person
+	Eventually this can be a Oracle-based data system or we could use it as an opportunity to develop something else with MySQL/PHP or a different tech stack

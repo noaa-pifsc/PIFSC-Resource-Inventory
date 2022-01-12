@@ -1,0 +1,249 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2F6669BE-CE63-F8C8-5321-0A3A64E81F57" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_DATA_STREAMS">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Data Streams
+
+This is a reference table that defines all data streams that are implemented in the data validation module.  This reference table is referenced by the DVM_ERROR_TYPES to define the data stream that the given error type is associated with.  Examples of data streams are RPL, eTunaLog, UL, FOT, LFSC.  This is used to filter these records based on the given context of the processing/validation]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="DATA_STREAM_ID" id="35CA8C8F-B792-A7B0-FBC3-F05782C0FC9F">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>DATA_STREAM_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the SPT_DATA_STREAMS table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_STREAM_CODE" id="07D2C870-E2FA-268B-EEEC-EAB83F4D8A38">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>DATA_STREAM_CODE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The code for the given data stream]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_STREAM_NAME" id="632D629F-381C-E2E5-F851-F3519B5637C8">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>DATA_STREAM_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The name for the given data stream]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_STREAM_DESC" id="F9C5C902-B536-3124-AB71-78931E193D20">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>DATA_STREAM_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The description for the given data stream]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="1B340DAC-CDD0-5568-1EB8-0998B6F91DC8">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="527937AD-B963-6881-72BF-7EE22D2B90BF">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="8A3F0226-C251-17F4-1C5A-630A45FD2BE9">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="6182F45B-A4DF-DCCE-D1D5-95A0C38594BE">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_STREAM_PAR_TABLE" id="9BA8BA91-7ACE-D535-C6CC-968AA039CE46">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DVM_DATA_STREAMS</sourceObjSchema>
+<sourceObjName>DATA_STREAM_PAR_TABLE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Data stream's parent table name (used when evaluating QC validation criteria to specify a given parent table)]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2A50E5FD-DD96-B9AC-09AC-52F71270E2D0" name="DVM_DATA_STREAMS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="35CA8C8F-B792-A7B0-FBC3-F05782C0FC9F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D4386576-15EB-2571-3AFE-FA37439D3260" name="DVM_DATA_STREAMS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="07D2C870-E2FA-268B-EEEC-EAB83F4D8A38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F11C41CF-3880-A7BC-C332-104A2D1709C3" name="DVM_DATA_STREAMS_U2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="632D629F-381C-E2E5-F851-F3519B5637C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FEF02365-944C-214E-7EB8-80B24BC7F7C9" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_DATA_STREAMS_I1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9BA8BA91-7ACE-D535-C6CC-968AA039CE46"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="83E9D618-398F-638A-B71F-274E6C96B380" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_DATA_STREAMS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="35CA8C8F-B792-A7B0-FBC3-F05782C0FC9F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D1BCC07E-2393-3D7A-27B6-88D94ADB8905" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_DATA_STREAMS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="07D2C870-E2FA-268B-EEEC-EAB83F4D8A38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E97A459E-E734-98EE-EA28-76F751EA7362" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DVM_DATA_STREAMS_U2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="632D629F-381C-E2E5-F851-F3519B5637C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

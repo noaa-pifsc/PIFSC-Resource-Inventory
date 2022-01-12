@@ -1,0 +1,180 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4F37F798-4F46-EC5A-8368-7F0036E7980C" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DB_UPGRADE_LOGS">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_UPGRADE_LOGS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[Database Upgrade Log
+
+This database table stores the upgrade history for a given database instance so it is clear what each database instance's version is.  This is used to apply the necessary database upgrades in order to deploy a given version of an associated application.]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="UPGRADE_LOG_ID" id="4802216F-99F8-A643-C558-18FA922BA766">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_LOG_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the DB_UPGRADE_LOGS table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_APP_NAME" id="6E5541C4-B0E5-65D3-2FAD-7F4CCC7DD2C6">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_APP_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The name of the database/database module that was upgraded]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_VERSION" id="93846B64-E14E-1257-C79D-B12397F19342">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_VERSION</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The numeric version of the database upgrade that was applied]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_DATE" id="8B198481-64C5-7D1C-CF72-8FFEF8950DCB">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time that the upgrade was released]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_APP_DATE" id="2D995E5D-DC7F-C0C8-58C1-F09818B434FF">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_APP_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time when the upgrade was applied to the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_DESC" id="9EF3785E-D333-F38C-C64F-9322C3AF97A8">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description of the given database upgrade]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_BY" id="1D452502-A9C0-E9A4-FFF4-AD29F6140C35">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the account that applied the upgrade to the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="839C4F78-0156-ADD7-4780-2E8B55858FFF" name="DB_UPGRADE_LOGS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_UPGRADE_LOGS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4802216F-99F8-A643-C558-18FA922BA766"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22AEE2E7-9CD5-A60A-D5EE-16C86A6F61BD" name="DB_UPGRADE_LOGS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_UPGRADE_LOGS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:13 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6E5541C4-B0E5-65D3-2FAD-7F4CCC7DD2C6"/>
+<colUsage columnID="93846B64-E14E-1257-C79D-B12397F19342"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD04B66C-EA09-5FA6-14C8-59628E17542C" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DB_UPGRADE_LOGS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_UPGRADE_LOGS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4802216F-99F8-A643-C558-18FA922BA766"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CFCCD695-3823-6C1B-828C-B405F8DCF118" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="DB_UPGRADE_LOGS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>DB_UPGRADE_LOGS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-01-11 00:59:11 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6E5541C4-B0E5-65D3-2FAD-7F4CCC7DD2C6"/>
+<colUsage columnID="93846B64-E14E-1257-C79D-B12397F19342"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
