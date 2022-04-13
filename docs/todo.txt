@@ -64,9 +64,36 @@ Show each project and associated tagged resources as well associated resources?
 
 
 
+** (_reuse some of this content where appropriate) Data App Gallery Project Specifications (deprecated project superseded by PRI)
+	Overview:
+	PIFSC has developed various software modules and applications over the years to satisfy a variety of data needs.  Some of this software could be suitable for other research groups and projects within the Center but this information is not readily available.  It is important for PIFSC staff to be aware of existing software solutions to ensure valuable development time is not being spent on redeveloping similar solutions when it could be used improving existing software instead.  The Data App Gallery web application will allow users to browse and search through a list of applications and modules that will satisfy a given data project's needs (e.g. data management, data QC, data dissemination) to get more information, access the code repository, and access a live demo of the given software to evaluate if it is suitable for their needs.
+
+	README:
+		This project will provide PIFSC staff a gallery of data applications and modules that are currently in use or available at PIFSC.  The application will feature a searchable interface to find different types of applications and modules that will satisfy a given data project's needs (e.g. data management interface, data QC, data dissemination, etc.).  Features include a demo link, screenshots, how-to videos, version control URL, etc.  This application will help to inform PIFSC data projects of what is already available for use so we are not re-developing the same modules/functionality that is already available or could be modified to satisfy a given data project's needs.  This application could also include standards, best practices, SOPs, etc. in subsequent development phases
+
+	Project Phases:
+	•	Build prototype in HTML/JS (recommend jQuery UI framework and plugins)
+	•	Build DB for required data elements
+	•	Import data into DB for required data elements (test data)
+	•	Generate HTML using PHP or other server side language
+	•	Insert/Update/Delete functionality for DB using PHP or other server side language
+	•	Login functionality for IUD functionality
 
 
+	Required Data Elements:
+	•	Apps/Modules:
+	•	App/Module Type:
+	•	Resources (links to videos/images)
 
+	Features:
+	•	Sorting
+	•	Filtering
+	•	Browsing
+	•	Tagging
+
+
+	GitLab info:
+		This web application provides PIFSC staff a gallery of data applications and modules that are currently in use or available at PIFSC.  The application will feature a searchable interface to find different types of applications and modules
 
 	-- how are we going to
 
