@@ -4,7 +4,13 @@ _ Compile SOP for how to prepare your project for inclusion into the inventory
 	Tag your repository with all modules installed
 
 
+_ user notification functionality?
+	? Maybe allow users to subscribe to updates on a project and when a new version is defined it could email the users
+
 _ add a production flag to resources to indicate they have been deployed/marked for production use
+	_ there should be a distinction between if a given soln is implemented or just installed (e.g. folks who use the template application will have the DVM installed by default but may not actually be using it -> e.g Personnel Tracking System)
+
+
 
 _ **naming conventions should be handled to escape special characters when used in regular expressions
 
@@ -112,8 +118,8 @@ Data/Software Project Inventory (from Google Keep: "Data/Software Project Invent
 	Review the GitLab repositories to determine if we can pull info via GitLab API
 	Review the GitLab repositories to see which are not in the Centralized Data Inventory
 	Look at the fields in the Data Projects Google Sheet and see if we can populate those reliably using the GitLab API or use PHP (cURL) to parse the readme.md file
-	Filter out based on private/open visibility
-	Allow flags to be set to include the given repository in the inventory
+	_ Filter out based on private/open visibility
+	_ Allow flags to be set to include the given repository in the inventory
 	Add a category tag so it shows if it's a Software Developer, Data Management Tool/SOP, etc.
 	Query the GitLab server for tags so we can tell which version is the most recent (may have to be manually defined/determined per project or a naming convention should be used - can parse for the version number and then sort it numerically to determine the most recent version)
 	Query the Git Lab server for each instance of a GitLab tag that matches a version of the given tag for a project (e.g. template application has version 1.0 of the DB version control module installed) - we could have a list of dependencies that people can see (color coded or other visual representation)
