@@ -384,7 +384,7 @@
 				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=branch_dev_GIM_app_v0.3&private_token=".GITLAB_API_KEY))
 				{
 
-				'{"message":"404 File Not Found"}'
+
 
 					echo $this->add_message("The existing project record's PRI resource configuration file was requested successfully", 3);
 
@@ -414,9 +414,46 @@
 					{
 						//the file was found, convert the base 64 content to .txt and then parse as a json file to retrieve the custom configuration:
 
-						echo $this->add_message("there are one or more project tags, loop through each of the Gitlab project tags and insert them into the database", 3);
+						echo $this->add_message("convert the content and parse as JSON to get the resource configuration information ", 3);
+
+						//convert the base64 data to .txt (JSON file)
+						$json_content = base64_decode($data["content"]);
+
+						//parse the JSON so each resource can be processed:
+						$data = json_decode($content, true);
+
+						//delete all existing tags from the existing project so they can be replaced
+						$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL) VALUES (:proj_id, :res_category, :res_scope_id, :res_type_id, :res_tag_conv, :res_color_code, :res_url)";
+
+						//loop through each of the resources in the JSON data and insert them into the database:
+						for ($i = 0; $i < count($data); $i++)
+						{
 
 
+
+							//construct the bind variable array for the current tag:
+							$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['']));
+
+							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+							{
+								//query was successful
+								echo $this->add_message("The new project resource was inserted successfully (".$data[$i]['resource_name'].")", 3);
+
+							}
+							else
+							{
+								//the query failed, stop the processing and retun false
+
+								echo $this->add_message("The new project resource was NOT inserted successfully (".$data[$i]['resource_name'].")", 2);
+								$return_val = false;
+
+								//stop the project tag processing:
+								break;
+
+							}
+
+
+						}
 
 
 					}
@@ -425,7 +462,7 @@
 				{
 					//the GitLab request failed:
 
-					echo $this->add_message("The GitLab project tag request was NOT successful", 2);
+					echo $this->add_message("The GitLab project PRI configuration file request was NOT successful", 2);
 
 					$return_val = false;
 
