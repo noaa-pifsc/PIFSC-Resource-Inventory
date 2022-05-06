@@ -419,11 +419,18 @@
 						//convert the base64 data to .txt (JSON file)
 						$json_content = base64_decode($data["content"]);
 
+						echo $this->add_message("\$json_content is: ".$json_content, 3);
+
 						//parse the JSON so each resource can be processed:
-						$data = json_decode($content, true);
+						$data = json_decode($json_content, true);
+
+						echo $this->add_message("\$data is: ".var_export($data, true), 3);
+
+						//switch to the PRI_config element that contains all of the resource information
+						$data = $data['PRI_config'];
 
 						//delete all existing tags from the existing project so they can be replaced
-						$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL) VALUES (:proj_id, :res_category, :res_scope_id, :res_type_id, :res_tag_conv, :res_color_code, :res_url)";
+						$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI.PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI.PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc)";
 
 						//loop through each of the resources in the JSON data and insert them into the database:
 						for ($i = 0; $i < count($data); $i++)
@@ -432,7 +439,7 @@
 
 
 							//construct the bind variable array for the current tag:
-							$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['']));
+							$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['resource_url']), array(":res_desc", $data[$i]['resource_description']));
 
 							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
 							{
