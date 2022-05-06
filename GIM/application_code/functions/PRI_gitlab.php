@@ -354,6 +354,136 @@
 			return $return_val;
 		}
 
+		//method to retrieve the PRI.config file from the GitLab server and parse it to insert/replace the given project's configuration (identified by the PRI_PROJ.PROJ_ID value: $project_id).  $gitlab_project_id will be used to query the GitLab server for the corresponding configuration file (if it exists).
+		function retrieve_project_resource_config ($project_id, $gitlab_project_id)
+		{
+			//initialize the return_val variable that will be returned from the function
+			$return_val = true;
+
+			echo $this->add_message("running retrieve_project_resource_config ($project_id, $gitlab_project_id)", 3);
+
+
+			//delete all existing tags from the existing project so they can be replaced
+			$SQL = "DELETE FROM PRI.PRI_PROJ_RES WHERE PROJ_ID = :proj_id";
+			$bind_array = array(array(":proj_id", $project_id));
+
+			//if this is not an existing project then do not remove the existing tags, if the project does exist then remove the existing tags:
+			if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+			{
+				//the delete query was successful:
+
+
+				echo $this->add_message("the delete query was successful or it was not an existing project", 3);
+
+
+				//initialize the boolean to determine if more tags need to be requested:
+				$found_last_projects = false;
+
+				//initialize the page counter variable:
+				$page_counter = 0;
+
+				echo $this->add_message("loop through each list of project tags until there are none remaining (only allows 100 per page)", 3);
+
+				//request all Gitlab project tags via v4 API:
+				for ($i = 0; (!$found_last_projects); $i++)
+				{
+
+					echo $this->add_message("send the request for page #".($page_counter + 1)." of the gitlab project tags", 3);
+
+
+					//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
+					//request all Gitlab users accounts via v4 API:
+					if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/tags?per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
+					{
+						echo $this->add_message("The existing project record's tags were requested successfully", 3);
+
+						//the tag request was successful:
+
+						//convert the string into a JSON array for processing:
+						$data = json_decode($content, true);
+
+						echo $this->add_message("The value of \$data is: " . var_export($data, true), 3);
+
+						//free the content string from memory:
+						$content = null;
+
+						//check if there were any projects returned by the API call:
+						if (count($data) == 0)
+						{
+							//there are no project tags returned by the API request, do nothing:
+							echo $this->add_message("there are no project tags returned by the API request, stop processing them", 3);
+
+							//there are no projects returned by the API request, stop processing the projects:
+							$found_last_projects = true;
+
+						}
+						else
+						{
+							echo $this->add_message("there are one or more project tags, loop through each of the Gitlab project tags and insert them into the database", 3);
+
+							//construct insert statement:
+							$SQL = "INSERT INTO PRI.PRI_PROJ_TAGS (PROJ_ID, TAG_NAME, TAG_MSG, TAG_COMMIT_AUTHOR, TAG_COMMIT_DTM) VALUES (:proj_id, :tag_name, :tag_msg, :tag_author, TO_DATE(REGEXP_SUBSTR(:tag_dtm, '^([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:tag_dtm, '^[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'))";
+
+							//loop through each of the Gitlab project tags and insert them into the database:
+							for ($i = 0; $i < count($data); $i++)
+							{
+
+								//construct the bind variable array for the current tag:
+								$bind_array = array(array(":proj_id", $project_id), array(":tag_name", $data[$i]['name']), array(":tag_msg", $data[$i]['message']), array(":tag_author", $data[$i]['commit']['author_name']), array(":tag_dtm", $data[$i]['commit']["authored_date"]));
+
+								if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+								{
+									//query was successful
+									echo $this->add_message("The new tag was inserted successfully (".$data[$i]['name'].")", 3);
+
+								}
+								else
+								{
+									//the query failed, stop the processing and retun false
+
+									echo $this->add_message("The new tag was NOT inserted successfully (".$data[$i]['name'].")", 2);
+									$return_val = false;
+
+									//stop the project tag processing:
+									break;
+
+								}
+
+
+							}
+						}
+					}
+					else
+					{
+						//the GitLab request failed:
+
+						echo $this->add_message("The GitLab project tag request was NOT successful", 2);
+
+						$return_val = false;
+
+					}
+				}
+
+
+			}
+			else
+			{
+
+				//query was NOT successful
+				echo $this->add_message("The existing project tags were not deleted successfully", 2);
+
+				//set the return value to false:
+				$return_val = false;
+
+
+			}
+
+
+			//return the $return_val
+			return $return_val;
+		}
+
+
 	}
 
 ?>
