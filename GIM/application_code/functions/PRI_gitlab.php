@@ -264,7 +264,7 @@
 
 					//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
 					//request all Gitlab users accounts via v4 API:
-					if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/tags??per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
+					if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/tags?per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
 					{
 						echo $this->add_message("The existing project record's tags were requested successfully", 3);
 
@@ -376,92 +376,59 @@
 				echo $this->add_message("the delete query was successful or it was not an existing project", 3);
 
 
-				//initialize the boolean to determine if more tags need to be requested:
-				$found_last_projects = false;
 
-				//initialize the page counter variable:
-				$page_counter = 0;
+				echo $this->add_message("send the CURL request: https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=branch_dev_GIM_app_v0.3&private_token=".GITLAB_API_KEY, 3);
 
-				echo $this->add_message("loop through each list of project tags until there are none remaining (only allows 100 per page)", 3);
-
-				//request all Gitlab project tags via v4 API:
-				for ($i = 0; (!$found_last_projects); $i++)
+				//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
+				//request all Gitlab users accounts via v4 API:
+				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=branch_dev_GIM_app_v0.3&private_token=".GITLAB_API_KEY))
 				{
 
-					echo $this->add_message("send the request for page #".($page_counter + 1)." of the gitlab project tags", 3);
+				'{"message":"404 File Not Found"}'
 
+					echo $this->add_message("The existing project record's PRI resource configuration file was requested successfully", 3);
 
-					//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
-					//request all Gitlab users accounts via v4 API:
-					if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/tags?per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
+					//the tag request was successful:
+
+					echo $this->add_message("The value of \$content is: " . var_export($content, true), 3);
+
+					//convert the string into a JSON array for processing:
+					$data = json_decode($content, true);
+
+					echo $this->add_message("The value of \$data is: " . var_export($data, true), 3);
+
+					//free the content string from memory:
+					$content = null;
+
+					//The file was not found in the GitLab project:
+					if (count($data) == 0)
 					{
-						echo $this->add_message("The existing project record's tags were requested successfully", 3);
+						//there are no project tags returned by the API request, do nothing:
+						echo $this->add_message("The PRI custom resource configuration file was not found, stop processing", 3);
 
-						//the tag request was successful:
+						//there are no projects returned by the API request, stop processing the projects:
+						$found_last_projects = true;
 
-						//convert the string into a JSON array for processing:
-						$data = json_decode($content, true);
-
-						echo $this->add_message("The value of \$data is: " . var_export($data, true), 3);
-
-						//free the content string from memory:
-						$content = null;
-
-						//check if there were any projects returned by the API call:
-						if (count($data) == 0)
-						{
-							//there are no project tags returned by the API request, do nothing:
-							echo $this->add_message("there are no project tags returned by the API request, stop processing them", 3);
-
-							//there are no projects returned by the API request, stop processing the projects:
-							$found_last_projects = true;
-
-						}
-						else
-						{
-							echo $this->add_message("there are one or more project tags, loop through each of the Gitlab project tags and insert them into the database", 3);
-
-							//construct insert statement:
-							$SQL = "INSERT INTO PRI.PRI_PROJ_TAGS (PROJ_ID, TAG_NAME, TAG_MSG, TAG_COMMIT_AUTHOR, TAG_COMMIT_DTM) VALUES (:proj_id, :tag_name, :tag_msg, :tag_author, TO_DATE(REGEXP_SUBSTR(:tag_dtm, '^([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:tag_dtm, '^[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'))";
-
-							//loop through each of the Gitlab project tags and insert them into the database:
-							for ($i = 0; $i < count($data); $i++)
-							{
-
-								//construct the bind variable array for the current tag:
-								$bind_array = array(array(":proj_id", $project_id), array(":tag_name", $data[$i]['name']), array(":tag_msg", $data[$i]['message']), array(":tag_author", $data[$i]['commit']['author_name']), array(":tag_dtm", $data[$i]['commit']["authored_date"]));
-
-								if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
-								{
-									//query was successful
-									echo $this->add_message("The new tag was inserted successfully (".$data[$i]['name'].")", 3);
-
-								}
-								else
-								{
-									//the query failed, stop the processing and retun false
-
-									echo $this->add_message("The new tag was NOT inserted successfully (".$data[$i]['name'].")", 2);
-									$return_val = false;
-
-									//stop the project tag processing:
-									break;
-
-								}
-
-
-							}
-						}
 					}
 					else
 					{
-						//the GitLab request failed:
+						//the file was found, convert the base 64 content to .txt and then parse as a json file to retrieve the custom configuration:
 
-						echo $this->add_message("The GitLab project tag request was NOT successful", 2);
+						echo $this->add_message("there are one or more project tags, loop through each of the Gitlab project tags and insert them into the database", 3);
 
-						$return_val = false;
+
+
 
 					}
+				}
+				else
+				{
+					//the GitLab request failed:
+
+					echo $this->add_message("The GitLab project tag request was NOT successful", 2);
+
+					$return_val = false;
+
 				}
 
 
