@@ -363,58 +363,55 @@
 			echo $this->add_message("running retrieve_project_resource_config ($project_id, $gitlab_project_id)", 3);
 
 
-			//delete all existing tags from the existing project so they can be replaced
-			$SQL = "DELETE FROM PRI.PRI_PROJ_RES WHERE PROJ_ID = :proj_id";
-			$bind_array = array(array(":proj_id", $project_id));
-
-			//if this is not an existing project then do not remove the existing tags, if the project does exist then remove the existing tags:
-			if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+			//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
+			//request all Gitlab users accounts via v4 API:
+			if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=master&private_token=".GITLAB_API_KEY))
 			{
-				//the delete query was successful:
-
-
-				echo $this->add_message("the delete query was successful or it was not an existing project", 3);
 
 
 
-				echo $this->add_message("send the CURL request: https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=branch_dev_GIM_app_v0.3&private_token=".GITLAB_API_KEY, 3);
+				echo $this->add_message("The existing project record's PRI resource configuration file was requested successfully", 3);
 
-				//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
-				//request all Gitlab users accounts via v4 API:
-				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=branch_dev_GIM_app_v0.3&private_token=".GITLAB_API_KEY))
+				//the tag request was successful:
+
+				echo $this->add_message("The value of \$content is: " . var_export($content, true), 3);
+
+				//there was a custom configuration file found, parse it for the updated project resources:
+
+				//convert the string into a JSON array for processing:
+				$data = json_decode($content, true);
+
+				echo $this->add_message("The value of \$data is: " . var_export($data, true), 3);
+
+				//free the content string from memory:
+				$content = null;
+
+				//The file was not found in the GitLab project:
+				if (count($data) == 0)
 				{
+					//there are no project tags returned by the API request, do nothing:
+					echo $this->add_message("The PRI custom resource configuration file was empty, stop processing", 3);
 
+				}
+				else
+				{
+					//the file was found, convert the base 64 content to .txt and then parse as a json file to retrieve the custom configuration:
 
+					echo $this->add_message("convert the content and parse as JSON to get the resource configuration information ", 3);
 
-					echo $this->add_message("The existing project record's PRI resource configuration file was requested successfully", 3);
+					echo $this->add_message("\$data['message'] is: ".$data['message'], 3);
 
-					//the tag request was successful:
-
-					echo $this->add_message("The value of \$content is: " . var_export($content, true), 3);
-
-					//convert the string into a JSON array for processing:
-					$data = json_decode($content, true);
-
-					echo $this->add_message("The value of \$data is: " . var_export($data, true), 3);
-
-					//free the content string from memory:
-					$content = null;
-
-					//The file was not found in the GitLab project:
-					if (count($data) == 0)
+					//check if there is a "message" property
+					if ((array_key_exists('message', $data)) && ($data['message'] == '404 Commit Not Found'))
 					{
-						//there are no project tags returned by the API request, do nothing:
-						echo $this->add_message("The PRI custom resource configuration file was not found, stop processing", 3);
+						//the file was not found
 
-						//there are no projects returned by the API request, stop processing the projects:
-						$found_last_projects = true;
+						echo $this->add_message("The custom configuration file was not found, do not refresh the project resource information", 3);
 
 					}
 					else
 					{
-						//the file was found, convert the base 64 content to .txt and then parse as a json file to retrieve the custom configuration:
-
-						echo $this->add_message("convert the content and parse as JSON to get the resource configuration information ", 3);
+						//this is a valid configuration file:
 
 						//convert the base64 data to .txt (JSON file)
 						$json_content = base64_decode($data["content"]);
@@ -424,71 +421,86 @@
 						//parse the JSON so each resource can be processed:
 						$data = json_decode($json_content, true);
 
-						echo $this->add_message("\$data is: ".var_export($data, true), 3);
+						echo $this->add_message("The custom configuration file was found, parse the file for the resource information", 3);
 
-						//switch to the PRI_config element that contains all of the resource information
-						$data = $data['PRI_config'];
+						//delete all existing project resources from the existing project so they can be replaced
+						$SQL = "DELETE FROM PRI.PRI_PROJ_RES WHERE PROJ_ID = :proj_id";
+						$bind_array = array(array(":proj_id", $project_id));
 
-						//delete all existing tags from the existing project so they can be replaced
-						$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI.PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI.PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc)";
-
-						//loop through each of the resources in the JSON data and insert them into the database:
-						for ($i = 0; $i < count($data); $i++)
+						//if this is not an existing project then do not remove the existing tags, if the project does exist then remove the existing tags:
+						if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
 						{
+							//the delete query was successful:
 
+							echo $this->add_message("\$data is: ".var_export($data, true), 3);
 
+							//switch to the PRI_config element that contains all of the resource information
+							$data = $data['PRI_config'];
 
-							//construct the bind variable array for the current tag:
-							$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['resource_url']), array(":res_desc", $data[$i]['resource_description']));
+							//delete all existing tags from the existing project so they can be replaced
+							$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI.PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI.PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc)";
 
-							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+							//loop through each of the resources in the JSON data and insert them into the database:
+							for ($i = 0; $i < count($data); $i++)
 							{
-								//query was successful
-								echo $this->add_message("The new project resource was inserted successfully (".$data[$i]['resource_name'].")", 3);
 
-							}
-							else
-							{
-								//the query failed, stop the processing and retun false
 
-								echo $this->add_message("The new project resource was NOT inserted successfully (".$data[$i]['resource_name'].")", 2);
-								$return_val = false;
 
-								//stop the project tag processing:
-								break;
+								//construct the bind variable array for the current tag:
+								$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['resource_url']), array(":res_desc", $data[$i]['resource_description']));
+
+								if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+								{
+									//query was successful
+									echo $this->add_message("The new project resource was inserted successfully (".$data[$i]['resource_name'].")", 3);
+
+								}
+								else
+								{
+									//the query failed, stop the processing and retun false
+
+									echo $this->add_message("The new project resource was NOT inserted successfully (".$data[$i]['resource_name'].")", 2);
+									$return_val = false;
+
+									//stop the project tag processing:
+									break;
+
+								}
+
 
 							}
 
 
 						}
+						else
+						{
 
+							//query was NOT successful
+							echo $this->add_message("The existing project tags were not deleted successfully", 2);
+
+							//set the return value to false:
+							$return_val = false;
+
+
+						}
 
 					}
-				}
-				else
-				{
-					//the GitLab request failed:
-
-					echo $this->add_message("The GitLab project PRI configuration file request was NOT successful", 2);
-
-					$return_val = false;
 
 				}
-
-
 			}
 			else
 			{
+				//the GitLab request failed:
 
-				//query was NOT successful
-				echo $this->add_message("The existing project tags were not deleted successfully", 2);
+				echo $this->add_message("The GitLab project PRI configuration file request was NOT successful", 2);
 
-				//set the return value to false:
 				$return_val = false;
-
 
 			}
 
+
+			//commit transaction (debugging statement)
+//			$this->oracle_db->commit();
 
 			//return the $return_val
 			return $return_val;

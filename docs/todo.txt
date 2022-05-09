@@ -4,6 +4,11 @@ _ Compile SOP for how to prepare your project for inclusion into the inventory
 	Tag your repository with all modules installed
 
 
+_ pull the resource description from the Overview section of the referenced file (only if it is in .md format)?
+
+_ pull other information from the readme.md file
+	
+
 _ add a production flag to resources to indicate they have been deployed/marked for production use
 
 _ **naming conventions should be handled to escape special characters when used in regular expressions
