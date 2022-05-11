@@ -6,7 +6,7 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 ## Resources:
 -   Version Control Information:
     -   URL:git@gitlab.pifsc.gov:centralized-data-tools/pifsc-resource-inventory.git in the [GIM](../) folder
-    -   Application: 0.2 (Git tag: pifsc_resource_inventory_git_info_app_v0.2)
+    -   Application: 0.3 (Git tag: pifsc_resource_inventory_git_info_app_v0.3)
 -   [PRI Database Documentation](../../docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 
 ## Requirements:

@@ -62,6 +62,8 @@
 				echo $this->add_message("send the request for page #".($page_counter + 1)." of the gitlab projects", 3);
 
 
+				echo $this->add_message("send the request: "."https://".GITLAB_HOST_NAME."/api/v4/projects?per_page=100&page=".($page_counter + 1)."&private_token=".GITLAB_API_KEY, 3);
+
 				//request all Gitlab users accounts via v4 API:
 				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects?per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
 				{
@@ -98,16 +100,16 @@
 						echo $this->add_message("loop through each of the Gitlab projects and insert/update them in the database", 3);
 
 						//loop through each of the Gitlab projects and insert them into the database:
-						for ($i = 0; $i < count($data); $i++)
+						for ($j = 0; $j < count($data); $j++)
 						{
 
-							echo $this->add_message("the current project name is: ".$data[$i]['name'], 3);
+							echo $this->add_message("the current project name is: ".$data[$j]['name'], 3);
 
-							echo $this->add_message(var_export($data[$i], true), 3);
+							echo $this->add_message(var_export($data[$j], true), 3);
 
 							//check if the PRI_PROJ record already exists:
 							$SQL = "SELECT PROJ_ID FROM PRI.PRI_PROJ WHERE VC_PROJ_ID = :id and PROJ_SOURCE = :proj_source";
-							$bind_array = array(array(':id', $data[$i]['id']), array(':proj_source', ($temp = PROJ_SOURCE)));
+							$bind_array = array(array(':id', $data[$j]['id']), array(':proj_source', ($temp = PROJ_SOURCE)));
 
 							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
 							{
@@ -123,22 +125,40 @@
 									//the PRI_PROJ does not already exist:
 									$SQL = "UPDATE PRI.PRI_PROJ SET VC_PROJ_ID = :vc_proj_id, PROJ_NAME = :proj_name, PROJ_DESC = :proj_desc, SSH_URL = :ssh_url, HTTP_URL = :http_url, README_URL = :readme_url, AVATAR_URL = :avatar_url, PROJ_CREATE_DTM = TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), PROJ_UPDATE_DTM = (CASE WHEN :proj_update_dtm IS NOT NULL THEN TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), PROJ_VISIBILITY = :proj_visibility, PROJ_NAME_SPACE = :proj_name_space, PROJ_SOURCE = :proj_source WHERE PROJ_ID = :proj_id";
 
-									$bind_array = array(array(":vc_proj_id", $data[$i]['id']), array(':proj_name', $data[$i]['name']), array(':proj_desc', $data[$i]['description']), array(':ssh_url', $data[$i]['ssh_url_to_repo']), array(':http_url', $data[$i]['http_url_to_repo']), array(':readme_url', $data[$i]['readme_url']), array(':avatar_url', $data[$i]['avatar_url']), array(':proj_create_dtm', $data[$i]['created_at']), array(':proj_update_dtm', $data[$i]['last_activity_at']), array(':proj_visibility', $data[$i]['visibility']), array(':proj_name_space', $data[$i]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(':proj_id', $row['PROJ_ID']));
+									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(':proj_id', $row['PROJ_ID']));
 
 									if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
 									{
 										//query was successful
-										echo $this->add_message("The existing project record was updated successfully for the current gitlab project: ".$data[$i]['name'], 3);
+										echo $this->add_message("The existing project record was updated successfully for the current gitlab project: ".$data[$j]['name'], 3);
 
 										//replace the existing project tags with the current information in GitLab:
-										if ($this-> replace_project_tags($row['PROJ_ID'], $data[$i]['id']))
+										if ($this-> replace_project_tags($row['PROJ_ID'], $data[$j]['id']))
 										{
 											//replace project tags function failed:
 											echo $this->add_message("The project tags were refreshed successfully (PROJ_ID: ".$row['PROJ_ID'].")", 3);
 
-											//commit the transaction
-											$this->oracle_db->commit();
 
+											//retrieve the resource configuration file
+											if ($this-> retrieve_project_resource_config ($row['PROJ_ID'], $data[$j]['id']))
+											{
+
+												echo $this->add_message("The resource configuration file was parsed and loaded successfully, commit the transaction", 3);
+
+
+												//commit the transaction
+												$this->oracle_db->commit();
+											}
+											else
+											{
+												//the project resources were not queried for successfully:
+												echo $this->add_message("the project resources were not queried for successfully", 2);
+
+												//rollback the transaction
+												$this->oracle_db->rollback();
+
+
+											}
 										}
 										else
 										{
@@ -155,7 +175,7 @@
 									else
 									{
 										//query was NOT successful
-										echo $this->add_message("The existing project record was NOT created successfully for the current gitlab project: ".$data[$i]['name'], 2);
+										echo $this->add_message("The existing project record was NOT created successfully for the current gitlab project: ".$data[$j]['name'], 2);
 
 										//rollback the transaction
 										$this->oracle_db->rollback();
@@ -169,22 +189,41 @@
 									echo $this->add_message("The project record does not exist, create a new project record", 3);
 
 									$SQL = "INSERT INTO PRI.PRI_PROJ (VC_PROJ_ID, PROJ_NAME, PROJ_DESC, SSH_URL, HTTP_URL, README_URL, AVATAR_URL, PROJ_CREATE_DTM, PROJ_UPDATE_DTM, PROJ_VISIBILITY, PROJ_NAME_SPACE, PROJ_SOURCE) VALUES (:vc_proj_id, :proj_name, :proj_desc, :ssh_url, :http_url, :readme_url, :avatar_url, TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), (CASE WHEN :proj_update_dtm IS NOT NULL THEN  TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), :proj_visibility, :proj_name_space, :proj_source) RETURNING PROJ_ID INTO :RETURN_ID";
-									$bind_array = array(array(":vc_proj_id", $data[$i]['id']), array(':proj_name', $data[$i]['name']), array(':proj_desc', $data[$i]['description']), array(':ssh_url', $data[$i]['ssh_url_to_repo']), array(':http_url', $data[$i]['http_url_to_repo']), array(':readme_url', $data[$i]['readme_url']), array(':avatar_url', $data[$i]['avatar_url']), array(':proj_create_dtm', $data[$i]['created_at']), array(':proj_update_dtm', $data[$i]['last_activity_at']), array(':proj_visibility', $data[$i]['visibility']), array(':proj_name_space', $data[$i]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":RETURN_ID", $return_id = null));
+									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":RETURN_ID", $return_id = null));
 
 									if ($rc = $this->oracle_db->query($SQL, $result, $return_id, $bind_array, OCI_NO_AUTO_COMMIT))
 									{
 										//query was successful
-										echo $this->add_message("The new project record was created successfully for the current gitlab project: ".$data[$i]['name'].", new proj_id is: ".$return_id, 3);
+										echo $this->add_message("The new project record was created successfully for the current gitlab project: ".$data[$j]['name'].", new proj_id is: ".$return_id, 3);
 
 										//insert the project tags for the new project:
-										if ($this-> replace_project_tags ($return_id, $data[$i]['id'], false))
+										if ($this-> replace_project_tags ($return_id, $data[$j]['id'], false))
 										{
 											//the project tags were added successfully:
+											echo $this->add_message("The new project tags were created successfully for the current gitlab project", 3);
 
-											echo $this->add_message("The new project tags were created successfully for the current gitlab project, commit the transaction", 3);
 
-											//commit the transaction
-											$this->oracle_db->commit();
+											//retrieve the resource configuration file
+											if ($this-> retrieve_project_resource_config ($return_id, $data[$j]['id']))
+											{
+
+												echo $this->add_message("The resource configuration file was parsed and loaded successfully, commit the transaction", 3);
+
+
+												//commit the transaction
+												$this->oracle_db->commit();
+											}
+											else
+											{
+												//the project resources were not queried for successfully:
+												echo $this->add_message("the project resources were not queried for successfully", 2);
+
+												//rollback the transaction
+												$this->oracle_db->rollback();
+
+
+											}
+
 										}
 										else
 										{
@@ -199,7 +238,7 @@
 									else
 									{
 										//query was NOT successful
-										echo $this->add_message("The new project record was NOT created successfully for the current gitlab project: ".$data[$i]['name'], 2);
+										echo $this->add_message("The new project record was NOT created successfully for the current gitlab project: ".$data[$j]['name'], 2);
 
 										//rollback the transaction
 										$this->oracle_db->rollback();
@@ -248,7 +287,7 @@
 
 
 				//initialize the boolean to determine if more tags need to be requested:
-				$found_last_projects = false;
+				$found_last_project_tags = false;
 
 				//initialize the page counter variable:
 				$page_counter = 0;
@@ -256,7 +295,7 @@
 				echo $this->add_message("loop through each list of project tags until there are none remaining (only allows 100 per page)", 3);
 
 				//request all Gitlab project tags via v4 API:
-				for ($i = 0; (!$found_last_projects); $i++)
+				for ($i = 0; (!$found_last_project_tags); $i++)
 				{
 
 					echo $this->add_message("send the request for page #".($page_counter + 1)." of the gitlab project tags", 3);
@@ -285,7 +324,7 @@
 							echo $this->add_message("there are no project tags returned by the API request, stop processing them", 3);
 
 							//there are no projects returned by the API request, stop processing the projects:
-							$found_last_projects = true;
+							$found_last_project_tags = true;
 
 						}
 						else
@@ -362,10 +401,11 @@
 
 			echo $this->add_message("running retrieve_project_resource_config ($project_id, $gitlab_project_id)", 3);
 
+			echo $this->add_message("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=PRI_config_testing&private_token=".GITLAB_API_KEY, 3);
 
 			//request all tags and loop through and insert them.  On error rollback, on success commit and move on to the next one.
 			//request all Gitlab users accounts via v4 API:
-			if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=master&private_token=".GITLAB_API_KEY))
+			if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects/".$gitlab_project_id."/repository/files/PRI.config?ref=PRI_config_testing&private_token=".GITLAB_API_KEY))
 			{
 
 
@@ -438,7 +478,7 @@
 							$data = $data['PRI_config'];
 
 							//delete all existing tags from the existing project so they can be replaced
-							$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI.PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI.PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc)";
+							$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC, RES_DEMO_URL) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI.PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI.PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc, :res_demo_url)";
 
 							//loop through each of the resources in the JSON data and insert them into the database:
 							for ($i = 0; $i < count($data); $i++)
@@ -447,7 +487,7 @@
 
 
 								//construct the bind variable array for the current tag:
-								$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['resource_url']), array(":res_desc", $data[$i]['resource_description']));
+								$bind_array = array(array(":proj_id", $project_id), array(":res_category", $data[$i]['resource_category']), array(":res_scope_id", $data[$i]['resource_scope']), array(":res_type_id", $data[$i]['resource_type']), array(":res_tag_conv", $data[$i]['tag_naming_convention']), array(":res_name", $data[$i]['resource_name']), array(":res_color_code", $data[$i]['project_color']), array(":res_url", $data[$i]['resource_url']), array(":res_desc", $data[$i]['resource_description']), array(":res_demo_url", $data[$i]['demo_url']));
 
 								if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
 								{
