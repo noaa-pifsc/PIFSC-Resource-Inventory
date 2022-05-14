@@ -5,7 +5,7 @@ This database provides the core database objects required to run the PIFSC Resou
 
 ## Resources:
 -   PRI Version Control Information:
-    -   URL:git@gitlab.pifsc.gov:centralized-data-tools/pifsc-resource-inventory.git
+    -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
     -   Database: 0.2 (Git tag: pifsc_resource_inventory_db_v0.2)
 -   [View Comments](PRI_view_comments.xlsx)
 -   [PRI Database Naming Conventions](PIFSC%20Resource%20Inventory%20DB%20Naming%20Conventions.md)
@@ -25,7 +25,7 @@ This database provides the core database objects required to run the PIFSC Resou
 ## Features:
 -   The DB Module Packager (DMP) project was utilized to streamline the installation of the custom database modules listed below:
     -   Version Control Information:
-        -   Repository URL: git@gitlab.pifsc.gov:centralized-data-tools/db-module-packager.git
+        -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/db-module-packager.git
         -   DMP Version: 0.4 (git tag: db_module_packager_v0.4)
         -   The DMP Scientific Database use case was implemented on the PRI
             -   Database: 0.5 (Git tag: DMP_Scientific_v0.5)

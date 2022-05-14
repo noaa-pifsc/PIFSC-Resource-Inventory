@@ -1,10 +1,11 @@
 _ Compile SOP for how to prepare your project for inclusion into the inventory
-	Create JSON file w/ naming convention, etc.
+	Create JSON file w/ naming convention, etc. using the Excel template and JSON templates (_ develop a short SOP for this)
 	Update to public
 	Tag your repository with all modules installed
 
 
-_ projects layout needs to have margin/padding addressed before implementing the resources layout
+
+X projects layout needs to have margin/padding addressed before implementing the resources layout
 
 _ Also add the view resource and view project pages
 
@@ -22,7 +23,7 @@ _ add a production flag to resources to indicate they have been deployed/marked 
 
 _ **naming conventions should be handled to escape special characters when used in regular expressions
 
-_ implement tooltips for each field in the projects/resources page
+X implement tooltips for each field in the projects/resources page
 
 implement the json config files to indicate special resources for the given project
 
@@ -36,9 +37,35 @@ implement the json config files to indicate special resources for the given proj
 *_ document algorithm for assigning a version number score to a given version number string
 	* Parse the period-delimited numeric string into separate numbers.  Depending on the occurrence of the numeric string the number is multiplied by 1000 to the occurrence number (starting at 0) to the total score.  This allows three digit numbers for each major, minor, patch, etc. number to be sorted correctly.
 
+_ implement a simple form interface to allow filtering and ajax content to be refreshed (maybe just specify the data as JSON from the queries and have javascript generate the formatted HTML and update the DOM with the content)
+
+Maybe we don't need to view the projects and resources separately since all of the relevant information is in the card implementation
+	_ maybe just implement filtering/Sorting/searching
+
+_ change DM (data management) to DS (data stewardship) to align with DG program
 
 
+_ implement more resources:
+	X PARR tools (BDM, PARR dashboard, DB)
+	Data integration
+	X Cruise data integration SOP (link it to the implementation of the CEN_CRUISE schema)
+	X NCEI tools
+	X APEX tools (security documentation and error handler)
+	data enterprise (DLC diagrams and operating model)
+	GitHub Tools
+	_ data dissemination tools
+	PIFSC Info
+	GitHub Template
 
+
+	_ implement tags for all projects that utilize the DDL helper
+
+	_ retrieve more information from the API (like top contributor, last contributor, project owner, etc.)
+		first commit/last commit
+		last update
+		last contributor
+		number of commits
+		owner
 
 
 _ generate comma-delimited list of Resource Name - Version #, Resource Name - Version #, ...

@@ -5,7 +5,7 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 
 ## Resources:
 -   Version Control Information:
-    -   URL:git@gitlab.pifsc.gov:centralized-data-tools/pifsc-resource-inventory.git in the [GIM](../) folder
+    -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git in the [GIM](../) folder
     -   Application: 0.3 (Git tag: pifsc_resource_inventory_git_info_app_v0.3)
 -   [PRI Database Documentation](../../docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 
@@ -26,7 +26,7 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 ## Additional script setup:
 -   Clone the PHP Shared Library repository to a local directory
     -   Version Control Information:
-        -   URL: git@gitlab.pifsc.gov:centralized-data-tools/php-shared-library.git
+        -   URL: git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
         -   App: 1.11 (Git tag: php_shared_libary_v1.11)
 -   The [retrieve_gitlab_info.bat](../application_code/retrieve_gitlab_info.bat) file has been configured based on the assumption that the PHP5.5 installation directory is c:/web/PHP5.5 and the php.ini file is in the same folder.  If the PHP installation directory and php.ini files are in different directories update the retrieve_gitlab_info.bat file accordingly
     -   This batch file can be executed on-demand or on a specified schedule to process the GIM to refresh the PRI database with the project information from the PIFSC GitLab server
