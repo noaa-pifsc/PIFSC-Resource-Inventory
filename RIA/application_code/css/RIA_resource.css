@@ -1,0 +1,72 @@
+  h1.page_heading {text-align:center; padding: 5px 0px;}
+
+/*    div.PRI_project_table, div.form_container {text-align: center; width: 100%;}
+
+    div.RIA_table_label {font-weight: bold; text-align: center; padding: 8px 0px; font-size: 16px;}
+*/
+/*BEGIN display table CSS definition*/
+
+body {margin: 0px; padding: 0px;}
+
+
+
+
+
+/*tooltip START*/
+
+div.tooltip {cursor: help;}
+
+/*tooltip END*/
+
+
+
+
+
+
+
+
+
+/*Card Styling START*/
+
+
+
+
+div.res_info_div{
+  width: 20%;
+}
+
+div.proj_info_div
+{
+  width: 25%;
+}
+
+div.proj_det_info_div
+{
+  width: 10%;
+}
+
+div.res_det_info_div
+{
+  width: 15%;
+
+}
+
+div.impl_proj_info_div
+{
+  width: 15%;
+}
+
+
+div.res_proj_div
+{
+  width: 15%;
+}
+
+
+
+
+
+
+
+
+/*Card Styling END*/

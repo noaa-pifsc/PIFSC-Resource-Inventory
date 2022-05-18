@@ -1,0 +1,40 @@
+
+       div#disabled_content_overlay
+        {
+          position: absolute;
+          left: 0;
+          top: 0;
+          background: #000000;
+          z-index: 20;
+        }
+
+
+    div#ajax_loading_graphic {
+    width: 300px;
+    height: 100px;
+
+    background-color: white;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    background-image: url(../images/ajax-loader.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 30 !important;
+    opacity: 1 !important;
+    display:none;
+    border-radius: 10px;
+    }
+
+    div#ajax_loading_graphic strong {
+      top: 10px;
+      position: relative;
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+
+    }
