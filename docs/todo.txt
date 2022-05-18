@@ -3,6 +3,15 @@ _ Compile SOP for how to prepare your project for inclusion into the inventory
 	Update to public
 	Tag your repository with all modules installed
 
+_ ** instead of developing separate pages for the view single resources/project view we can just use anchors by the RES_ID or by PROJ_ID (can also auto generate a non-numeric key for the anchor too based on the PK value)
+	_ we would need to adjust the filtering based on if there are arguments to the page (need to think about this more)
+
+
+_ add web app to Google Site:
+	<embed src="http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_projects.php" style="width: 100%; height: 500px;">
+
+
+_ update the code so it doesn't exit on SQL error (rollback specific transaction and log issue but don't stop processing immediately)
 
 
 X projects layout needs to have margin/padding addressed before implementing the resources layout
@@ -45,6 +54,9 @@ Maybe we don't need to view the projects and resources separately since all of t
 _ change DM (data management) to DS (data stewardship) to align with DG program
 
 
+
+
+
 _ implement more resources:
 	X PARR tools (BDM, PARR dashboard, DB)
 	Data integration
@@ -58,7 +70,7 @@ _ implement more resources:
 	GitHub Template
 
 
-	_ implement tags for all projects that utilize the DDL helper
+	X ** implement tags for all projects that utilize the DDL helper
 
 	_ retrieve more information from the API (like top contributor, last contributor, project owner, etc.)
 		first commit/last commit

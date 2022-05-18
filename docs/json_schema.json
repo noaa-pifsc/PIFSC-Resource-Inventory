@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "PRI_config": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "tag_naming_convention": {
+              "type": "string"
+            },
+            "resource_scope": {
+              "type": "string"
+            },
+            "resource_name": {
+              "type": "string"
+            },
+            "resource_description": {
+              "type": "string"
+            },
+            "resource_type": {
+              "type": "string"
+            },
+            "resource_category": {
+              "type": "string"
+            },
+            "project_color": {
+              "type": "string"
+            },
+            "resource_url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tag_naming_convention",
+            "resource_scope",
+            "resource_name",
+            "resource_description",
+            "resource_type",
+            "resource_category",
+            "project_color",
+            "resource_url"
+          ]
+        },
+      ]
+    }
+  },
+  "required": [
+    "PRI_config"
+  ]
+}
