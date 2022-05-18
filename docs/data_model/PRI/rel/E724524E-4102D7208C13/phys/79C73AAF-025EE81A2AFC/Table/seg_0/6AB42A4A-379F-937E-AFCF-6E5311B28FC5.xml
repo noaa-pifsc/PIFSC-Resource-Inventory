@@ -6,7 +6,7 @@
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>C48B9528-6D78-9F6B-6F61-8E8E48C870D4</segment>
+<segment>2C0A4058-F823-9C1F-90C5-BB9A2CD1564D</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -28,6 +28,11 @@
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="RES_DESC" id="3669B31A-5B2B-0CF0-017C-7E55D73F7CD5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="LAST_MOD_DATE" id="36E8959A-76A8-8CCC-F4D1-56DA51CDCFA6">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
@@ -41,6 +46,11 @@
 <ColumnProxy name="RES_COLOR_CODE" id="57231701-8627-CBC3-506E-11158C2C03F1">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RES_DEMO_URL" id="64B5ABAB-AA03-3F52-43DC-B6B3E368FEB2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="RES_SCOPE_ID" id="6533FB49-C026-12B2-07EF-A9A901775943">
@@ -85,7 +95,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_PK" id="606DCE65-B02A-4496-0770-1164AEB863EE">
@@ -93,7 +103,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_U1" id="A53D4779-4D15-BC8A-BDF0-DB9A2A736CE5">
@@ -101,7 +111,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_I1" id="C171BF35-E1BF-5C7D-6891-856F50455155">
@@ -109,7 +119,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_RES_I2" id="FD65DBA3-F018-415D-D479-CCFD3FA7A560">
@@ -117,7 +127,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -143,10 +153,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:13 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <existingIndex>606DCE65-B02A-4496-0770-1164AEB863EE</existingIndex>
-<indexSegment>4D1B58D9-2492-F90D-168A-D9C52079BA99</indexSegment>
+<indexSegment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
@@ -156,10 +166,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:13 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
-<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <existingIndex>A53D4779-4D15-BC8A-BDF0-DB9A2A736CE5</existingIndex>
-<indexSegment>4D1B58D9-2492-F90D-168A-D9C52079BA99</indexSegment>
+<indexSegment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </UniqueKey>

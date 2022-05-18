@@ -1,13 +1,38 @@
 _ Compile SOP for how to prepare your project for inclusion into the inventory
-	Create JSON file w/ naming convention, etc.
+	Create JSON file w/ naming convention, etc. using the Excel template and JSON templates (_ develop a short SOP for this)
 	Update to public
 	Tag your repository with all modules installed
+
+_ ** instead of developing separate pages for the view single resources/project view we can just use anchors by the RES_ID or by PROJ_ID (can also auto generate a non-numeric key for the anchor too based on the PK value)
+	_ we would need to adjust the filtering based on if there are arguments to the page (need to think about this more)
+
+
+_ add web app to Google Site:
+	<embed src="http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_projects.php" style="width: 100%; height: 500px;">
+
+
+_ update the code so it doesn't exit on SQL error (rollback specific transaction and log issue but don't stop processing immediately)
+
+
+X projects layout needs to have margin/padding addressed before implementing the resources layout
+
+_ Also add the view resource and view project pages
+
+
+_ ** optimize the queries, getting the maximum version number is very inefficient
+
+_ pull the resource description from the Overview section of the referenced file (only if it is in .md format)?
+
+X show a default (no image available when there is no AVATAR_URL specified)
+
+_ pull other information from the readme.md file
 
 
 _ add a production flag to resources to indicate they have been deployed/marked for production use
 
 _ **naming conventions should be handled to escape special characters when used in regular expressions
 
+X implement tooltips for each field in the projects/resources page
 
 implement the json config files to indicate special resources for the given project
 
@@ -21,9 +46,38 @@ implement the json config files to indicate special resources for the given proj
 *_ document algorithm for assigning a version number score to a given version number string
 	* Parse the period-delimited numeric string into separate numbers.  Depending on the occurrence of the numeric string the number is multiplied by 1000 to the occurrence number (starting at 0) to the total score.  This allows three digit numbers for each major, minor, patch, etc. number to be sorted correctly.
 
+_ implement a simple form interface to allow filtering and ajax content to be refreshed (maybe just specify the data as JSON from the queries and have javascript generate the formatted HTML and update the DOM with the content)
+
+Maybe we don't need to view the projects and resources separately since all of the relevant information is in the card implementation
+	_ maybe just implement filtering/Sorting/searching
+
+_ change DM (data management) to DS (data stewardship) to align with DG program
 
 
 
+
+
+_ implement more resources:
+	X PARR tools (BDM, PARR dashboard, DB)
+	Data integration
+	X Cruise data integration SOP (link it to the implementation of the CEN_CRUISE schema)
+	X NCEI tools
+	X APEX tools (security documentation and error handler)
+	data enterprise (DLC diagrams and operating model)
+	GitHub Tools
+	_ data dissemination tools
+	PIFSC Info
+	GitHub Template
+
+
+	X ** implement tags for all projects that utilize the DDL helper
+
+	_ retrieve more information from the API (like top contributor, last contributor, project owner, etc.)
+		first commit/last commit
+		last update
+		last contributor
+		number of commits
+		owner
 
 
 _ generate comma-delimited list of Resource Name - Version #, Resource Name - Version #, ...

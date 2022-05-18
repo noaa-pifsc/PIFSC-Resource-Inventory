@@ -5,16 +5,19 @@ This database provides the core database objects required to run the PIFSC Resou
 
 ## Resources:
 -   PRI Version Control Information:
-    -   URL:git@gitlab.pifsc.gov:centralized-data-tools/pifsc-resource-inventory.git
-    -   Database: 0.2 (Git tag: pifsc_resource_inventory_db_v0.2)
+    -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
+    -   Database: 0.3 (Git tag: pifsc_resource_inventory_db_v0.3)
 -   [View Comments](PRI_view_comments.xlsx)
 -   [PRI Database Naming Conventions](PIFSC%20Resource%20Inventory%20DB%20Naming%20Conventions.md)
 -   [PL/SQL Coding Conventions](./PIFSC%20Resource%20Inventory%20-%20PLSQL%20Coding%20Conventions.md)
 -   [PRI Database Diagram](data_model/PRI_DB_diagram.pdf)
     -   [Documentation](PIFSC%20Resource%20Inventory%20DB%20Diagram%20Documentation.md)
+-   [PRI View Comments](./PRI_view_comments.xlsx)
 -   [PRI Data Flow Diagram (DFD)](DFD/PRI_DFD.drawio.png)
     -   [Documentation](DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 -   [PRI Git Info Module (GIM) - Technical Documentation](../GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md)
+-   [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
+    -   [Business Rule List](./docs/PRI%20Business%20Rule%20List.xlsx) 
 
 ## Database Setup:
 -   Create two separate database schemas for the database (data schema) and one for each application module (application/shadow schema)
@@ -25,7 +28,7 @@ This database provides the core database objects required to run the PIFSC Resou
 ## Features:
 -   The DB Module Packager (DMP) project was utilized to streamline the installation of the custom database modules listed below:
     -   Version Control Information:
-        -   Repository URL: git@gitlab.pifsc.gov:centralized-data-tools/db-module-packager.git
+        -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/db-module-packager.git
         -   DMP Version: 0.4 (git tag: db_module_packager_v0.4)
         -   The DMP Scientific Database use case was implemented on the PRI
             -   Database: 0.5 (Git tag: DMP_Scientific_v0.5)
@@ -38,3 +41,6 @@ This database provides the core database objects required to run the PIFSC Resou
 -   Data Validation Module (DVM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DataValidationModule.git
     -   Version: 1.3 (git tag: DVM_db_v1.3)
+
+## Business Rules:
+-   The business rules for the PRI are defined in the [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](./docs/PRI%20Business%20Rule%20List.xlsx) with a Scope of "PRI Database" apply to the underlying database

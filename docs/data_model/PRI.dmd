@@ -5,4 +5,9 @@
 <ownerDesignName>PRI</ownerDesignName>
 <capitalNames>false</capitalNames>
 <designId>97D3B021-EF3F-27A3-0F19-0B6D22F805E1</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="C7DC8230-3A87-4BFC-0E42-C9BE8416ADBF">
+<designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\pifsc-resource-inventory\docs\data_model</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
 </OSDM_Design>

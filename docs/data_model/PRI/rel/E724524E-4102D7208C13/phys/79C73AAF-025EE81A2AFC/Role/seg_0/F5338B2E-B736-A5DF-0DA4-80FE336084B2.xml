@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<RoleOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.RoleOraclev10g" name="PRI_GIM_APP" directorySegmentName="seg_0" id="F5338B2E-B736-A5DF-0DA4-80FE336084B2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjName>PRI_GIM_APP</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:11:27 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<permissions>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions1" id="51B50950-A3EA-92A7-5289-323B441D41C4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<privileges>DELETE, INSERT, SELECT, UPDATE</privileges>
+<table>6AB42A4A-379F-937E-AFCF-6E5311B28FC5</table>
+</Permission>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions2" id="E782D626-A3D8-7B37-DF23-89DEEF0FBEFC">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<privileges>DELETE, INSERT, SELECT</privileges>
+<table>412A1D79-5E84-FD17-FE06-BC096C26BFA3</table>
+</Permission>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions3" id="6A664689-D54B-F2D3-7223-FF46B52DD865">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<privileges>INSERT, SELECT, UPDATE</privileges>
+<table>03AFA793-116D-6262-BE5E-81ED6C0517C4</table>
+</Permission>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions4" id="F80E4055-51F5-22FA-4836-9FBCFB5900A0">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<privileges>SELECT</privileges>
+<table>EB15ED58-2AC8-AD31-8E9B-486393729D66</table>
+</Permission>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions5" id="57E487CB-02A1-6259-0C6E-3B445BB15779">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<privileges>SELECT</privileges>
+<table>CD984AC1-A1BE-BE6B-B003-F3D22CEFE475</table>
+</Permission>
+</permissions>
+</RoleOraclev10g>

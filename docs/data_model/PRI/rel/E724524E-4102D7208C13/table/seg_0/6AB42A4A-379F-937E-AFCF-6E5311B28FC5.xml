@@ -132,6 +132,7 @@ This table defines the different types of specific resources (tools, SOPs, etc.)
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
 <commentInRDBMS><![CDATA[The color code for the project resource]]></commentInRDBMS>
 <ownerDesignName>PRI</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -151,8 +152,8 @@ This table defines the different types of specific resources (tools, SOPs, etc.)
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>500 BYTE</dataTypeSize>
-<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="CREATE_DATE" id="ED080186-AD3A-3D45-DEB6-FC77E7890FC2">
@@ -217,6 +218,40 @@ This table defines the different types of specific resources (tools, SOPs, etc.)
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RES_DESC" id="3669B31A-5B2B-0CF0-017C-7E55D73F7CD5">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_PROJ_RES</sourceObjSchema>
+<sourceObjName>RES_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<commentInRDBMS><![CDATA[The description for the project resource]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>1F7BD9EF-3E3A-D89D-6B28-45548D53B62A</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RES_DEMO_URL" id="64B5ABAB-AA03-3F52-43DC-B6B3E368FEB2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_PROJ_RES</sourceObjSchema>
+<sourceObjName>RES_DEMO_URL</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-05-18 03:12:09 UTC</createdTime>
+<commentInRDBMS><![CDATA[The live demonstration URL for the project resource]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>8FEDE5A2-9BF6-E540-7975-E78C85915B24</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

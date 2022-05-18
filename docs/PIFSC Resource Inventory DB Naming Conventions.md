@@ -21,11 +21,13 @@ When developing a database it is important to use consistent naming conventions 
     -   YN: Yes/No field (Boolean)
 -   ### Abbreviations:
     -   ASSOC: Associated
+    -   BR: line break (<BR>)
     -   CD: Comma-Delimited
     -   CURR: Current
     -   CONV: (Naming) Convention
+    -   DEMO: Demonstration
     -   HTTP: Hypertext Transfer Protocol
-    -   IMP: Implemented
+    -   IMPL: Implemented
     -   MAX: Maximum
     -   MSG: Message
     -   NUM: Number
