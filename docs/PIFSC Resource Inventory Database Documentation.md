@@ -17,7 +17,7 @@ This database provides the core database objects required to run the PIFSC Resou
     -   [Documentation](DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 -   [PRI Git Info Module (GIM) - Technical Documentation](../GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md)
 -   [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
-    -   [Business Rule List](./docs/PRI%20Business%20Rule%20List.xlsx) 
+    -   [Business Rule List](./PRI%20Business%20Rule%20List.xlsx) 
 
 ## Database Setup:
 -   Create two separate database schemas for the database (data schema) and one for each application module (application/shadow schema)
@@ -43,4 +43,4 @@ This database provides the core database objects required to run the PIFSC Resou
     -   Version: 1.3 (git tag: DVM_db_v1.3)
 
 ## Business Rules:
--   The business rules for the PRI are defined in the [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](./docs/PRI%20Business%20Rule%20List.xlsx) with a Scope of "PRI Database" apply to the underlying database
+-   The business rules for the PRI are defined in the [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](./PRI%20Business%20Rule%20List.xlsx) with a Scope of "PRI Database" apply to the underlying database

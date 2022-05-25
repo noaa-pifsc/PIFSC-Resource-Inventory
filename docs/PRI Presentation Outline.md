@@ -1,0 +1,116 @@
+# PIFSC Resource Inventory - Presentation Outline
+
+## Overview
+This document provides an outline for presenting the differet components and implemented functionality of the PIFSC Resource Inventory (PRI) project.
+
+## Presentation Outline
+-   The current Resource Inventory project has four components:
+    -   PIFSC GitLab server
+    -   Database
+    -   GitLab Info Module (GIM)
+    -   Resource Inventory App (RIA)
+-   ### PIFSC GitLab server
+    -   GitLab is a complete DevOps platform that we are not currently utilizing to its full potential
+    -   (show the [GitLab web interface](https://picgitlab.nmfs.local/))
+    -   We have an on-prem GitLab server that serves as our git version control server
+        -   The server currently contains over 200 PIFSC git repositories
+    -   In GitLab a git repository is referred to as a project.  
+        -   Each git repository can have multiple tags defined within it to indicate versions and other information
+    -   The majority of our git repositories are maintained in the GitLab server so we decided to pull information directly from the GitLab server using the GitLab API before expanding the system to include additional data sources
+        -   More information about the GitLab API will be provided later in the presentation
+-   ### PRI Database
+    -   This database is intended to be a centralized enterprise database that can be accessed via a custom web application or directly via Oracle client applications
+    -   The database provides information about the different GitLab projects and associated resources
+    -   (show the [data model diagram](./data_model/PRI_DB_diagram.pdf))
+        -   Each project can have multiple tags and multiple resources defined for it.  
+        -   Each resource has a scope and type defined for it that are implemented as related reference tables
+            -   (show the [data_generator_template.xlsx](./data_generator_template.xlsx))
+            -   (open the RES_TYPES worksheet)
+                -   This is the initial list of resource types, but it can easily be expanded with additional types
+            -   (open the RES_SCOPES worksheet)
+                -   This is the initial list of scopes, but it can easily be expanded with additional values
+                -   I think it would be valuable to have a centralized  
+-   ### GIM
+    -   This module is written in PHP and utilizes the GitLab API to retrieve information from the GitLab server
+        -   The PHP module is implemented as a command line script so it can be easily automated to execute on a set schedule as well as on-demand.  
+        -   Project and associated project tag information is retrieved via the API and stored directly in the database.  If these records already exist in the database they are replaced each time the module is executed
+        -   Resource information is retrieved from a special JSON-formatted configuration file in the root folder of a given git repository
+            -   (show the [PRI.config](../PRI.config) example)
+            -   this is a JSON file that allows multiple resources to be defined for a given GitLab project
+            -   This specific configuration file is for the Resource Inventory project.  The database, GitLab Info Module, and Resource Inventory App are defined as separate project resources.  
+        -   Resource Inventory configuration files can be generated easily using the [excel template](./data_generator_template.xlsx) and associated [SOP](../GIM/docs/Project%20Resource%20Definition%20SOP.md)
+            -   (show the [data_generator_template.xlsx](./data_generator_template.xlsx) file)
+                -   Eventually this will be a Google Sheet that folks can use to generate their own JSON configuration files
+            -   There are multiple pieces of information that can be defined for a given resource:
+                -   A few scopes are defined (SW dev, DS, DG)
+                -   Several Types are defined (Tool, SOP, TM, DGM, Temp, Doc)
+                -   A git tag naming convention is defined, this specifies how the tags are formatted so the database can automatically parse the tags and identify the highest version number of a given resource (this is the current version number)
+                -   Resource URL
+                -   Resource Description
+                -   Live Demo URL (when applicable), this is intended to be a test server URL so users can evaluate the resource to see if it meets their needs or could meet their needs
+                -   The JSON for each defined resource is generated in the corresponding labeled column.  These cell values can be copied into the JSON template file to define the corresponding project resources
+            -   (show the [JSON template file](./PRI.config.template.txt))
+                -   Copy and paste the JSON content for the corresponding rows into the template
+                -   Due to JSON formatting rules a comma is required between each resource definition within the JSON
+                -   Rename and save/commit the file as PRI.config in the root of the repository and push the commit to GitLab.  
+                    -   The next time the GIM is executed it will retrieve the updated resource definitions
+    -   Demonstration:
+        -   Execute the [retrieve_gitlab_info.bat](../GIM/application_code/retrieve_gitlab_info.bat) to execute the GIM on the GitLab server
+        -   (show command line window)
+        -   You can see the API being used to query the GitLab server and refresh the database for each project it finds
+        -   This would be implemented as an end of day process to refresh it periodically so the data is at most 24 hours behind.  
+            -   We could also refresh more frequently (could display the refresh time as well on the projects/resources)
+-   ### RIA
+    -   This module is written in PHP and directly queries the PRI database to display non-private projects and resources
+        -   This is a conventional web application implemented with generated HTML and static CSS/JavaScript/images for the user interface
+        -   I am currently developing this using a VM that is running Apache 2.4 and PHP 8
+    -   This app can provide information about the many different types (Tools, SOPS, training materials, etc.) and categories (DS, SW Dev, DG) of resources available internally to increase awareness and allow staff to leverage appropriate resources for their needs
+        -   This approach seeks to improve the efficiency and effectiveness of these resources
+    -   This is a rough prototype that was developed in about a week while working on other projects.  
+        -   More functionality is planned but I haven't had time to work on these additional features yet, these will be addressed after the demonstration
+    -   Demonstration:
+        -   (show the [view all projects page](http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_projects.php))
+            -   This report excludes private projects
+            -   Show the data layout for projects and resources (the intent was to fit a lot of information in without having to scroll horizontally)
+            -   There are tooltips for all headings to indicate what type of information is provided
+            -   The new window icons link directly to GitLab so people can review the documentation and other project resources
+            -   Each project lists the resources that are defined within the project
+            -   Each project also lists the external resources that are implemented within the project
+        -   (show the [view all resources page](http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_resources.php))
+            -   This report excludes resources defined within private projects
+            -   The Resource name and description are shown on the left
+                -   The new window icon links directly to the resource URL so people can review the resource.  Typically this would be the documentation for the resource but it could also be the URL for the resource itself
+            -   The associated project name and description are shown next
+                -   The new window icons link directly to GitLab so people can review the documentation and other project resources
+            -   Information about the resource and associated project are shown further to the right.
+                -   If a live demo URL is defined for the resource it will be shown as a link, clicking the link will open the demo in a new browser tab
+                    -   Click on the PIFSC Authorization App live demo link to show the live demo concept.  They can login and test drive/evaluate the resource to determine if it is suitable
+                -   The second to last section on the right contains the current version of the resource (parsed from the tags) and information about the number of projects that have implemented the resource
+                    -  There are separate counts for the number of projects that have the current version of the resource as well as projects that that have an older version
+            -   A list of projects that have implemented the given resource are listed on the right side.  The (UA) indicates a resource update is available for the project and (CV) indicates that the current version is installed/implemented for the project
+                -   The internal links aren't implemented yet, but they will go to a different page to view detailed information about the given project/resource.
+            -   This interface can provide information about resource utilization that can be leveraged as effectiveness and efficiency metrics for data governance purposes.
+            -   This interface can provide information about which projects have a resource upgrade available to help projects to take advantage of resource improvements
+        -   This app can also be embedded within the existing Data Enterprise Google Site to provide this information internally
+            -   (show the draft revision of the Software page)
+            -   Once the RIA is available internally we can update the Software page to replace the existing Google Sheet method of providing the resource list.  It will automatically update as the GitLab repositories are updated.
+-   Moving Forward:
+    -   I will compile SOPs for the different scenarios for projects and resources within the PRI
+        -   Add new project to PRI:
+            -   Change the visibility of the GitLab project to internal/public
+        -   Define new project resources:
+            -   Add the PRI.config file (use the template and SOP)
+        -   Defining a new resource version
+            -   Define a new tag for the new resource version's commit and push the tag to the GitLab server
+        -   Adding a new resource to an existing project
+            -   Use the template to generate the JSON for the new resource and update the JSON configuration file to add the new resource definition
+        -   Installing/Implementing a new external resource or upgrading an existing installation/implementation of an external resource
+            -   Use the external resource's documentation to perform the installation/implementation/upgrade
+            -   Tag the project commit with the corresponding tag from the version of the external resource that was installed/implemented/upgraded
+            -   Push the new project tag to the GitLab server
+-   Strategic Approach:
+    -   The approach I chose allows frequent refreshing of the database to keep the database reasonably up-to-date
+    -   I tried to make it easy for software developers and data stewards to add their projects and resources to the PRI
+        -   Tags should already be used to mark versions within git, this should not be extra work but it might require slight adjustments to existing version control processes
+        -   JSON template and SOP make it easy to generate the custom resource configuration files
+-   [Additional Planned Functionality](./project_features.md)

@@ -7,6 +7,11 @@ _ ** instead of developing separate pages for the view single resources/project 
 	_ we would need to adjust the filtering based on if there are arguments to the page (need to think about this more)
 
 
+_ (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
+
+_ view all resources
+	_ change the Associated Projects column to "Implemented Projects"
+
 _ add web app to Google Site:
 	<embed src="http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_projects.php" style="width: 100%; height: 500px;">
 
@@ -26,6 +31,14 @@ _ pull the resource description from the Overview section of the referenced file
 X show a default (no image available when there is no AVATAR_URL specified)
 
 _ pull other information from the readme.md file
+
+_ user notification functionality?
+	? Maybe allow users to subscribe to updates on a project and when a new version is defined it could email the users
+
+_ add a production flag to resources to indicate they have been deployed/marked for production use
+	_ there should be a distinction between if a given soln is implemented or just installed (e.g. folks who use the template application will have the DVM installed by default but may not actually be using it -> e.g Personnel Tracking System)
+
+
 
 
 _ add a production flag to resources to indicate they have been deployed/marked for production use
@@ -51,7 +64,7 @@ _ implement a simple form interface to allow filtering and ajax content to be re
 Maybe we don't need to view the projects and resources separately since all of the relevant information is in the card implementation
 	_ maybe just implement filtering/Sorting/searching
 
-_ change DM (data management) to DS (data stewardship) to align with DG program
+X change DM (data management) to DS (data stewardship) to align with DG program
 
 
 
