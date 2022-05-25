@@ -42,3 +42,12 @@ This document contains a list of potential features for the PIFSC Resource Inven
         -   provide excel template for generating JSON content
         -   provide JSON file schema for verifying the generated JSON
 -   Embed the web app in the Data Enterprise Google Site
+-   Implement searching/filtering functionality on the projects/resources pages so people can search, filter and sort the results in a variety of ways to find what they need
+-   Build the view resource and view project pages for a specific record.
+-   Allow multiple scopes to be defined for a given resource (e.g. PRI is a DG, DS, and SW resource)
+-   Deploy internally for review/feedback
+-   Implement GitHub API to pull the same information from the public repositories I deployed (PIFSC Org only for now)
+-   Implement static resources that don’t come from a version control system (e.g. data history creator, Google Docs, etc.)
+    -   Can potentially interface with the Documan system that Sunny developed for non-Git resources.  We would just pull the SOPs that are marked as SW, DS, or DG
+-   Compile SOP for including projects/resources in PRI
+-   Need to also allow authorized folks to edit static resources or upload the updated information somehow (phase 3-4 probably)

@@ -29,7 +29,6 @@ This document provides an outline for presenting the differet components and imp
                 -   This is the initial list of resource types, but it can easily be expanded with additional types
             -   (open the RES_SCOPES worksheet)
                 -   This is the initial list of scopes, but it can easily be expanded with additional values
-                -   I think it would be valuable to have a centralized  
 -   ### GIM
     -   This module is written in PHP and utilizes the GitLab API to retrieve information from the GitLab server
         -   The PHP module is implemented as a command line script so it can be easily automated to execute on a set schedule as well as on-demand.  
