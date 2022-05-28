@@ -12,6 +12,10 @@ $PRI_gitlab = new PRI_gitlab ("retrieve_gitlab_info_".date("Ymd_H_i").".log", 'r
 
 echo $PRI_gitlab -> add_message ("running retrieve_gitlab_info.php - GITLAB_HOST_NAME: ".GITLAB_HOST_NAME, 3);
 
+//refresh user information from GitLab server
+$PRI_gitlab -> refresh_users();
+
+//refresh project information from GitLab server
 $PRI_gitlab -> refresh_projects();
 
 ?>

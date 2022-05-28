@@ -62,10 +62,10 @@
 				echo $this->add_message("send the request for page #".($page_counter + 1)." of the gitlab projects", 3);
 
 
-				echo $this->add_message("send the request: "."https://".GITLAB_HOST_NAME."/api/v4/projects?per_page=100&page=".($page_counter + 1)."&private_token=".GITLAB_API_KEY, 3);
+				echo $this->add_message("send the request: "."https://".GITLAB_HOST_NAME."/api/v4/projects?per_page=100&page=".($page_counter + 1)."&statistics=1&private_token=".GITLAB_API_KEY, 3);
 
 				//request all Gitlab users accounts via v4 API:
-				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects?per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
+				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/projects?per_page=100&page=".(++$page_counter)."&statistics=1&private_token=".GITLAB_API_KEY))
 				{
 					//the user request was successful:
 
@@ -108,7 +108,7 @@
 							echo $this->add_message(var_export($data[$j], true), 3);
 
 							//check if the PRI_PROJ record already exists:
-							$SQL = "SELECT PROJ_ID FROM PRI.PRI_PROJ WHERE VC_PROJ_ID = :id and PROJ_SOURCE = :proj_source";
+							$SQL = "SELECT PROJ_ID FROM PRI.PRI_PROJ WHERE VC_PROJ_ID = :id and DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source))";
 							$bind_array = array(array(':id', $data[$j]['id']), array(':proj_source', ($temp = PROJ_SOURCE)));
 
 							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
@@ -123,9 +123,9 @@
 									echo $this->add_message("the PRI_PROJ already exists (".$row['PROJ_ID'].")", 3);
 
 									//the PRI_PROJ does not already exist:
-									$SQL = "UPDATE PRI.PRI_PROJ SET VC_PROJ_ID = :vc_proj_id, PROJ_NAME = :proj_name, PROJ_DESC = :proj_desc, SSH_URL = :ssh_url, HTTP_URL = :http_url, README_URL = :readme_url, AVATAR_URL = :avatar_url, PROJ_CREATE_DTM = TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), PROJ_UPDATE_DTM = (CASE WHEN :proj_update_dtm IS NOT NULL THEN TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), PROJ_VISIBILITY = :proj_visibility, PROJ_NAME_SPACE = :proj_name_space, PROJ_SOURCE = :proj_source WHERE PROJ_ID = :proj_id";
+									$SQL = "UPDATE PRI.PRI_PROJ SET VC_PROJ_ID = :vc_proj_id, PROJ_NAME = :proj_name, PROJ_DESC = :proj_desc, SSH_URL = :ssh_url, HTTP_URL = :http_url, README_URL = :readme_url, AVATAR_URL = :avatar_url, PROJ_CREATE_DTM = TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), PROJ_UPDATE_DTM = (CASE WHEN :proj_update_dtm IS NOT NULL THEN TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), PROJ_VISIBILITY = :proj_visibility, PROJ_NAME_SPACE = :proj_name_space, DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source)), VC_OWNER_ID = :owner_id, VC_CREATOR_ID = :creator_id, VC_WEB_URL = :web_url, VC_OPEN_ISSUES_COUNT = :open_issues_count, VC_COMMIT_COUNT = :commit_count, VC_REPO_SIZE = :repository_size WHERE PROJ_ID = :proj_id";
 
-									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(':proj_id', $row['PROJ_ID']));
+									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":owner_id", (isset($data[$j]['owner']['id']) ? $data[$j]['owner']['id'] : null )), array(":creator_id", $data[$j]['creator_id']), array(":web_url", $data[$j]['web_url']), array(":open_issues_count", $data[$j]['open_issues_count']), array(":commit_count", $data[$j]['statistics']['commit_count']),  array(":repository_size", $data[$j]['statistics']['repository_size']), array(':proj_id', $row['PROJ_ID']));
 
 									if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
 									{
@@ -188,8 +188,8 @@
 
 									echo $this->add_message("The project record does not exist, create a new project record", 3);
 
-									$SQL = "INSERT INTO PRI.PRI_PROJ (VC_PROJ_ID, PROJ_NAME, PROJ_DESC, SSH_URL, HTTP_URL, README_URL, AVATAR_URL, PROJ_CREATE_DTM, PROJ_UPDATE_DTM, PROJ_VISIBILITY, PROJ_NAME_SPACE, PROJ_SOURCE) VALUES (:vc_proj_id, :proj_name, :proj_desc, :ssh_url, :http_url, :readme_url, :avatar_url, TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), (CASE WHEN :proj_update_dtm IS NOT NULL THEN  TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), :proj_visibility, :proj_name_space, :proj_source) RETURNING PROJ_ID INTO :RETURN_ID";
-									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":RETURN_ID", $return_id = null));
+									$SQL = "INSERT INTO PRI.PRI_PROJ (VC_PROJ_ID, PROJ_NAME, PROJ_DESC, SSH_URL, HTTP_URL, README_URL, AVATAR_URL, PROJ_CREATE_DTM, PROJ_UPDATE_DTM, PROJ_VISIBILITY, PROJ_NAME_SPACE, DATA_SOURCE_ID, VC_OWNER_ID, VC_CREATOR_ID, VC_WEB_URL, VC_OPEN_ISSUES_COUNT, VC_COMMIT_COUNT, VC_REPO_SIZE) VALUES (:vc_proj_id, :proj_name, :proj_desc, :ssh_url, :http_url, :readme_url, :avatar_url, TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), (CASE WHEN :proj_update_dtm IS NOT NULL THEN  TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), :proj_visibility, :proj_name_space, (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source)), :owner_id, :creator_id, :web_url, :open_issues_count, :commit_count, :repository_size) RETURNING PROJ_ID INTO :RETURN_ID";
+									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":owner_id", (isset($data[$j]['owner']['id']) ? $data[$j]['owner']['id'] : null )), array(":creator_id", $data[$j]['creator_id']), array(":web_url", $data[$j]['web_url']), array(":open_issues_count", $data[$j]['open_issues_count']), array(":commit_count", $data[$j]['statistics']['commit_count']),  array(":repository_size", $data[$j]['statistics']['repository_size']), array(":RETURN_ID", $return_id = null));
 
 									if ($rc = $this->oracle_db->query($SQL, $result, $return_id, $bind_array, OCI_NO_AUTO_COMMIT))
 									{
@@ -546,7 +546,150 @@
 			return $return_val;
 		}
 
+		//class method to refresh the PRI user inventory with the GitLab information:
+		function refresh_users ()
+		{
+			echo $this-> add_message("running refresh_users(), Request all of the users from the gitlab server", 3);
 
+			//parse the JSON and loop through the return values to insert the DB records
+			$found_last_users = false;
+
+			//initialize the page counter variable:
+			$page_counter = 0;
+
+			echo $this->add_message("loop through each list of users until there are none remaining (only allows 100 per page)", 3);
+
+			//request all Gitlab users accounts via v4 API:
+			for ($i = 0; (!$found_last_users); $i++)
+			{
+
+				echo $this->add_message("send the request for page #".($page_counter + 1)." of the gitlab users", 3);
+
+
+				echo $this->add_message("send the request: "."https://".GITLAB_HOST_NAME."/api/v4/users?per_page=100&page=".($page_counter + 1)."&private_token=".GITLAB_API_KEY, 3);
+
+				//request all Gitlab users accounts via v4 API:
+				if ($content = curl_request("https://".GITLAB_HOST_NAME."/api/v4/users?per_page=100&page=".(++$page_counter)."&private_token=".GITLAB_API_KEY))
+				{
+					//the user request was successful:
+
+					echo $this->add_message("the request for the list of users was successful", 3);
+
+					echo $this->add_message($content, 3);
+
+
+
+					//convert the string into a JSON array for processing:
+					$data = json_decode($content, true);
+
+					echo "The value of \$data is: " . var_export($data, true)."\r\n";
+
+					//free the content string from memory:
+					$content = null;
+
+					//check if there were any users returned by the API call:
+					if (count($data) == 0)
+					{
+						//there are no users returned by the API request, stop processing the users:
+						$found_last_users = true;
+
+						echo $this->add_message("there are no users returned by the API request, stop processing the users", 3);
+
+					}
+					else
+					{
+						//there was at least one user returned by the API request:
+
+
+						echo $this->add_message("loop through each of the Gitlab users and insert/update them in the database", 3);
+
+						//loop through each of the Gitlab users and insert them into the database:
+						for ($j = 0; $j < count($data); $j++)
+						{
+
+							echo $this->add_message("the current user name is: ".$data[$j]['name'], 3);
+
+							echo $this->add_message(var_export($data[$j], true), 3);
+
+							//check if the PRI_VC_USERS record already exists:
+							$SQL = "SELECT USER_ID FROM PRI.PRI_VC_USERS WHERE VC_USER_ID = :id and DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source))";
+							$bind_array = array(array(':id', $data[$j]['id']), array(':proj_source', ($temp = PROJ_SOURCE)));
+
+							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
+							{
+								//query was successful
+								echo $this->add_message("The select user query was executed successfully", 3);
+
+				        if ($row = $this->oracle_db->fetch($result))
+				        {
+									//the PRI_VC_USERS already exists:
+
+									echo $this->add_message("the PRI_VC_USERS already exists (".$row['USER_ID'].")", 3);
+
+									//the PRI_VC_USERS does not already exist:
+									$SQL = "UPDATE PRI.PRI_VC_USERS SET VC_USER_ID = :vc_user_id, USERNAME = :username, USER_NAME = :user_name, USER_EMAIL = :user_email, AVATAR_URL = :avatar_url, WEB_URL = :web_url, DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) =  UPPER(:data_source_code)) WHERE USER_ID = :user_id";
+
+
+									$bind_array = array(array(":vc_user_id", $data[$j]['id']), array(':username', $data[$j]['username']), array(':user_name', $data[$j]['name']), array(':user_email', $data[$j]['email']), array(':avatar_url', $data[$j]['avatar_url']), array(':web_url', $data[$j]['web_url']), array(':data_source_code', ($temp = PROJ_SOURCE)), array(":user_id", $row['USER_ID']));
+
+									if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_COMMIT_ON_SUCCESS))
+									{
+										//query was successful
+										echo $this->add_message("The existing user record was updated successfully for the current gitlab user: ".$data[$j]['name'], 3);
+
+
+									}
+									else
+									{
+										//query was NOT successful
+										echo $this->add_message("The existing user record was NOT created successfully for the current gitlab user: ".$data[$j]['name'], 2);
+
+									}
+								}
+								else
+								{
+									//the PRI_VC_USERS does not already exist:
+
+									echo $this->add_message("The user record does not exist, create a new user record", 3);
+
+									$SQL = "INSERT INTO PRI.PRI_VC_USERS (VC_USER_ID, USERNAME, USER_NAME, USER_EMAIL, AVATAR_URL, WEB_URL, DATA_SOURCE_ID) VALUES (:vc_user_id, :username, :user_name, :user_email, :avatar_url, :web_url, (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) =  UPPER(:data_source_code)))";
+
+
+
+									$bind_array = array(array(":vc_user_id", $data[$j]['id']), array(':username', $data[$j]['username']), array(':user_name', $data[$j]['name']), array(':user_email', $data[$j]['email']), array(':avatar_url', $data[$j]['avatar_url']), array(':web_url', $data[$j]['web_url']), array(':data_source_code', ($temp = PROJ_SOURCE)));
+
+									if ($rc = $this->oracle_db->query($SQL, $result, $return_id, $bind_array, OCI_COMMIT_ON_SUCCESS))
+									{
+										//query was successful
+										echo $this->add_message("The new user record was created successfully for the current gitlab user: ".$data[$j]['name'].", new user_id is: ".$return_id, 3);
+
+									}
+									else
+									{
+										//query was NOT successful
+										echo $this->add_message("The new user record was NOT created successfully for the current gitlab user: ".$data[$j]['name'], 2);
+
+									}
+
+								}
+							}
+							else
+							{
+								//query was NOT successful
+								echo $this->add_message("The select user query was NOT successful", 2);
+							}
+						}
+					}
+				}
+				else
+				{
+					//users could not be retrieved successfully:
+					echo $this->add_message("the request failed for the list of users from the source gitlab server: ".GITLAB_HOST_NAME, 2);
+				}
+			}
+
+
+		}
 	}
 
 ?>

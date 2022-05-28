@@ -13,3 +13,10 @@ INSERT INTO PRI_RES_TYPES (RES_TYPE_CODE, RES_TYPE_NAME, RES_TYPE_DESC) VALUES (
 INSERT INTO PRI_RES_SCOPES (RES_SCOPE_CODE, RES_SCOPE_NAME, RES_SCOPE_DESC) VALUES ('SW', 'Software Development', 'The given resource is a Software Development resource intended for use by software developers');
 INSERT INTO PRI_RES_SCOPES (RES_SCOPE_CODE, RES_SCOPE_NAME, RES_SCOPE_DESC) VALUES ('DS', 'Data Stewardship', 'The given resource is a data stewardship resource intended for use by data stewards');
 INSERT INTO PRI_RES_SCOPES (RES_SCOPE_CODE, RES_SCOPE_NAME, RES_SCOPE_DESC) VALUES ('DG', 'Data Governance', 'The given resource is a data governance resource intended to support the Data Governance Program');
+
+
+
+--data sources:
+INSERT INTO PRI_DATA_SOURCES (DATA_SOURCE_CODE, DATA_SOURCE_NAME, DATA_SOURCE_DESC) VALUES ('GH', 'GitHub', 'The given resource is a software tool');
+INSERT INTO PRI_DATA_SOURCES (DATA_SOURCE_CODE, DATA_SOURCE_NAME, DATA_SOURCE_DESC) VALUES ('PGL', 'PIFSC GitLab', 'On-prem GitLab instance hosted by PIFSC');
+INSERT INTO PRI_DATA_SOURCES (DATA_SOURCE_CODE, DATA_SOURCE_NAME, DATA_SOURCE_DESC) VALUES ('DM', 'DocuMan', 'Document Management Application (DocuMan)');

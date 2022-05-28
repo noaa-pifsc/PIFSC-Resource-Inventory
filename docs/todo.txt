@@ -3,14 +3,38 @@ _ Compile SOP for how to prepare your project for inclusion into the inventory
 	Update to public
 	Tag your repository with all modules installed
 
-_ ** instead of developing separate pages for the view single resources/project view we can just use anchors by the RES_ID or by PROJ_ID (can also auto generate a non-numeric key for the anchor too based on the PK value)
-	_ we would need to adjust the filtering based on if there are arguments to the page (need to think about this more)
+X Decided to implement separate view_X.php pages due to the complications with filtering, _ ** update view_X.php pages with additional detailed information for projects/resources not shown on the view_all_X.php pages
+	** instead of developing separate pages for the view single resources/project view we can just use anchors by the RES_ID or by PROJ_ID (can also auto generate a non-numeric key for the anchor too based on the PK value)
+		X we would need to adjust the filtering based on if there are arguments to the page (need to think about this more)
+
+
+_ ** allow filtering on data source name too
+
+
+** more gitlab fields:
+	get owner object information
+	X created_at
+	X last_activity_at
+	X creator_id
+	X web_url
+
+	X open_issues_count
+
+	X statistics
+		X commit_count
+		X repository_size
+
+
+
+	do I need to pull the user list as well and store it locally so we can maintain the relationships between owners and projects?
+
+X implement background image from AAM APEX app
 
 
 _ (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
 
-_ view all resources
-	_ change the Associated Projects column to "Implemented Projects"
+X view all resources
+	X change the Associated Projects column to "Implemented Projects"
 
 _ add web app to Google Site:
 	<embed src="http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_projects.php" style="width: 100%; height: 500px;">
@@ -21,7 +45,10 @@ _ update the code so it doesn't exit on SQL error (rollback specific transaction
 
 X projects layout needs to have margin/padding addressed before implementing the resources layout
 
-_ Also add the view resource and view project pages
+X Also add the view resource and view project pages
+
+
+X add a navigation menu to allow users to return to the view all resources or view all projects pages (default to projects)
 
 
 _ ** optimize the queries, getting the maximum version number is very inefficient
