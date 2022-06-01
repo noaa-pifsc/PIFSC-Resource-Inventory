@@ -214,6 +214,23 @@ ADD CONSTRAINT PRI_PROJ_U1 UNIQUE
 ENABLE;
 
 
+CREATE INDEX PRI_PROJ_I1 ON PRI_PROJ (DATA_SOURCE_ID);
+
+CREATE INDEX PRI_PROJ_I2 ON PRI_PROJ (VC_OWNER_ID);
+
+CREATE INDEX PRI_PROJ_I3 ON PRI_PROJ (VC_CREATOR_ID);
+
+ALTER TABLE PRI_PROJ
+ADD CONSTRAINT PRI_PROJ_FK1 FOREIGN KEY
+(
+  DATA_SOURCE_ID
+)
+REFERENCES PRI_DATA_SOURCES
+(
+  DATA_SOURCE_ID
+)
+ENABLE;
+
 COMMENT ON COLUMN PRI_PROJ.VC_OWNER_ID IS 'Unique numeric User ID of the project''s owner in the given version control system';
 
 COMMENT ON COLUMN PRI_PROJ.VC_CREATOR_ID IS 'Unique numeric User ID of the project''s creator in the given version control system';
@@ -1509,7 +1526,7 @@ COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.LAST_MOD_BY IS 'The Oracle user
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.PROJ_REFRESH_DATE IS 'The date of the last time the project information was refreshed in the database';
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('PIFSC Resource Inventory', '0.4', TO_DATE('', 'DD-MON-YY'), '');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('PIFSC Resource Inventory', '0.4', TO_DATE('01-JUN-22', 'DD-MON-YY'), 'Added new tables for defining data sources (PRI_DATA_SOURCES) and version control system users (PRI_VC_USERS).  Added new fields to PRI_PROJ to add the various project statistics and owners/creators.  Updated the PRI_PROJ to reference the PRI_DATA_SOURCES table to define the source of the project information.  Developed a new view PRI_VC_USERS_V to join the version control user information with the data source information where the users were queried from.  Updated PRI_PROJ_V view to include the project statistics fields and creator/owner information.  Updated PRI_PROJ_TAGS_V view to include the project statistics fields.  Updated PRI_PROJ_RES_TAG_MAX_V view to add data source information and project statistics.  Updated PRI_PROJ_RES_TAG_MAX_SUM_V view to change the URLs for the links.  Updated PRI_PROJ_RES_TAG_MAX_SUM_ALL_V view to add data source information, owner/creator information, and project statistics.  Updated PRI_RES_PROJ_TAG_MAX_V view to include project statistics, creator/owner information, and data source information.  Updated PRI_RES_PROJ_TAG_MAX_SUM_V view to change the URLs for the links.  Updated PRI_RES_PROJ_TAG_MAX_SUM_ALL_V view to include project statistics, creator/owner information, and data source information');
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;

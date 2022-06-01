@@ -9,5 +9,11 @@
 <designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="C7DC8230-3A87-4BFC-0E42-C9BE8416ADBF">
 <designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\pifsc-resource-inventory\docs\data_model</designStoragePath>
 </designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="FC976BCB-9155-401D-E0E5-6F99F3979EBA">
+<designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\pifsc-resource-inventory\docs\data_model</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="4E9348C6-EA82-86B2-5D4D-1E8BA4F603F2">
+<designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\pifsc-resource-inventory\docs\data_model</designStoragePath>
+</designDescr>
 </usedDesignStorageDescriptors>
 </OSDM_Design>

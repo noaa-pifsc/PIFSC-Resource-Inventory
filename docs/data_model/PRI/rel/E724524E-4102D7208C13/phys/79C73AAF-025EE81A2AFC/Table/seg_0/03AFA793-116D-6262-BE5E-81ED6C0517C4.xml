@@ -6,7 +6,7 @@
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>2C0A4058-F823-9C1F-90C5-BB9A2CD1564D</segment>
+<segment>2434D392-1450-CF1D-7230-63D33D9A7922</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -53,6 +53,16 @@
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="DATA_SOURCE_ID" id="4BB48BF2-F109-A215-E9ED-2D40E3B26268">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VC_OPEN_ISSUES_COUNT" id="50058604-D868-57B3-1EC4-8C4F8D9B345F">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="LAST_MOD_BY" id="5066BB15-8D5A-EC26-B775-FDD07B65FAD2">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
@@ -61,6 +71,21 @@
 <ColumnProxy name="AVATAR_URL" id="5F774E70-6164-C52F-2D84-13D8A1605637">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VC_OWNER_ID" id="6BB9AA77-3542-BC8A-3846-B0355687B820">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VC_REPO_SIZE" id="7A173231-23E7-9598-D476-65AEA391DA30">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VC_CREATOR_ID" id="8A18E816-C70C-4743-A1A0-2FAA58EB417A">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="PROJ_DESC" id="A48E8EA2-5443-BB5A-3FFB-1697E183383C">
@@ -93,6 +118,16 @@
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="VC_COMMIT_COUNT" id="F0D66897-9603-497A-8B4F-4C709806C8C5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="VC_WEB_URL" id="FB07C17B-85A0-3EDD-E079-9CF059D89958">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="SSH_URL" id="FEE63841-3999-C875-0EA9-129073320211">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:05 UTC</createdTime>
@@ -100,26 +135,78 @@
 </ColumnProxy>
 </columnProxies>
 <indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_U1" id="0B26BBFD-6CEE-B7FE-7119-E33540D10808">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_I2" id="19645C7D-B398-EE5A-9CB6-FFBB9F5B4F26">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_I1" id="8B988575-733E-26E8-1426-C6533BE65B14">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_PK" id="9CF3BED9-F104-31CE-476F-D1FE1EA07E70">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_PROJ_I3" id="BD6AA91E-2E5A-B657-311A-06D2C3320B2B">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
+<segment>4D1B58D9-2492-F90D-168A-D9C52079BA99</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 </indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PRI_PROJ_FK1" id="80AFD694-4FFC-DFE9-CEA8-3495698CE4AF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PRI_PROJ_PK" id="8462946B-F69A-C99C-29C0-A60609CC140E">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:13 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
-<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <existingIndex>9CF3BED9-F104-31CE-476F-D1FE1EA07E70</existingIndex>
-<indexSegment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</indexSegment>
+<indexSegment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
 </primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="PRI_PROJ_U1" id="48093A66-5C5A-105D-26E9-A333FEBF7854">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<existingIndex>0B26BBFD-6CEE-B7FE-7119-E33540D10808</existingIndex>
+<indexSegment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
 </TableProxyOraclev12c>

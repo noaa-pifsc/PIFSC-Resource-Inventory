@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="PRI_VC_USERS_AUTO_BRU" directorySegmentName="seg_0" id="902E4A1E-ACA1-E9FB-AEEB-38324B278EC1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_VC_USERS_AUTO_BRU</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:37:55 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[BEGIN
+      :NEW.LAST_MOD_DATE := SYSDATE;
+      :NEW.LAST_MOD_BY := nvl(v('APP_USER'),user);
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>9A61E473-88CC-CA6E-A0F2-F99B2D0AD1F6</owner>
+<table>816FF37C-C46D-3A43-62E3-A6E57A53B444</table>
+</TriggerOraclev10g>

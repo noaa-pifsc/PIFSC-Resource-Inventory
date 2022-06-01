@@ -147,6 +147,32 @@
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <lobStorageType>SECUREFILE</lobStorageType>
 </LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000583298C00010$$" id="DC0E95EC-190D-CBD5-82B5-870FC2FC4497">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:04 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ISS_DESC</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000583551C00010$$" id="C7708C11-E32E-74E6-08BE-C71721F0F9B0">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ISS_DESC</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 </lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_ISSUES_PK" id="FD3EB0B0-F1CB-B466-6A26-2D3BEFCD05D5">

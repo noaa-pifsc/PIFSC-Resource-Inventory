@@ -40,6 +40,7 @@ PROMPT loading data
 
 PROMPT granting privileges
 @@../GIM/SQL/grant_PRI_GIM_APP_privs.sql
+@@../RIA/SQL/grant_PRI_GIM_APP_privs.sql
 
 
 DISCONNECT;

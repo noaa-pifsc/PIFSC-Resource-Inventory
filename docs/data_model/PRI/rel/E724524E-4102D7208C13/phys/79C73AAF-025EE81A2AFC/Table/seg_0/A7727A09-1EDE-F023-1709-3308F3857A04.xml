@@ -6,7 +6,7 @@
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>2C0A4058-F823-9C1F-90C5-BB9A2CD1564D</segment>
+<segment>2434D392-1450-CF1D-7230-63D33D9A7922</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -50,7 +50,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DB_LOG_ENTRIES_I1" id="DF9D8D11-D3F7-CA94-1390-FABC05602298">
@@ -58,7 +58,7 @@
 <createdTime>2022-01-11 00:59:11 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -96,16 +96,42 @@
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <lobStorageType>SECUREFILE</lobStorageType>
 </LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000583280C00004$$" id="86CD4E32-274D-E9D8-DB32-9CB858ECA8EA">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:04 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ENTRY_CONTENT</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000583533C00004$$" id="EAD831D5-4A82-AE9A-6783-894235AC6F80">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ENTRY_CONTENT</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 </lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DB_LOG_ENTRIES_PK" id="EE6C5DF0-5C93-54C1-6747-83DFC2E5B80E">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-01-11 00:59:13 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
-<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
+<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <existingIndex>195EA168-2237-19CC-A159-E927D4FE350D</existingIndex>
-<indexSegment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</indexSegment>
+<indexSegment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
