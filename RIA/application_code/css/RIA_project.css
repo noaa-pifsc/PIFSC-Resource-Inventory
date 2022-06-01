@@ -15,12 +15,13 @@ body {margin: 0px; padding: 0px;}
 
 /*tooltip START*/
 
-div.tooltip {cursor: help;}
+.tooltip {cursor: help !important;}
 
 /*tooltip END*/
 
 
-
+.filter_field_button {top: -0.4em;}
+.filter_field {margin: 0px 5px;}
 
 
 
@@ -42,7 +43,7 @@ div.proj_info_div
 
 div.proj_res_div
 {
-  width: 30%;
+  width: 20%;
 }
 
 div.proj_impl_res_info_div
@@ -52,7 +53,17 @@ div.proj_impl_res_info_div
 
 div.proj_impl_res_div
 {
-  width: 30%;
+  width: 20%;
+}
+
+div.proj_auditing_info_div
+{
+  width: 10%;
+}
+
+div.proj_user_div
+{
+  width: 10%;
 }
 
 /*Card Styling END*/

@@ -6,7 +6,7 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 ## Resources:
 -   Version Control Information:
     -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git in the [RIA](../) folder
-    -   Application: 0.1 (Git tag: pifsc_resource_inventory_res_inv_app_v0.1)
+    -   Application: 0.2 (Git tag: pifsc_resource_inventory_res_inv_app_v0.2)
 -   [PRI Database Documentation](../../docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 -   [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx)

@@ -1,5 +1,7 @@
 <?php
 
+    ini_set("display_errors", "On");
+    ini_set('date.timezone', "Pacific/Honolulu");
 
     //define application resource paths:
     define ("APPLICATION_INCLUDE_PATH", "C:/web/htdocs/pifsc-resource-inventory/RIA/application_code/functions/");

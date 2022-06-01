@@ -14,14 +14,9 @@ body {margin: 0px; padding: 0px;}
 
 /*tooltip START*/
 
-div.tooltip {cursor: help;}
+.tooltip {cursor: help !important;}
 
 /*tooltip END*/
-
-
-
-
-
 
 
 

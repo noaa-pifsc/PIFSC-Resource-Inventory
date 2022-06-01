@@ -30,10 +30,11 @@ div.card_desc_container
   display: block;
 }
 
-div.card_desc_container div.card_value
+div.card_value_lj
 {
   text-align: left;
   width: 96%; /*bug fix for a padding issue causing the content to overflow into adjacent container*/
+  padding: 6px;
 }
 
 
@@ -51,7 +52,7 @@ div.card_name_container
 div.main_content_div
 {
   margin: auto;
-  width: 90%;
+  width: 95%;
 }
 
 
@@ -97,8 +98,24 @@ a.proj_name_link {
   margin: 10px;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
-  width: 100%;
+/*  width: 100%;*/
   background-color: #e9e9e9;
 }
 
 /*Global Card Styling END*/
+
+
+
+
+
+
+.filter_field_button {top: -0.4em;}
+.filter_field {margin: 0px 5px;}
+
+
+
+p.no_search_results {
+  background-color: #e9e9e9;
+  padding: 10px;
+  font-weight: bold;
+}
