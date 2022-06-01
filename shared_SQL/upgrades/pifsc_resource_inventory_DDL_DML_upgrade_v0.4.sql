@@ -301,12 +301,28 @@ PRI_DATA_SOURCES.DATA_SOURCE_DESC,
 
 
 PRI_PROJ.VC_OWNER_ID,
+OWNER.USER_ID OWNER_USER_ID,
+OWNER.USERNAME OWNER_USERNAME,
+OWNER.USER_NAME OWNER_USER_NAME,
+OWNER.USER_EMAIL OWNER_USER_EMAIL,
+OWNER.AVATAR_URL OWNER_AVATAR_URL,
+OWNER.WEB_URL OWNER_WEB_URL,
+
+
 PRI_PROJ.VC_CREATOR_ID,
+CREATOR.USER_ID CREATOR_USER_ID,
+CREATOR.USERNAME CREATOR_USERNAME,
+CREATOR.USER_NAME CREATOR_USER_NAME,
+CREATOR.USER_EMAIL CREATOR_USER_EMAIL,
+CREATOR.AVATAR_URL CREATOR_AVATAR_URL,
+CREATOR.WEB_URL CREATOR_WEB_URL,
+
 PRI_PROJ.VC_WEB_URL,
 PRI_PROJ.VC_OPEN_ISSUES_COUNT,
 PRI_PROJ.VC_COMMIT_COUNT,
 PRI_PROJ.VC_REPO_SIZE,
 ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2) VC_REPO_SIZE_MB,
+TRIM(TO_CHAR(ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2), '999,990.99')) FORMAT_VC_REPO_SIZE_MB,
 PRI_PROJ.CREATE_DATE,
 PRI_PROJ.CREATED_BY,
 PRI_PROJ.LAST_MOD_DATE,
@@ -333,6 +349,8 @@ PRI_RES_V.RES_DEMO_URL
 FROM PRI_PROJ
 INNER JOIN PRI_DATA_SOURCES ON PRI_PROJ.DATA_SOURCE_ID = PRI_DATA_SOURCES.DATA_SOURCE_ID
 LEFT JOIN PRI_RES_V ON PRI_PROJ.PROJ_ID = PRI_RES_V.PROJ_ID
+LEFT JOIN PRI_VC_USERS_V CREATOR ON PRI_PROJ.VC_CREATOR_ID = CREATOR.VC_USER_ID AND CREATOR.DATA_SOURCE_ID = PRI_PROJ.DATA_SOURCE_ID
+LEFT JOIN PRI_VC_USERS_V OWNER ON PRI_PROJ.VC_OWNER_ID = OWNER.VC_USER_ID
 ORDER BY
 PRI_PROJ.PROJ_NAME_SPACE,
 PRI_RES_V.RES_NAME,
@@ -395,6 +413,7 @@ COMMENT ON COLUMN PRI_PROJ_V.VC_REPO_SIZE IS 'The total repository size in bytes
 
 COMMENT ON COLUMN PRI_PROJ_V.VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system';
 
+COMMENT ON COLUMN PRI_PROJ_V.FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system formatted as a string with a leading zero for values < 1';
 
 COMMENT ON COLUMN PRI_PROJ_V.CREATE_DATE IS 'The date the project record was created in the database';
 COMMENT ON COLUMN PRI_PROJ_V.CREATED_BY IS 'The Oracle username of the person that created the project record in the database';
@@ -402,6 +421,21 @@ COMMENT ON COLUMN PRI_PROJ_V.LAST_MOD_DATE IS 'The last date on which any of the
 COMMENT ON COLUMN PRI_PROJ_V.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to the project record';
 
 COMMENT ON COLUMN PRI_PROJ_V.PROJ_REFRESH_DATE IS 'The date of the last time the project information was refreshed in the database';
+
+
+
+COMMENT ON COLUMN PRI_PROJ_V.OWNER_USER_ID IS 'The Project Owner''s User ID for the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.OWNER_USERNAME IS 'Login username for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.OWNER_USER_NAME IS 'Name of the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.OWNER_USER_EMAIL IS 'Email for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.OWNER_AVATAR_URL IS 'Avatar URL for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.OWNER_WEB_URL IS 'Web URL for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.CREATOR_USER_ID IS 'The Project Creator''s User ID for the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.CREATOR_USERNAME IS 'Login username for the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.CREATOR_USER_NAME IS 'Name of the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.CREATOR_USER_EMAIL IS 'Email for the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.CREATOR_AVATAR_URL IS 'Avatar URL for the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_PROJ_V.CREATOR_WEB_URL IS 'Web URL for the project creator''s user account in the version control system';
 
 CREATE OR REPLACE VIEW
 PRI_PROJ_TAGS_V
@@ -435,11 +469,16 @@ PRI_PROJ.VC_OPEN_ISSUES_COUNT,
 PRI_PROJ.VC_COMMIT_COUNT,
 PRI_PROJ.VC_REPO_SIZE,
 ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2) VC_REPO_SIZE_MB,
+TRIM(TO_CHAR(ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2), '999,990.99')) FORMAT_VC_REPO_SIZE_MB,
 PRI_PROJ.CREATE_DATE,
 PRI_PROJ.CREATED_BY,
 PRI_PROJ.LAST_MOD_DATE,
 PRI_PROJ.LAST_MOD_BY,
 NVL(PRI_PROJ.LAST_MOD_DATE, PRI_PROJ.CREATE_DATE) PROJ_REFRESH_DATE,
+
+
+
+
 PRI_PROJ_TAGS.TAG_ID,
 PRI_PROJ_TAGS.TAG_NAME,
 PRI_PROJ_TAGS.TAG_MSG,
@@ -501,6 +540,8 @@ COMMENT ON COLUMN PRI_PROJ_TAGS_V.VC_REPO_SIZE IS 'The total repository size in 
 
 COMMENT ON COLUMN PRI_PROJ_TAGS_V.VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system';
 
+COMMENT ON COLUMN PRI_PROJ_TAGS_V.FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system formatted as a string with a leading zero for values < 1';
+
 COMMENT ON COLUMN PRI_PROJ_TAGS_V.PROJ_REFRESH_DATE IS 'The date of the last time the project information was refreshed in the database';
 
 --Detailed query to show all associations of each project and resource along with the highest version of each module
@@ -535,6 +576,7 @@ PRI_PROJ.VC_OPEN_ISSUES_COUNT,
 PRI_PROJ.VC_COMMIT_COUNT,
 PRI_PROJ.VC_REPO_SIZE,
 ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2) VC_REPO_SIZE_MB,
+TRIM(TO_CHAR(ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2), '999,990.99')) FORMAT_VC_REPO_SIZE_MB,
 
 PRI_PROJ.CREATE_DATE,
 PRI_PROJ.CREATED_BY,
@@ -579,6 +621,7 @@ PRI_PROJ_V.VC_OPEN_ISSUES_COUNT RES_VC_OPEN_ISSUES_COUNT,
 PRI_PROJ_V.VC_COMMIT_COUNT RES_VC_COMMIT_COUNT,
 PRI_PROJ_V.VC_REPO_SIZE RES_VC_REPO_SIZE,
 PRI_PROJ_V.VC_REPO_SIZE_MB RES_VC_REPO_SIZE_MB,
+PRI_PROJ_V.FORMAT_VC_REPO_SIZE_MB RES_FORMAT_VC_REPO_SIZE_MB,
 PRI_PROJ_V.RES_ID,
 PRI_PROJ_V.RES_CATEGORY,
 PRI_PROJ_V.RES_TAG_CONV,
@@ -668,6 +711,7 @@ COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.VC_REPO_SIZE IS 'The total repository s
 
 COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system';
 
+COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system formatted as a string with a leading zero for values < 1';
 
 
 COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.RES_MAX_TAG_ID IS 'The TAG_ID value associated with the highest version number of the given resource';
@@ -710,6 +754,7 @@ COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.RES_VC_REPO_SIZE IS 'The total reposito
 
 COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.RES_VC_REPO_SIZE_MB IS 'The total repository size in MB for the resource project in the given version control system';
 
+COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.RES_FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the resource project in the given version control system formatted as a string with a leading zero for values < 1';
 
 
 COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_V.RES_ID IS 'Primary key for the PRI_PROJ_RES table';
@@ -907,6 +952,7 @@ PRI_PROJ.VC_OPEN_ISSUES_COUNT,
 PRI_PROJ.VC_COMMIT_COUNT,
 PRI_PROJ.VC_REPO_SIZE,
 ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2) VC_REPO_SIZE_MB,
+TRIM(TO_CHAR(ROUND((PRI_PROJ.VC_REPO_SIZE / 1024) / 1024, 2), '999,990.99')) FORMAT_VC_REPO_SIZE_MB,
 PRI_PROJ.CREATE_DATE,
 PRI_PROJ.CREATED_BY,
 PRI_PROJ.LAST_MOD_DATE,
@@ -973,6 +1019,7 @@ COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_SUM_ALL_V.VC_REPO_SIZE IS 'The total repo
 
 COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_SUM_ALL_V.VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system';
 
+COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_SUM_ALL_V.FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system formatted as a string with a leading zero for values < 1';
 
 
 COMMENT ON COLUMN PRI_PROJ_RES_TAG_MAX_SUM_ALL_V.OWNER_USER_ID IS 'The Project Owner''s User ID for the version control system';
@@ -1027,6 +1074,7 @@ PRI_PROJ_V.VC_OPEN_ISSUES_COUNT,
 PRI_PROJ_V.VC_COMMIT_COUNT,
 PRI_PROJ_V.VC_REPO_SIZE,
 PRI_PROJ_V.VC_REPO_SIZE_MB,
+PRI_PROJ_V.FORMAT_VC_REPO_SIZE_MB,
 
 
 
@@ -1084,6 +1132,8 @@ TAG_PROJ.VC_OPEN_ISSUES_COUNT TAG_VC_OPEN_ISSUES_COUNT,
 TAG_PROJ.VC_COMMIT_COUNT TAG_VC_COMMIT_COUNT,
 TAG_PROJ.VC_REPO_SIZE TAG_VC_REPO_SIZE,
 ROUND((TAG_PROJ.VC_REPO_SIZE / 1024) / 1024, 2) TAG_VC_REPO_SIZE_MB,
+TRIM(TO_CHAR(ROUND((TAG_PROJ.VC_REPO_SIZE / 1024) / 1024, 2), '999,990.99')) TAG_FORMAT_VC_REPO_SIZE_MB,
+
 TAG_PROJ.CREATE_DATE TAG_CREATE_DATE,
 TAG_PROJ.CREATED_BY TAG_CREATED_BY,
 TAG_PROJ.LAST_MOD_DATE TAG_LAST_MOD_DATE,
@@ -1153,7 +1203,7 @@ COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.VC_REPO_SIZE IS 'The total repository s
 
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system';
 
-
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system formatted as a string with a leading zero for values < 1';
 
 
 
@@ -1215,6 +1265,7 @@ COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.TAG_VC_REPO_SIZE IS 'The total reposito
 
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.TAG_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project associated with the given resource in the given version control system';
 
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.TAG_FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project associated with the given resource in the given version control system formatted as a string with a leading zero for values < 1';
 
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_V.RES_DEMO_URL IS 'The live demonstration URL for the project resource';
 
@@ -1324,12 +1375,27 @@ PRI_PROJ_V.DATA_SOURCE_DESC,
 
 
 PRI_PROJ_V.VC_OWNER_ID,
+PRI_PROJ_V.OWNER_USER_ID,
+PRI_PROJ_V.OWNER_USERNAME,
+PRI_PROJ_V.OWNER_USER_NAME,
+PRI_PROJ_V.OWNER_USER_EMAIL,
+PRI_PROJ_V.OWNER_AVATAR_URL,
+PRI_PROJ_V.OWNER_WEB_URL,
+
 PRI_PROJ_V.VC_CREATOR_ID,
+PRI_PROJ_V.CREATOR_USER_ID,
+PRI_PROJ_V.CREATOR_USERNAME,
+PRI_PROJ_V.CREATOR_USER_NAME,
+PRI_PROJ_V.CREATOR_USER_EMAIL,
+PRI_PROJ_V.CREATOR_AVATAR_URL,
+PRI_PROJ_V.CREATOR_WEB_URL,
+
 PRI_PROJ_V.VC_WEB_URL,
 PRI_PROJ_V.VC_OPEN_ISSUES_COUNT,
 PRI_PROJ_V.VC_COMMIT_COUNT,
 PRI_PROJ_V.VC_REPO_SIZE,
 PRI_PROJ_V.VC_REPO_SIZE_MB,
+PRI_PROJ_V.FORMAT_VC_REPO_SIZE_MB,
 
 PRI_PROJ_V.RES_CATEGORY,
 PRI_PROJ_V.RES_TAG_CONV,
@@ -1393,7 +1459,21 @@ COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.DATA_SOURCE_DESC IS 'Descriptio
 
 
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_OWNER_ID IS 'Unique numeric User ID of the project''s owner in the given version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.OWNER_USER_ID IS 'The Project Owner''s User ID for the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.OWNER_USERNAME IS 'Login username for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.OWNER_USER_NAME IS 'Name of the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.OWNER_USER_EMAIL IS 'Email for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.OWNER_AVATAR_URL IS 'Avatar URL for the project owner''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.OWNER_WEB_URL IS 'Web URL for the project owner''s user account in the version control system';
+
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_CREATOR_ID IS 'Unique numeric User ID of the project''s creator in the given version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.CREATOR_USER_ID IS 'The Project Creator''s User ID for the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.CREATOR_USERNAME IS 'Login username for the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.CREATOR_USER_NAME IS 'Name of the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.CREATOR_USER_EMAIL IS 'Email for the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.CREATOR_AVATAR_URL IS 'Avatar URL for the project creator''s user account in the version control system';
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.CREATOR_WEB_URL IS 'Web URL for the project creator''s user account in the version control system';
+
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_WEB_URL IS 'The web URL of the project in the given version control system';
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_OPEN_ISSUES_COUNT IS 'The number of open issues for the project in the given version control system';
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_COMMIT_COUNT IS 'The total number of commits for the project in the given version control system';
@@ -1402,6 +1482,7 @@ COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_REPO_SIZE IS 'The total repo
 
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system';
 
+COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.FORMAT_VC_REPO_SIZE_MB IS 'The total repository size in MB for the project in the given version control system formatted as a string with a leading zero for values < 1';
 
 
 COMMENT ON COLUMN PRI_RES_PROJ_TAG_MAX_SUM_ALL_V.RES_CATEGORY IS 'The resource category (free form text) - examples values include Development Tool, Data Management Tool, Centralized Database Applications';
