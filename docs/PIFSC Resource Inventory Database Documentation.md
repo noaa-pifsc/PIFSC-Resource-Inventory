@@ -6,7 +6,7 @@ This database provides the core database objects required to run the PIFSC Resou
 ## Resources:
 -   PRI Version Control Information:
     -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
-    -   Database: 0.3 (Git tag: pifsc_resource_inventory_db_v0.3)
+    -   Database: 0.4 (Git tag: pifsc_resource_inventory_db_v0.4)
 -   [View Comments](PRI_view_comments.xlsx)
 -   [PRI Database Naming Conventions](PIFSC%20Resource%20Inventory%20DB%20Naming%20Conventions.md)
 -   [PL/SQL Coding Conventions](./PIFSC%20Resource%20Inventory%20-%20PLSQL%20Coding%20Conventions.md)
@@ -16,8 +16,9 @@ This database provides the core database objects required to run the PIFSC Resou
 -   [PRI Data Flow Diagram (DFD)](DFD/PRI_DFD.drawio.png)
     -   [Documentation](DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 -   [PRI Git Info Module (GIM) - Technical Documentation](../GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md)
+-   [PRI Resource Inventory App (RIA) - Technical Documentation](../RIA/docs/PIFSC%20Resource%20Inventory%20Resource%20Inventory%20Application%20-%20Technical%20Documentation.md)
 -   [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
-    -   [Business Rule List](./PRI%20Business%20Rule%20List.xlsx) 
+    -   [Business Rule List](./PRI%20Business%20Rule%20List.xlsx)
 
 ## Database Setup:
 -   Create two separate database schemas for the database (data schema) and one for each application module (application/shadow schema)

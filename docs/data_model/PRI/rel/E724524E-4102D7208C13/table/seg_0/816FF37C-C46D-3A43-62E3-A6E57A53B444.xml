@@ -1,0 +1,311 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="816FF37C-C46D-3A43-62E3-A6E57A53B444" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="PRI_VC_USERS">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_VC_USERS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[PIFSC Resource Inventory Version Control Users
+
+This table stores the version control users so they can be associated with the projects they created/own]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>F0E2670B-4FFE-7384-34F7-1D880CB8D561</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USER_ID" id="C87970C4-2065-FA1F-5538-C3126C9C9DF5">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the PRI_VC_USERS table]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>F3E10E12-E76D-CAAD-120F-076E7A2A3DE6</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VC_USER_ID" id="13D2DD00-6497-7D4C-EF04-16AE945AA090">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>VC_USER_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Unique User ID for user within the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>26A66D83-C72E-A558-74CC-16F8434EF926</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USERNAME" id="7F63CD05-7FE8-BF17-38F9-47CAAC07EA10">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>USERNAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Login username for the user account in the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>42727323-7A47-9F6F-95C7-367CF742D0AD</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_NAME" id="8ADFB501-19DF-0E4D-1057-178D546F824E">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>USER_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the user account in the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>D3D2E418-DE92-4861-FF1B-3D78BD71D402</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_EMAIL" id="4353B435-8944-E671-031C-C1C9AC1D23A1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>USER_EMAIL</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Email for the user account in the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>760DD4F9-6EBA-9F1B-805E-D61A4C55D009</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AVATAR_URL" id="F355BAAD-0A46-B7CD-4619-FB6A6B922BED">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>AVATAR_URL</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Avatar URL for the user account in the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>67839436-3B73-5338-8B53-82B542A582F6</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WEB_URL" id="D368604C-4894-F678-A68E-A1B53F9F8DD4">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>WEB_URL</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Web URL for the user account in the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>7568484F-6490-CDE9-4D2B-011E8BA7A8B2</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_SOURCE_ID" id="101EB427-F83B-32ED-F148-FF1183D891A8">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>DATA_SOURCE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the data sources record for the given user account in the version control system]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>6768979F-7741-9FA7-8658-497C4B546E9F</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8BB00108-2827-BF3D-4861-F0E9959D87D0" referredColumn="AAF2BCDF-851A-BBF8-EB87-6EAC39A1CDF6"/>
+</associations>
+</Column>
+<Column name="CREATE_DATE" id="418A5CF6-A563-9734-0182-F411475CE7EC">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>A9147879-CCE3-8AFF-BFF2-F33BB773C6D3</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="CA355891-4E56-C5D9-B68B-E095CAD7C8FA">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>FAA8DF97-153C-B576-FD36-9ADE4B4A00DD</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="D5E5950E-A23C-BCED-3D36-9825306D3337">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>5D5898B4-4146-E1EC-BDF2-6C0B50D2F6A8</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="745EAC79-06AD-28BA-8A41-173281B53B38">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI_VC_USERS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>29E600EE-23B2-6178-625A-5E9740509722</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1B768DEB-2ECD-AFAA-BF84-1A38AF1FB4DF" name="PRI_USERS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_USERS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>4B518D0C-FE38-06B9-421E-91CBF7AA0D0F</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C87970C4-2065-FA1F-5538-C3126C9C9DF5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="440128B1-C62C-0A46-1D11-89AAC0625620" name="PRI_VC_USERS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_VC_USERS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>A513EF5B-918E-0E1A-AC42-033DD9900091</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13D2DD00-6497-7D4C-EF04-16AE945AA090"/>
+<colUsage columnID="101EB427-F83B-32ED-F148-FF1183D891A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="20DB45D0-09A9-C84B-17C3-0857B008BA36" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="PRI_USERS_PK">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_USERS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>6483708B-2466-C34A-56B2-1C5DDE3262DB</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C87970C4-2065-FA1F-5538-C3126C9C9DF5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6584791E-05C3-6306-2934-49FDB82B9D14" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="PRI_VC_USERS_I1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_VC_USERS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>AA1A4CC4-65B5-7CD8-8AE4-27C3F3C3345B</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13D2DD00-6497-7D4C-EF04-16AE945AA090"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F2141E7F-ABC7-2589-92F6-9308F8CCC374" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="PRI_VC_USERS_I2">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_VC_USERS_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>A24F1DBA-FF57-CEA1-1A92-2FEB11B8453A</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="101EB427-F83B-32ED-F148-FF1183D891A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D1E4F8CE-C005-B3DD-6780-525007AED758" schemaObject="0220F8F4-37A8-A590-E3C1-5CF83FD35F0A" name="PRI_VC_USERS_U1">
+<sourceConnName>PICD_PRI</sourceConnName>
+<sourceObjSchema>PRI</sourceObjSchema>
+<sourceObjName>PRI_VC_USERS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<importedID>013F19A3-9E28-7EE5-C448-03B0C063404C</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13D2DD00-6497-7D4C-EF04-16AE945AA090"/>
+<colUsage columnID="101EB427-F83B-32ED-F148-FF1183D891A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1BC59E4E-2E82-60B6-B2F4-A1257E04A78C" name="PRI_VC_USERS_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2022-06-01 20:38:03 UTC</createdTime>
+<ownerDesignName>PRI</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="101EB427-F83B-32ED-F148-FF1183D891A8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

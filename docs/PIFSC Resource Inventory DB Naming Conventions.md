@@ -29,9 +29,11 @@ When developing a database it is important to use consistent naming conventions 
     -   HTTP: Hypertext Transfer Protocol
     -   IMPL: Implemented
     -   MAX: Maximum
+    -   MB: Megabytes
     -   MSG: Message
     -   NUM: Number
     -   PROJ: Project
+    -   REPO: Repository
     -   RES: Resource
     -   SSH: Secure Shell Protocol
     -   SUM: Summary
