@@ -10,20 +10,22 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 -   [PRI Database Documentation](../../docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 -   [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx)
+-   [Add or Remove Project SOP](../../docs/PIFSC%20Resource%20Inventory%20-%20Add%20or%20Remove%20Project%20SOP.md)
 
 ## Requirements:
 -   PHP 5.x or higher (tested with PHP5.5 and PHP8)
+    -   Required PHP Libraries:
+        -   php_openssl.dll (required for retrieving the GitLab/GitHub project information via SSL protocol)
+        -   php_oci8_11g.dll (required for interaction with the Oracle database)
+        -   php_curl.dll (required for REST API requests to GitLab/GitHub servers)
 -   Oracle 12c or higher
 
 ## Data Flow:
 -   [Data Flow Diagram (DFD)](../../docs/DFD/PRI_DFD.drawio.png)
 -   [DFD Documentation](../../docs/DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 
-## Requirements:
--   Required PHP Libraries:
-    -   php_openssl.dll (required for retrieving the GitLab/GitHub project information via SSL protocol)
-    -   php_oci8_11g.dll (required for interaction with the Oracle database)
-    -   php_curl.dll (required for REST API requests to GitLab/GitHub servers)
+## Database Setup:
+-   [Installing or Upgrading the Database](../../docs/PIFSC%20Resource%20Inventory%20-%20Installing%20or%20Upgrading%20the%20Database.md)
 
 ## Additional script setup:
 -   Clone the PHP Shared Library repository to a local directory
@@ -39,9 +41,6 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
     -   GITLAB_API_KEY is the API key for the PIFSC GitLab server
     -   PROJ_SOURCE can remain unchanged
 -   Update the [db_connection_info.php](../application_code/functions/db_connection_info.php) configuration file to specify the hostname/username/password for the application schema (PRI_RIA_APP) used for database interactions
-
-## Database Setup:
--   [Installing or Upgrading the Database](../../docs/PIFSC%20Resource%20Inventory%20-%20Installing%20or%20Upgrading%20the%20Database.md)
 
 ## Business Rules:
 -   The business rules for the GIM are defined in the [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx) with a Scope of "GIM" apply to this module and each rule with a Scope of "PRI Database" apply to the underlying database

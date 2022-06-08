@@ -1,8 +1,14 @@
 _ Compile SOP for how to prepare your project for inclusion into the inventory
-	Create JSON file w/ naming convention, etc. using the Excel template and JSON templates (_ develop a short SOP for this)
-	Update to public
-	Tag your repository with all modules installed
-	_ (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
+	Project:
+		X Update to public
+	Resource:
+		X Create JSON file w/ naming convention, etc. using the Excel template and JSON templates (X develop a short SOP for this)
+		X Tag your repository with all modules installed
+
+	X (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
+
+
+X Add "tag your repository" language to the Code Commit SOP for installing/implementing/upgrading resources
 
 X Decided to implement separate view_X.php pages due to the complications with filtering, _ ** update view_X.php pages with additional detailed information for projects/resources not shown on the view_all_X.php pages
 	** instead of developing separate pages for the view single resources/project view we can just use anchors by the RES_ID or by PROJ_ID (can also auto generate a non-numeric key for the anchor too based on the PK value)
