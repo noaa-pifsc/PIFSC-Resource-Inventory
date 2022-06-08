@@ -18,5 +18,6 @@ This SOP defines the procedure for defining Custom Configuration Files for Proje
         -   For projects with multiple resources each value enclosed with curly braces ({}) must be delimited by a comma character (,)
         -   An example [PRI.config](../../PRI.config) file is defined for the PRI project that has multiple resources defined
         -   A JSON schema ([json_schema.json](../../docs/json_schema.json)) is available to validate the generated JSON configuration file
+    -   Commit the PRI.config file and push the change to the version control server
 -   ### Removing Resources
     -   Remove the PRI.config file from the root directory of the repository, commit and push the change to the version control server
