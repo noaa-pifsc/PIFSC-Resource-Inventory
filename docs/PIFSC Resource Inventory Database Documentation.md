@@ -35,7 +35,8 @@ This database provides the core database objects required to run the PIFSC Resou
             -   Database: 0.5 (Git tag: DMP_Scientific_v0.5)
 -   DB Version Control Module (VCM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git
-    -   Version: 0.2 (git tag: db_vers_ctrl_db_v0.2)
+    -   Database Version: 0.2 (git tag: db_vers_ctrl_db_v0.2)
+    -   SOP Version: 1.0 (git tag: db_vers_ctrl_v1.0)
 -   DB Logging Module (DLM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBLoggingModule.git
     -   Version: 0.2 (git tag: db_log_db_v0.2)

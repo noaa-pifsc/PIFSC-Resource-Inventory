@@ -1,4 +1,4 @@
-_ Compile SOP for how to prepare your project for inclusion into the inventory
+X Compile SOP for how to prepare your project for inclusion into the inventory
 	Project:
 		X Update to public
 	Resource:
