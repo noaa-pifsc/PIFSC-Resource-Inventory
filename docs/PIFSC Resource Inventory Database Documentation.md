@@ -6,7 +6,7 @@ This database provides the core database objects required to run the PIFSC Resou
 ## Resources:
 -   PRI Version Control Information:
     -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
-    -   Database: 0.4 (Git tag: pifsc_resource_inventory_db_v0.4)
+    -   Database: 0.5 (Git tag: pifsc_resource_inventory_db_v0.5)
 -   [View Comments](PRI_view_comments.xlsx)
 -   [PRI Database Naming Conventions](PIFSC%20Resource%20Inventory%20DB%20Naming%20Conventions.md)
 -   [PL/SQL Coding Conventions](./PIFSC%20Resource%20Inventory%20-%20PLSQL%20Coding%20Conventions.md)
