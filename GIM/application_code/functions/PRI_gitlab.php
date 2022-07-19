@@ -439,13 +439,14 @@
 
 					echo $this->add_message("convert the content and parse as JSON to get the resource configuration information ", 3);
 
-					echo $this->add_message("\$data['message'] is: ".$data['message'], 3);
-
 					//check if there is a "message" property
 					if ((array_key_exists('message', $data)) && ($data['message'] == '404 Commit Not Found'))
 					{
 						//the file was not found
 
+						echo $this->add_message("\$data['message'] is: ".$data['message'], 3);
+						
+						
 						echo $this->add_message("The custom configuration file was not found, do not refresh the project resource information", 3);
 
 					}
