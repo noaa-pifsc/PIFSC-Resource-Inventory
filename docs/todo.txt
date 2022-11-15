@@ -44,11 +44,11 @@ X implement background image from AAM APEX app
 X view all resources
 	X change the Associated Projects column to "Implemented Projects"
 
-_ add web app to Google Site:
+_ (documented) add web app to Google Site:
 	<embed src="http://localhost/pifsc-resource-inventory/RIA/application_code/view_all_projects.php" style="width: 100%; height: 500px;">
 
 
-_ update the code so it doesn't exit on SQL error (rollback specific transaction and log issue but don't stop processing immediately)
+_ (documented) update the code so it doesn't exit on SQL error (rollback specific transaction and log issue but don't stop processing immediately)
 
 
 X projects layout needs to have margin/padding addressed before implementing the resources layout
@@ -59,25 +59,25 @@ X Also add the view resource and view project pages
 X add a navigation menu to allow users to return to the view all resources or view all projects pages (default to projects)
 
 
-_ ** optimize the queries, getting the maximum version number is very inefficient
+_ (documented) ** optimize the queries, getting the maximum version number is very inefficient
 
-_ pull the resource description from the Overview section of the referenced file (only if it is in .md format)?
+_ (documented) pull the resource description from the Overview section of the referenced file (only if it is in .md format)?
 
 X show a default (no image available when there is no AVATAR_URL specified)
 
-_ pull other information from the readme.md file
+_ (documented) pull other information from the readme.md file
 
-_ user notification functionality?
+_ (documented) user notification functionality?
 	? Maybe allow users to subscribe to updates on a project and when a new version is defined it could email the users
 
-_ add a production flag to resources to indicate they have been deployed/marked for production use
-	_ there should be a distinction between if a given soln is implemented or just installed (e.g. folks who use the template application will have the DVM installed by default but may not actually be using it -> e.g Personnel Tracking System)
+_ (documented) add a production flag to resources to indicate they have been deployed/marked for production use
+	_ (documented) there should be a distinction between if a given soln is implemented or just installed (e.g. folks who use the template application will have the DVM installed by default but may not actually be using it -> e.g Personnel Tracking System)
 
-_ **naming conventions should be handled to escape special characters when used in regular expressions
+_ (documented) **naming conventions should be handled to escape special characters when used in regular expressions
 
 X implement tooltips for each field in the projects/resources page
 
-implement the json config files to indicate special resources for the given project
+X implement the json config files to indicate special resources for the given project
 
 	X Oracle function to extract the version number using regexp
 	X Oracle function to extract the major and minor version numbers using the naming convention
@@ -86,8 +86,8 @@ implement the json config files to indicate special resources for the given proj
 		Or just allow them to define their own regexp?
 
 
-*_ document algorithm for assigning a version number score to a given version number string
-	* Parse the period-delimited numeric string into separate numbers.  Depending on the occurrence of the numeric string the number is multiplied by 1000 to the occurrence number (starting at 0) to the total score.  This allows three digit numbers for each major, minor, patch, etc. number to be sorted correctly.
+*X document algorithm for assigning a version number score to a given version number string
+	* X Parse the period-delimited numeric string into separate numbers.  Depending on the occurrence of the numeric string the number is multiplied by 1000 to the occurrence number (starting at 0) to the total score.  This allows three digit numbers for each major, minor, patch, etc. number to be sorted correctly.
 
 X implement a simple form interface to allow filtering and ajax content to be refreshed (maybe just specify the data as JSON from the queries and have javascript generate the formatted HTML and update the DOM with the content)
 
@@ -120,34 +120,34 @@ _ implement more resources:
 		owner
 
 
-_ generate comma-delimited list of Resource Name - Version #, Resource Name - Version #, ...
+X generate comma-delimited list of Resource Name - Version #, Resource Name - Version #, ...
 	--we want to be able to identify each instance of the defined resources that are installed/required for a given project
 		We need to do a join on the regexp for the naming convention and then match that up with the associated tags for the given project -> we need to take the max of each to ensure we are displaying the highest version of each installed module (this will help folks to understand how a given module version was installed in different projects)
 	generate an HTML-formatted one and one for DB result sets
 
 	QUERY LOGIC:
-		Join every project to all the resources on the regexp (excluding the projects associated with the resource) and pull the max parsed version number of each one.
-	_ rename the two sets of views since they are similar (one is for the resources themselves and the other is for the projects with associated resources) -> maybe we can combine them and in one query we just filter out the project recs by RES_ID IS NOT NULL?
+		X Join every project to all the resources on the regexp (excluding the projects associated with the resource) and pull the max parsed version number of each one.
+	X (No, these views have different logic) rename the two sets of views since they are similar (one is for the resources themselves and the other is for the projects with associated resources) -> maybe we can combine them and in one query we just filter out the project recs by RES_ID IS NOT NULL?
 
 
-	What information do we want to pull for each project and associated tags? (resource versions)
-		We want to know the highest version of the resource within the project as well as the highest version of the resource within external projects
+	X What information do we want to pull for each project and associated tags? (resource versions)
+		X We want to know the highest version of the resource within the project as well as the highest version of the resource within external projects
 
-		We need to join the resources table with the tags table to match up the regular expressions and
+		X We need to join the resources table with the tags table to match up the regular expressions
 
-		**determine the highest version at the resource level and then re-join with the projects/tags on the regexp to parse out the highest version of those as well
+		X **determine the highest version at the resource level and then re-join with the projects/tags on the regexp to parse out the highest version of those as well
 
 
 		** We want to be able to pull information from both sides of the relationship.
-			all of the projects and their associated resources and all projects that use each of those resources (full result set as well as delimited lists)
+			X all of the projects and their associated resources and all projects that use each of those resources (full result set as well as delimited lists)
 
-			all of the projects and installed/required resources (include the version number of the resource implemented for each of the projects) - we would also want to know what the maximum version of the resource currently is and if the maximum version is higher than the installed version (maybe show an asterisk or use "(UA)" in the interface to show an upgrade is available)
+			X all of the projects and installed/required resources (include the version number of the resource implemented for each of the projects) - we would also want to know what the maximum version of the resource currently is and if the maximum version is higher than the installed version (maybe show an asterisk or use "(UA)" in the interface to show an upgrade is available)
 
 
 
-			query for the projects (left outer join on resources to list project-specific resources)
-				inner join on resources to get all installed/required resources
-			detailed and summary view (comma-delimited lists or modules and version numbers)
+			X query for the projects (left outer join on resources to list project-specific resources)
+				X inner join on resources to get all installed/required resources
+			X detailed and summary view (comma-delimited lists or modules and version numbers)
 
 
 For resource report:
@@ -197,21 +197,47 @@ Pull information from README
 
 
 Data/Software Project Inventory (from Google Keep: "Data/Software Project Inventory")
-	Standardize tag names and README.md files so they can be harvested to populate a DB that can be used to update the central inventory. This can then be embedded in a web page or used in a variety of other ways to post this information
-	e.g. DVM_db_v as a prefix and then parse the number and sort them accordingly to determine maximum version number
-	production URL
-	test/demo URL
-	version control URL (SSH and HTTPS)
-	Last Update
-	Review the GitLab repositories to determine if we can pull info via GitLab API
-	Review the GitLab repositories to see which are not in the Centralized Data Inventory
-	Look at the fields in the Data Projects Google Sheet and see if we can populate those reliably using the GitLab API or use PHP (cURL) to parse the readme.md file
-	Filter out based on private/open visibility
-	Allow flags to be set to include the given repository in the inventory
-	Add a category tag so it shows if it's a Software Developer, Data Management Tool/SOP, etc.
-	Query the GitLab server for tags so we can tell which version is the most recent (may have to be manually defined/determined per project or a naming convention should be used - can parse for the version number and then sort it numerically to determine the most recent version)
-	Query the Git Lab server for each instance of a GitLab tag that matches a version of the given tag for a project (e.g. template application has version 1.0 of the DB version control module installed) - we could have a list of dependencies that people can see (color coded or other visual representation)
-	Can run reports and refresh the DB based on an update process that will parse the
-	Use API to pull info from README.md file under specific pre-defined headings (e.g. current version number, summary, )
-	Pull project-specific information like the last update date/time, or last person
-	Eventually this can be a Oracle-based data system or we could use it as an opportunity to develop something else with MySQL/PHP or a different tech stack
+	X Standardize tag names and README.md files so they can be harvested to populate a DB that can be used to update the central inventory. This can then be embedded in a web page or used in a variety of other ways to post this information
+		e.g. DVM_db_v as a prefix and then parse the number and sort them accordingly to determine maximum version number
+	X production URL
+	X test/demo URL
+	X version control URL (SSH and HTTPS)
+	X Last Update
+	X Review the GitLab repositories to determine if we can pull info via GitLab API
+	X Review the GitLab repositories to see which are not in the Centralized Data Inventory
+	X Look at the fields in the Data Projects Google Sheet and see if we can populate those reliably using the GitLab API or use PHP (cURL) to parse the readme.md file
+	X Filter out based on private/open visibility
+		Allow flags to be set to include the given repository in the inventory
+	X Add a category tag so it shows if it's a Software Developer, Data Management Tool/SOP, etc.
+	X Query the GitLab server for tags so we can tell which version is the most recent (may have to be manually defined/determined per project or a naming convention should be used - can parse for the version number and then sort it numerically to determine the most recent version)
+	X Query the Git Lab server for each instance of a GitLab tag that matches a version of the given tag for a project (e.g. template application has version 1.0 of the DB version control module installed) - we could have a list of dependencies that people can see (color coded or other visual representation)
+	X Can run reports and refresh the DB based on an update process that will parse the version numbers
+	_ (documented) Use API to pull info from README.md file under specific pre-defined headings (e.g. current version number, summary, )
+	X Pull project-specific information like the last update date/time, or last person
+	X Eventually this can be a Oracle-based data system or we could use it as an opportunity to develop something else with MySQL/PHP or a different tech stack
+
+
+
+
+Project Management Notes:
+	Initial Development
+		Feature issues
+
+	X Initial Test platform deployment
+		X Test DB deployment
+			Execute test deployment scripts
+		Test App deployment
+			X PHP web app (docker)
+			X PHP script deployment (linux cron job)
+
+	X Testing
+		X User acceptance Testing
+		X Security Testing
+		X SCR Review
+
+	Initial Production platform deployment
+		X Production DB deployment
+			Execute test deployment scripts
+		Production App deployment
+			X PHP web app (docker)
+			X PHP script deployment (linux cron job)
