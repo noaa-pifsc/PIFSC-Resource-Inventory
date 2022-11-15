@@ -1,3 +1,3 @@
 cd %~dp0
-c:\web\PHP5.5\php -c c:\web\PHP5.5\php.ini retrieve_gitlab_info.php
+c:\web\PHP7_x64\php -c c:\web\PHP7_x64\php.ini retrieve_gitlab_info.php
 pause
