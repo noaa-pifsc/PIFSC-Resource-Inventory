@@ -55,7 +55,7 @@ RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rew
 		ENV TNS_ADMIN $ORACLE_HOME/network/admin
 
 		# copy sqlnet.ora configuration for SQLPlus client:
-		COPY ./parr-tools/ODS/docker/sqlnet.ora /usr/local/instantclient/network/admin/sqlnet.ora
+		COPY ./pifsc-resource-inventory/docker/sqlnet.ora /usr/local/instantclient/network/admin/sqlnet.ora
 
 # configure php with oci8 support
 RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantclient \
