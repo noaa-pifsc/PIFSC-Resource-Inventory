@@ -72,6 +72,9 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 		COPY ./php-shared-library/js /var/www/html/php-shared-library/js
 		COPY ./php-shared-library/img /var/www/html/php-shared-library/img
 
+		# create the GIM directory for the backend module
+		RUN mkdir /usr/src/GIM
+
 
 		# allow apache user to modify files in the www directory
 		RUN chown -R www-data:www-data /var/www/html
