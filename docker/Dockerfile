@@ -68,6 +68,7 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 #		COPY ./pifsc-resource-inventory/RIA /var/www/html
 #		COPY ./pifsc-resource-inventory/GIM /usr/src/GIM
 		COPY ./php-shared-library/*.php /usr/src/php-shared-library/
+		COPY ./php-shared-library/*.inc /usr/src/php-shared-library/
 		COPY ./php-shared-library/css /var/www/html/php-shared-library/css
 		COPY ./php-shared-library/js /var/www/html/php-shared-library/js
 		COPY ./php-shared-library/img /var/www/html/php-shared-library/img
