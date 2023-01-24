@@ -14,10 +14,10 @@ services:
         source: pri_logs
         target: /usr/src/GIM/logs
       - type: bind
-        source: /c/pridev/pifsc-resource-inventory/RIA
+        source: /c/pridev/pifsc-resource-inventory/RIA/application_code
         target: /var/www/html
       - type: bind
-        source: /c/pridev/pifsc-resource-inventory/GIM
+        source: /c/pridev/pifsc-resource-inventory/GIM/application_code
         target: /usr/src/GIM
     environment:
       TZ: "Pacific/Honolulu"

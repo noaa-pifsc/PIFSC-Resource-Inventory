@@ -61,7 +61,7 @@ cp -r $root_directory/pridev/tmp/php-shared-library/*  $root_directory/pridev/ph
 
 # remove the working directories where the files in the export folder were prepared from
 echo "remove all temporary files"
-# rm -rf $root_directory/pridev/tmp
+rm -rf $root_directory/pridev/tmp
 
 
 echo "the docker project files are now ready for configuration and image building/deployment"
