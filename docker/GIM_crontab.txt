@@ -1,0 +1,1 @@
+0 5 * * MON sh /usr/src/GIM/run_GIM.sh >> /usr/src/ODS/logs/cron.log 2>&1

@@ -109,5 +109,28 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 
 
 
+
+
+		# cron job setup
+
+			# copy the shell script called by cron
+			COPY ./pifsc-resource-inventory/docker/run_GIM.sh /usr/src/GIM/run_GIM.sh
+
+			# convert shell script to unix format
+			RUN dos2unix /usr/src/GIM/run_GIM.sh
+
+			# copy the crontab
+			COPY ./pifsc-resource-inventory/docker/GIM_crontab.txt /etc/cron.d/GIM_crontab
+
+			# convert cron tab file to unix format
+			RUN dos2unix /etc/cron.d/GIM_crontab
+
+			# change permissions on crontab file
+			RUN chmod 0644 /etc/cron.d/GIM_crontab
+
+			# install the crontab
+			RUN	crontab -u www-data /etc/cron.d/GIM_crontab
+
+
 #start the cron daemon service and httpd listener
 CMD cron && /usr/sbin/apache2ctl -D FOREGROUND
