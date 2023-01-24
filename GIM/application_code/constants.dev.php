@@ -2,7 +2,7 @@
 
 
     //define application resource paths:
-    define ("APPLICATION_INCLUDE_PATH", "/var/www/html/GIM/application_code/functions/");
+    define ("APPLICATION_INCLUDE_PATH", "/usr/src/GIM/application_code/functions/");
     define ("SHARED_LIBRARY_INCLUDE_PATH", "/usr/src/php-shared-library/");
 
     //define the hostname for the destination gitlab server
