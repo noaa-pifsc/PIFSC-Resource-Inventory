@@ -55,7 +55,7 @@ RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rew
 		ENV TNS_ADMIN $ORACLE_HOME/network/admin
 
 		# copy sqlnet.ora configuration for SQLPlus client:
-		COPY ./pifsc-resource-inventory/docker/sqlnet.ora /usr/local/instantclient/network/admin/sqlnet.ora
+		COPY ./pifsc-resource-inventory/docker/config/sqlnet.ora /usr/local/instantclient/network/admin/sqlnet.ora
 
 # configure php with oci8 support
 RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantclient \
@@ -87,12 +87,11 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 
 
 		# copy configuration files:
-		COPY ./pifsc-resource-inventory/docker/php.ini /etc/php.ini
-#		COPY ./pifsc-resource-inventory/docker/php.ini /usr/local/etc/php/php.ini
-		COPY ./pifsc-resource-inventory/docker/httpd.conf /etc/apache2/sites-enabled/httpd.conf
-		COPY ./pifsc-resource-inventory/docker/domain.crt /etc/ssl/certs/domain.crt
-		COPY ./pifsc-resource-inventory/docker/domain.key /etc/ssl/private/domain.key
-		COPY ./pifsc-resource-inventory/docker/ssl-passphrase /etc/ssl/private/ssl-passphrase
+		COPY ./pifsc-resource-inventory/docker/config/php.ini /etc/php.ini
+		COPY ./pifsc-resource-inventory/docker/config/httpd.conf /etc/apache2/sites-enabled/httpd.conf
+		COPY ./pifsc-resource-inventory/docker/config/domain.crt /etc/ssl/certs/domain.crt
+		COPY ./pifsc-resource-inventory/docker/config/domain.key /etc/ssl/private/domain.key
+		COPY ./pifsc-resource-inventory/docker/config/ssl-passphrase /etc/ssl/private/ssl-passphrase
 
 		# convert ssl-passphrase file to unix format
 		RUN dos2unix /etc/ssl/private/ssl-passphrase
@@ -115,13 +114,13 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 		# cron job setup
 
 			# copy the shell script called by cron
-			COPY ./pifsc-resource-inventory/docker/run_GIM.sh /usr/src/GIM/run_GIM.sh
+			COPY ./pifsc-resource-inventory/docker/config/run_GIM.sh /usr/src/GIM/run_GIM.sh
 
 			# convert shell script to unix format
 			RUN dos2unix /usr/src/GIM/run_GIM.sh
 
 			# copy the crontab
-			COPY ./pifsc-resource-inventory/docker/GIM_crontab.txt /etc/cron.d/GIM_crontab
+			COPY ./pifsc-resource-inventory/docker/config/GIM_crontab.txt /etc/cron.d/GIM_crontab
 
 			# convert cron tab file to unix format
 			RUN dos2unix /etc/cron.d/GIM_crontab
