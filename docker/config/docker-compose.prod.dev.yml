@@ -2,8 +2,8 @@ version: '2'
 services:
   prid:
     ports:
-      - "5005:80"
-      - "5006:443"
+      - "5010:80"
+      - "5011:443"
     volumes:
       - "pri_logs:/usr/src/GIM/logs"
       - "/c/pridev/pifsc-resource-inventory/RIA/application_code:/var/www/html"
