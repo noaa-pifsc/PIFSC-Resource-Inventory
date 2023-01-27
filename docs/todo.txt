@@ -10,6 +10,10 @@ X Compile SOP for how to prepare your project for inclusion into the inventory
 	X (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
 
 
+_ compile the docker documentation based on ODS docker implementation
+_ 
+
+
 X Add "tag your repository" language to the Code Commit SOP for installing/implementing/upgrading resources
 
 X Decided to implement separate view_X.php pages due to the complications with filtering, _ ** update view_X.php pages with additional detailed information for projects/resources not shown on the view_all_X.php pages

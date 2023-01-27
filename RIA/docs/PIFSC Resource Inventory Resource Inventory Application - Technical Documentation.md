@@ -11,6 +11,11 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 -   [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx)
 
+## Application URLs:
+    -   Dev Application: https://localhost:5011/view_all_projects.php
+    -   Test Application: TBD
+    -   Production Application: <TBD>
+
 ## Requirements:
 -   PHP 5.x or higher (tested with PHP5.5 and PHP8)
 -   Oracle 12c or higher
