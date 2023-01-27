@@ -21,13 +21,14 @@ git clone git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
 echo "rename configuration files"
 
 #rename the constants.dev.php to constants.php so it can be used as the active configuration file
-mv $root_directory/docker/pridev/tmp/parr-tools/ODS/application_code/constants.dev.php $root_directory/docker/pridev/tmp/parr-tools/ODS/application_code/constants.php
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.dev.php $root_directory/docker/pridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.php
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.dev.php $root_directory/docker/pridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.php
 
 #rename the httpd.dev.conf to httpd.conf so it can be used as the active configuration file
-mv $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/httpd.dev.conf $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/httpd.conf
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/httpd.dev.conf $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/httpd.conf
 
 #rename the php.dev.ini to php.ini so it can be used as the active PHP configuration file
-mv $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/php.dev.ini $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/php.ini
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/php.dev.ini $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/php.ini
 
 
 
@@ -35,14 +36,14 @@ mv $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/php.dev.ini $root_dir
 echo "configure apache SSL"
 
 #rename the localhost.crt and localhost.key to cert.crt and cert.key so it can be used as the active SSL files
-mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/localhost.crt $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/domain.crt
-mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/localhost.key $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/domain.key
-mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/localhost.ssl-passphrase $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/ssl-passphrase
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/localhost.crt $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/domain.crt
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/localhost.key $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/domain.key
+mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/localhost.ssl-passphrase $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/ssl-passphrase
 
 echo "configure docker files"
-cp $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/docker-compose.prod.dev.yml $root_directory/docker/pridev/tmp/docker-compose.prod.yml
-cp $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/docker-compose.dev.yml $root_directory/docker/pridev/tmp/docker-compose.yml
-cp $root_directory/docker/pridev/tmp/parr-tools/ODS/docker/Dockerfile.dev $root_directory/docker/pridev/tmp/Dockerfile
+cp $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/docker-compose.prod.dev.yml $root_directory/docker/pridev/tmp/docker-compose.prod.yml
+cp $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/docker-compose.dev.yml $root_directory/docker/pridev/tmp/docker-compose.yml
+cp $root_directory/docker/pridev/tmp/pifsc-resource-inventory/docker/config/Dockerfile.dev $root_directory/docker/pridev/tmp/Dockerfile
 
 
 # export the docker project files to make the image smaller
