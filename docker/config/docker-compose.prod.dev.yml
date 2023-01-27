@@ -6,8 +6,8 @@ services:
       - "5011:443"
     volumes:
       - "pri_logs:/usr/src/GIM/logs"
-      - "/c/pridev/pifsc-resource-inventory/RIA/application_code:/var/www/html"
-      - "/c/pridev/pifsc-resource-inventory/GIM/application_code:/usr/src/GIM"
+      - "/c/docker/pridev/pifsc-resource-inventory/RIA/application_code:/var/www/html"
+      - "/c/docker/pridev/pifsc-resource-inventory/GIM/application_code:/usr/src/GIM"
     environment:
       TZ: "Pacific/Honolulu"
 volumes:
