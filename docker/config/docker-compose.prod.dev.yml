@@ -8,6 +8,10 @@ services:
       - "pri_logs:/usr/src/GIM/logs"
       - "/c/docker/pridev/pifsc-resource-inventory/RIA/application_code:/var/www/html"
       - "/c/docker/pridev/pifsc-resource-inventory/GIM/application_code:/usr/src/GIM"
+      - "/c/docker/pridev/php-shared-library/ /usr/src/php-shared-library"
+      - "/c/docker/pridev/php-shared-library/css:/var/www/html/php-shared-library/css"
+      - "/c/docker/pridev/php-shared-library/js:/var/www/html/php-shared-library/js"
+      - "/c/docker/pridev/php-shared-library/img:/var/www/html/php-shared-library/img"
     environment:
       TZ: "Pacific/Honolulu"
 volumes:
