@@ -57,7 +57,7 @@
 			$css_include = array("./css/template.css", "./css/RIA_resource.css", "./css/tooltip.css", "./css/ajax_load.css", "./css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", );
 
 			//define the javascript include files for the initial HTML page content:
-			$javascript_include = array("./js/dev_test_bg_image.js");
+			$javascript_include = array("./js/template.js", "./js/tooltip.js");
 
 			//generate the javascript include files with the "defer" keyword
 			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/resources.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA_tooltips.js\"></script>";

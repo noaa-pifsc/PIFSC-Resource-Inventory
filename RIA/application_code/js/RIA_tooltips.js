@@ -2,7 +2,7 @@
 function register_tooltips()
 {
   //register the div labels tooltips (display tooltip content above the tooltip calling element)
-  $ ("div.tooltip").tooltip({
+  $ ("div.tooltip, th.tooltip").tooltip({
   position: {
     my: "center bottom",
     at: "center top-10",
