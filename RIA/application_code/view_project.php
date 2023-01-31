@@ -2,6 +2,8 @@
 
 	include_once ("constants.php");
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."html_page.php");
+	include_once (APPLICATION_INCLUDE_PATH."RIA_template_page.php");
+	include_once (APPLICATION_INCLUDE_PATH."RIA_template_page.php");
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."output_message.php");
   include_once (APPLICATION_INCLUDE_PATH."project.php");
 	include_once (APPLICATION_INCLUDE_PATH."db_connection_info.php");
@@ -22,14 +24,14 @@
 	$string_buffer = '';
 
 
-  //initialize the html_page parameters
-  $inline_javascript = '';
+	//define a variable in the javascript to indicate the application instance
+	$inline_javascript = "var app_instance = '".APP_INSTANCE."';";
 
   //define the css include files for the initial HTML page content
   $css_include = array("./css/template.css", "./css/RIA_project.css", "./css/tooltip.css", "./css/ajax_load.css", "./css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", );
 
-  //define the javascript include files for the initial HTML page content:
-  $javascript_include = array();
+	//define the javascript include files for the initial HTML page content:
+	$javascript_include = array("./js/dev_test_bg_image.js");
 
   //generate the javascript include files with the "defer" keyword
   $priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/projects.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA_tooltips.js\"></script>";
@@ -37,24 +39,6 @@
 
   //generate the main HTML content:
 
-
-  //this is the page heading content:
-  $string_buffer .= "<div class=\"navigation_menu\">
-  <a href=\"./view_all_projects.php\">View All Projects</a> <a href=\"./view_all_resources.php\">View All Resources</a>
-  </div>";
-
-  //fixed background image div
-  $string_buffer .= "<div id=\"bg\">
-    <img src=\"./images/app_background.jpg\" alt=\"NOAA background image\">
-  </div>";
-
-  //this is the page heading content:
-  $string_buffer .= div_tag(h1_tag("View Project", array("class=\"page_heading\"")), array("class=\"page_heading_div\""));
-
-
-
-  //define the main content div
-  $string_buffer .= "<div class=\"main_content_div\">";
 
 	//check if the "PROJ_ID" parameter has been specified for the page request:
 	if (isset($_REQUEST['PROJ_ID']))
@@ -72,8 +56,6 @@
 
 			//send back the HTML content to indicate the failed DB connection:
 			$string_buffer .= b_tag("Could not connect to the database, please try again later");
-
-      $string_buffer ."</div>";
 
 		}
 		else
@@ -100,8 +82,6 @@
 
           $string_buffer .= $project->generate_project_display_card($row);
 
-          $string_buffer ."</div>";
-
         }
         else
         {
@@ -109,10 +89,6 @@
           $string_buffer .= b_tag("The specified project does not exist, please reload the previous page and click on the project link again");
 
           $project->add_message("The specified project does not exist (PROJ_ID: ".$_REQUEST['PROJ_ID'].")");
-
-          //close the main_content_div
-          $string_buffer .= "</div>";
-
 
         }
       }
@@ -122,9 +98,6 @@
         $string_buffer .= b_tag("There was a problem with the database and your request could not be processed, please try again later");
 
         $project->add_message("The project query failed");
-
-        //close the main_content_div
-        $string_buffer .= "</div>";
 
       }
 
@@ -141,9 +114,10 @@
 
     $project->add_message("There was no project specified, PROJ_ID was not defined");
 
-    //close the main_content_div
-    $string_buffer .= "</div>";
   }
+
+	//generate the main HTML content:
+	$string_buffer = RIA_template_page("View Project", $string_buffer, "view_project.php");
 
   //output the HTML page content with $string_buffer in the <body> tag:
   echo html_page ('View Project', $string_buffer, array(), $inline_javascript, $javascript_include, '', $css_include, false, array(), array(), $priority_header_content);

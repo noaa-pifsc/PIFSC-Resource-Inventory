@@ -3,9 +3,12 @@ $(function()
 {
   debug_console('running the $function() code');
 
+
   //activate the disabled content overlay while the js code runs (scrolling table and maps API):
   activate_disabled_content_overlay();
 
+	//depending on the value of app_instance show the dev/test or no background:
+	dev_test_bg_image();
 
   //initialize the jQuery UI button widget
   $("a.link_button").button({disable: false});

@@ -10,4 +10,7 @@
     //define the js, css include paths for the shared library
     define ("SHARED_LIBRARY_CLIENT_PATH", "./php-shared-library/");
 
+		//define which app instance this is
+		define ("APP_INSTANCE", "dev");
+
 ?>
