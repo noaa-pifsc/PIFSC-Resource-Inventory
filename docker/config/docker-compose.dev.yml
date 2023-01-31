@@ -1,8 +1,8 @@
 version: "2"
 services:
-  prid:
+  pridev:
     build:
       context: .
-    image: noaa/prid:latest
-    container_name: prid
+    image: noaa/pridev:latest
+    container_name: pridev
     restart: always

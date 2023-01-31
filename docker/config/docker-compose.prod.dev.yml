@@ -1,9 +1,9 @@
 version: '2'
 services:
-  prid:
+  pridev:
     ports:
-      - "5010:80"
-      - "5011:443"
+      - "5030:80"
+      - "5031:443"
     volumes:
       - "pri_logs:/usr/src/GIM/logs"
       - "/c/docker/pridev/pifsc-resource-inventory/RIA/application_code:/var/www/html"

@@ -9,9 +9,21 @@ X Compile SOP for how to prepare your project for inclusion into the inventory
 
 	X (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
 
+	X dev/test background
+	Index page should have simple dashboard reports available (summary of number of projects, resources, groups)
+		** Don't spend too much time on this until the data model is updated to allow many-to-many relationship between resource scopes and types
+		Queries:
+		select PROJ_VISIBILITY, count(*) from pri_proj where PROJ_VISIBILITY <> 'private' group by PROJ_VISIBILITY;
+		select RES_SCOPE_NAME, RES_CATEGORY, count(*) from PRI_PROJ_V where PROJ_VISIBILITY <> 'private' AND RES_ID IS NOT NULL group by RES_CATEGORY, RES_SCOPE_NAME order by RES_SCOPE_NAME, RES_CATEGORY;
+
+
 
 _ compile the docker documentation based on ODS docker implementation
-_ 
+_ implement an index.php page for the default
+_ implement cron job for git data refresh
+_ implement on demand web request for the data to be refreshed (don't wait for it, just say it needs to be refreshed - please be patient - a couple of minutes)
+_ implement github with their API and URLs
+_ loading graphic when the page is loaded from initialization to response
 
 
 X Add "tag your repository" language to the Code Commit SOP for installing/implementing/upgrading resources
