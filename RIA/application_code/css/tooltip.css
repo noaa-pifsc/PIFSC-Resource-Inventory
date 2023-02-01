@@ -46,3 +46,9 @@
 
 
 /*tooltip arrow styling end*/
+
+
+.tooltip
+{
+	cursor: help;
+}
