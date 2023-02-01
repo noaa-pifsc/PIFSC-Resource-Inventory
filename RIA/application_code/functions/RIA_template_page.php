@@ -48,6 +48,11 @@
 
 		$menu_string = '';
 
+		if ($current_page == 'index.php')
+			$menu_string .= "<span>Summary Reports</span> ";
+		else
+			$menu_string .= "<a href=\"./index.php\">Summary Reports</a> ";
+
 		if ($current_page == 'view_all_projects.php')
 			$menu_string .= "<span>View All Projects</span> ";
 		else

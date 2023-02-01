@@ -17,6 +17,8 @@ X Compile SOP for how to prepare your project for inclusion into the inventory
 		select RES_SCOPE_NAME, RES_CATEGORY, count(*) from PRI_PROJ_V where PROJ_VISIBILITY <> 'private' AND RES_ID IS NOT NULL group by RES_CATEGORY, RES_SCOPE_NAME order by RES_SCOPE_NAME, RES_CATEGORY;
 
 
+_ separate out the PHP include files into the file system instead of accessible directly via the web browser
+
 _ deploy to test docker container
 
 
