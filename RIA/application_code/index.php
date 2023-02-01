@@ -65,14 +65,30 @@
 				//string buffer variable for generating the table rows that will be enclosed by a tbody tag
 				$row_buffer = '';
 
+				//initialize the total number of projects
+				$total_count = 0;
+
         //loop through result set:
         while ($row = $oracle_db->fetch($stid))
         {
           //the resource exists, generate the page content and display it:
 
-          $row_buffer .= tr_tag(td_tag($row['PROJ_VISIBILITY'], array("class=\"text_cell\"")).td_tag($row['NUM_PROJECTS'], array("class=\"number_cell\"")));
+          $row_buffer .= tr_tag(td_tag(ucfirst($row['PROJ_VISIBILITY']), array("class=\"text_cell\"")).td_tag($row['NUM_PROJECTS'], array("class=\"number_cell\"")));
 
+					//add the current number of projects to the total number of projects
+					$total_count += $row['NUM_PROJECTS'];
         }
+
+				//check if there was at least one row returned by the query
+				if ($total_count > 0)
+				{
+					//there was at least one row returned by the query, show the total row:
+					$row_buffer .= tr_tag(td_tag("Total", array("class=\"text_cell total_cell\"")).td_tag($total_count, array("class=\"number_cell total_cell\"")));
+
+				}
+
+
+
 				$string_buffer .= div_tag("Projects", array("class=\"table_heading\"")).div_tag(table_tag($table_buffer.tbody_tag($row_buffer), array("class=\"report_table\"")), array("class=\"report_table_container\""));
 
 				unset ($table_buffer);
@@ -104,6 +120,9 @@
 				//string buffer variable for generating the table rows that will be enclosed by a tbody tag
 				$row_buffer = '';
 
+				//initialize the total number of projects
+				$total_count = 0;
+
 				//loop through result set:
 				while ($row = $oracle_db->fetch($stid))
 				{
@@ -111,7 +130,19 @@
 
 					$row_buffer .= tr_tag(td_tag($row['RES_SCOPE_NAME'], array("class=\"text_cell\"")).td_tag($row['RES_CATEGORY'], array("class=\"text_cell\"")).td_tag($row['NUM_RESOURCES'], array("class=\"number_cell\"")));
 
+					//add the current number of projects to the total number of projects
+					$total_count += $row['NUM_RESOURCES'];
+
 				}
+
+				//check if there was at least one row returned by the query
+				if ($total_count > 0)
+				{
+					//there was at least one row returned by the query, show the total row:
+					$row_buffer .= tr_tag(td_tag("Total", array("class=\"text_cell total_cell\"")).td_tag("").td_tag($total_count, array("class=\"number_cell total_cell\"")));
+
+				}
+
 				$string_buffer .= div_tag("Resources", array("class=\"table_heading\"")).div_tag(table_tag($table_buffer.tbody_tag($row_buffer), array("class=\"report_table\"")), array("class=\"report_table_container\""));
 
 				unset ($table_buffer);
