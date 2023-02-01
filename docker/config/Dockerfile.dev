@@ -78,14 +78,6 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 #		RUN mkdir /usr/src/GIM
 
 
-		# allow apache user to modify files in the www directory
-		RUN chown -R www-data:www-data /var/www/html
-		RUN chown -R www-data:www-data /usr/src/GIM
-
-
-
-
-
 		# copy configuration files:
 		COPY ./pifsc-resource-inventory/docker/config/php.ini /etc/php.ini
 		COPY ./pifsc-resource-inventory/docker/config/httpd.conf /etc/apache2/sites-enabled/httpd.conf
@@ -130,6 +122,10 @@ RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantcl
 
 			# install the crontab
 			RUN	crontab -u www-data /etc/cron.d/GIM_crontab
+
+		# allow apache user to modify files in the www directory
+		RUN chown -R www-data:www-data /var/www/html
+		RUN chown -R www-data:www-data /usr/src/GIM
 
 
 #start the cron daemon service and httpd listener

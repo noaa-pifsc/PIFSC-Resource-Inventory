@@ -24,6 +24,7 @@ _ deploy to test docker container
 
 
 	_ document the dev.mount.yml file as the bind mount version to allow changes to be made on the fly without having to rebuild the image repetitively
+		_ create a deployment script to use the bind mounts to make it easier to switch between the two versions
 
 _ compile the docker documentation based on ODS docker implementation
 X implement an index.php page for the default (simple summary page placeholder for now)
