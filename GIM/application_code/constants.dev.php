@@ -2,8 +2,8 @@
 
 
     //define application resource paths:
-		define ("APPLICATION_INCLUDE_PATH", "/usr/src/GIM/functions/");
-    define ("SHARED_LIBRARY_INCLUDE_PATH", "/usr/src/php-shared-library/");
+		define ("APPLICATION_INCLUDE_PATH", "/usr/src/PRI/GIM/includes/");
+    define ("SHARED_LIBRARY_INCLUDE_PATH", "/usr/src/PRI/php-shared-library/");
 
     //define the hostname for the destination gitlab server
     define ("GITLAB_HOST_NAME", "picgitlab.nmfs.local");

@@ -1,132 +1,90 @@
-FROM php:8.1-apache
+# Start build from official CentOS 7 / Perl 524 image
+FROM centos:centos7
 
-# installing required stuff
-RUN apt-get update && apt-get install -y \
-	cron \
-	dos2unix \
-	git \
-	libaio-dev \
-	libmcrypt-dev \
-	libpng-dev \
-	libzip-dev \
-	unzip \
-  && rm -rf /var/lib/apt/lists/*
+# Set ENV variables
+ENV LD_LIBRARY_PATH /usr/lib/oracle/21/client64/lib
+ENV PATH /usr/lib/oracle/21/client64/lib:/usr/lib/oracle/21/client64/bin:${PATH}
+ENV ORACLE_HOME /usr/lib/oracle/21/client64
+ENV TNS_ADMIN /usr/lib/oracle/21/client64/network/admin
 
-# install PHP extensions
- RUN \
-    docker-php-ext-install zip \
-    && docker-php-ext-install gd
+# Basic package udpate and cleanup and Apache
+RUN yum -y update && yum clean all && yum -y install cronie dos2unix epel-release httpd mod_ssl vim
 
-# xdebug, if you want to debug
-# RUN pecl install xdebug \
-#    && docker-php-ext-enable xdebug
+# Install Oracle RPM(s)
+ADD https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-sqlplus-21.4.0.0.0-1.x86_64.rpm /oracle-client-rpms/
 
-# install PHP composer
-RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/bin --filename=composer
-
-# apache configurations
-RUN ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
-
-# Oracle instantclient
-
-	# copy oracle files
-	# ADD oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip /tmp/
-	ADD https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basic-linux.x64-21.1.0.0.0.zip /tmp/
-	# ADD oracle/instantclient-sdk-linux.x64-12.1.0.2.0.zip /tmp/
-	ADD https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-sdk-linux.x64-21.1.0.0.0.zip /tmp/
-	# ADD oracle/instantclient-sqlplus-linux.x64-12.1.0.2.0.zip /tmp/
-	ADD https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-sqlplus-linux.x64-21.1.0.0.0.zip /tmp/
-
-	# unzip them
-	RUN unzip /tmp/instantclient-basic-linux.x64-*.zip -d /usr/local/ \
-	    && unzip /tmp/instantclient-sdk-linux.x64-*.zip -d /usr/local/
-
-	#cleanup installation source files
-	RUN rm -rf /tmp/*
-
-	# install oci8
-	RUN ln -s /usr/local/instantclient_*_1 /usr/local/instantclient \
-	    && ln -s /usr/local/instantclient/sqlplus /usr/bin/sqlplus
-
-	# configure oracle client:
-		# set ORACLE_HOME value so the sqlnet.ora file is used properly
-		ENV ORACLE_HOME /usr/local/instantclient
-		# set TNS_ADMIN value so the sqlnet.ora file is used properly
-		ENV TNS_ADMIN $ORACLE_HOME/network/admin
-
-		# copy sqlnet.ora configuration for SQLPlus client:
-		COPY ./pifsc-resource-inventory/docker/config/sqlnet.ora /usr/local/instantclient/network/admin/sqlnet.ora
-
-# configure php with oci8 support
-RUN docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantclient \
-    && docker-php-ext-install oci8 \
-    && echo /usr/local/instantclient/ > /etc/ld.so.conf.d/oracle-insantclient.conf \
-    && ldconfig
+RUN yum -y localinstall /oracle-client-rpms/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm && \
+    yum -y localinstall /oracle-client-rpms/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm && \
+    yum -y localinstall /oracle-client-rpms/oracle-instantclient-sqlplus-21.4.0.0.0-1.x86_64.rpm && \
+		rm -rf /oracle-client-rpms/
 
 
-		#copy the application files:
-		COPY ./pifsc-resource-inventory/RIA/application_code /var/www/html
-		COPY ./pifsc-resource-inventory/GIM/application_code /usr/src/GIM
-		RUN mkdir /var/www/html/php-shared-library
-		COPY ./php-shared-library/*.php /usr/src/php-shared-library/
-		COPY ./php-shared-library/*.inc /usr/src/php-shared-library/
-		COPY ./php-shared-library/css /var/www/html/php-shared-library/css
-		COPY ./php-shared-library/js /var/www/html/php-shared-library/js
-		COPY ./php-shared-library/img /var/www/html/php-shared-library/img
+# Install remi repository for PHP packages
+RUN curl -O https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+    && rpm -ivh remi-release-7.rpm \
+    && yum -y update \
+    && rm remi-release-7.rpm
 
-		# create the GIM directory for the backend module
-#		RUN mkdir /usr/src/GIM
+# Install PHP and all dependencies and cleanup yum cache at end
+RUN yum -y install php81 \
+                   php81-php \
+                   php81-php-devel \
+                   php81-php-gd \
+                   php81-php-xml \
+                   php81-php-cli \
+                   php81-php-json \
+                   php81-php-oci8 \
+                   php81-php-pecl-zip \
+                    && yum clean all && rm -rf /var/cache/yum
 
+# copy the PhpSpreadsheet source files:
+COPY ./backend/PhpSpreadsheet /usr/src/ODS/
 
-		# copy configuration files:
-		COPY ./pifsc-resource-inventory/docker/config/php.ini /etc/php.ini
-		COPY ./pifsc-resource-inventory/docker/config/httpd.conf /etc/apache2/sites-enabled/httpd.conf
-		COPY ./pifsc-resource-inventory/docker/config/domain.crt /etc/ssl/certs/domain.crt
-		COPY ./pifsc-resource-inventory/docker/config/domain.key /etc/ssl/private/domain.key
-		COPY ./pifsc-resource-inventory/docker/config/ssl-passphrase /etc/ssl/private/ssl-passphrase
+# change directory to the PhpSpreadsheet project
+WORKDIR /usr/src/ODS/PhpSpreadsheet
 
-		# convert ssl-passphrase file to unix format
-		RUN dos2unix /etc/ssl/private/ssl-passphrase
-
-		# create the data_exports and logs folders (used in volumes)
-#		RUN mkdir /usr/src/ODS/data_exports
-#		RUN mkdir /usr/src/ODS/data_exports/formatted_reports
-#		RUN mkdir /usr/src/ODS/logs
-
-		# remove just the functions folder so these are not exposed to the apache server
-#		RUN rm -rf /var/www/html/functions
-
-		#enable mod ssl for apache
-		RUN a2enmod ssl
+# install composer and the PhpSpreadsheet dependencies via composer
+RUN curl -sS https://getcomposer.org/installer | /opt/remi/php81/root/usr/bin/php --  --install-dir=/usr/local/bin --filename=composer && \
+/opt/remi/php81/root/usr/bin/php /usr/local/bin/composer install
 
 
+# copy the rest of the backend files:
+COPY ./backend/data_exports ./backend/includes ./backend/logs ./backend/php-shared-library ./backend/scripts ./backend/source_data ./backend/SQL /usr/src/ODS
+
+# copy all web files:
+COPY ./www /var/www/html
 
 
-
-		# cron job setup
-
-			# copy the shell script called by cron
-			COPY ./pifsc-resource-inventory/docker/config/run_GIM.sh /usr/src/GIM/run_GIM.sh
-
-			# convert shell script to unix format
-			RUN dos2unix /usr/src/GIM/run_GIM.sh
-
-			# copy the crontab
-			COPY ./pifsc-resource-inventory/docker/config/GIM_crontab.txt /etc/cron.d/GIM_crontab
-
-			# convert cron tab file to unix format
-			RUN dos2unix /etc/cron.d/GIM_crontab
-
-			# change permissions on crontab file
-			RUN chmod 0644 /etc/cron.d/GIM_crontab
-
-			# install the crontab
-			RUN	crontab -u www-data /etc/cron.d/GIM_crontab
-
-		# allow apache user to modify files in the www directory
-		RUN chown -R www-data:www-data /var/www/html
-		RUN chown -R www-data:www-data /usr/src/GIM
+# copy/configure the crontab, export the oracle environment variables for use in cron job
+RUN echo "export TNS_ADMIN=$TNS_ADMIN" >> /usr/src/ODS/config/oracle_env && \
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> /usr/src/ODS/config/oracle_env && \
+echo "export ORACLE_HOME=$ORACLE_HOME" >> /usr/src/ODS/config/oracle_env && \
+echo "export PATH=$PATH" >> /usr/src/ODS/config/oracle_env && \
+dos2unix /usr/src/ODS/scripts/generate_ods_data.sh && \
+mv /usr/src/ODS/config/ods_crontab.txt /etc/cron.d/ods_crontab && \
+dos2unix /etc/cron.d/ods_crontab && \
+chmod 0644 /etc/cron.d/ods_crontab && \
+crontab -u apache /etc/cron.d/ods_crontab
 
 
-#start the cron daemon service and httpd listener
-CMD cron && /usr/sbin/apache2ctl -D FOREGROUND
+# copy the Apache and SQLNet configurations and configure apache
+RUN mv /usr/src/ODS/config/httpd.conf /etc/httpd/conf/httpd.conf && \
+mv /usr/src/ODS/config/php81-php.conf /etc/httpd/conf.d/php81-php.conf && \
+mkdir /etc/ssl/private && \
+mv /usr/src/ODS/config/domain.crt /etc/ssl/certs/domain.crt && \
+mv /usr/src/ODS/config/domain.key /etc/ssl/private/domain.key && \
+mv /usr/src/ODS/config/ssl-passphrase /etc/ssl/private/ssl-passphrase && \
+mkdir /usr/lib/oracle/21/client64/network && \
+mkdir /usr/lib/oracle/21/client64/network/admin/ && \
+mv /usr/src/ODS/config/sqlnet.ora /usr/lib/oracle/21/client64/network/admin/sqlnet.ora && \
+mv /usr/src/ODS/config/php.ini /etc/opt/remi/php81/php.ini
+
+
+# change the ownership permissions of the data_exports and logs folders
+RUN chown -R apache:apache /usr/src/ODS/data_exports && \
+chown -R apache:apache /usr/src/ODS/logs
+
+# Set WORKDIR to webroot to set default context for remaining commands
+WORKDIR /var/www/html
+
+CMD crond && /usr/sbin/httpd -D FOREGROUND

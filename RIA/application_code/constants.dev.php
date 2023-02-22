@@ -4,7 +4,7 @@
     ini_set('date.timezone', "Pacific/Honolulu");
 
     //define application resource paths:
-    define ("APPLICATION_INCLUDE_PATH", "/var/www/html/functions/");
+    define ("APPLICATION_INCLUDE_PATH", "/usr/src/RIA/includes/");
     define ("SHARED_LIBRARY_INCLUDE_PATH", "/usr/src/php-shared-library/");
 
     //define the js, css include paths for the shared library
