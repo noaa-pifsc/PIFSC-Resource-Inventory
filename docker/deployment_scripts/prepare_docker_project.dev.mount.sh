@@ -51,7 +51,7 @@ mv $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/lo
 mv $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/localhost.ssl-passphrase $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/ssl-passphrase
 
 echo "configure docker files"
-cp $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/docker-compose.prod.dev.yml $root_directory/docker/pirridev/tmp/docker-compose.prod.yml
+cp $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/docker-compose.prod.dev.mount.yml $root_directory/docker/pirridev/tmp/docker-compose.prod.yml
 cp $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/docker-compose.dev.yml $root_directory/docker/pirridev/tmp/docker-compose.yml
 cp $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/Dockerfile.dev $root_directory/docker/pirridev/tmp/Dockerfile
 

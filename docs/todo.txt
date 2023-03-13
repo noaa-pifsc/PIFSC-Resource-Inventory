@@ -1,3 +1,8 @@
+_ copy the ODS docker documentation
+	_ revoke API key and save blank API key in the config
+	_ add in the API key to documentation
+
+
 X implemented projects link does not go to the corresponding project (it goes to the associated project - change the link IDs)
 
 X Compile SOP for how to prepare your project for inclusion into the inventory

@@ -8,7 +8,7 @@ ENV ORACLE_HOME /usr/lib/oracle/21/client64
 ENV TNS_ADMIN /usr/lib/oracle/21/client64/network/admin
 
 # Basic package udpate and cleanup and Apache
-RUN yum -y update && yum clean all && yum -y install cronie dos2unix epel-release httpd mod_ssl vim
+RUN yum -y update && yum clean all && yum -y install cronie dos2unix git epel-release httpd mod_ssl vim
 
 # Install Oracle RPM(s)
 ADD https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-sqlplus-21.4.0.0.0-1.x86_64.rpm /oracle-client-rpms/
@@ -37,52 +37,37 @@ RUN yum -y install php81 \
                    php81-php-pecl-zip \
                     && yum clean all && rm -rf /var/cache/yum
 
-# copy the PhpSpreadsheet source files:
-COPY ./backend/PhpSpreadsheet /usr/src/ODS/
-
-# change directory to the PhpSpreadsheet project
-WORKDIR /usr/src/ODS/PhpSpreadsheet
-
-# install composer and the PhpSpreadsheet dependencies via composer
-RUN curl -sS https://getcomposer.org/installer | /opt/remi/php81/root/usr/bin/php --  --install-dir=/usr/local/bin --filename=composer && \
-/opt/remi/php81/root/usr/bin/php /usr/local/bin/composer install
-
-
-# copy the rest of the backend files:
-COPY ./backend/data_exports ./backend/includes ./backend/logs ./backend/php-shared-library ./backend/scripts ./backend/source_data ./backend/SQL /usr/src/ODS
-
-# copy all web files:
-COPY ./www /var/www/html
-
+# copy the application source files:
+COPY ./backend /usr/src/PRI/
+COPY ./www /var/www/html/
 
 # copy/configure the crontab, export the oracle environment variables for use in cron job
-RUN echo "export TNS_ADMIN=$TNS_ADMIN" >> /usr/src/ODS/config/oracle_env && \
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> /usr/src/ODS/config/oracle_env && \
-echo "export ORACLE_HOME=$ORACLE_HOME" >> /usr/src/ODS/config/oracle_env && \
-echo "export PATH=$PATH" >> /usr/src/ODS/config/oracle_env && \
-dos2unix /usr/src/ODS/scripts/generate_ods_data.sh && \
-mv /usr/src/ODS/config/ods_crontab.txt /etc/cron.d/ods_crontab && \
-dos2unix /etc/cron.d/ods_crontab && \
-chmod 0644 /etc/cron.d/ods_crontab && \
-crontab -u apache /etc/cron.d/ods_crontab
+RUN echo "export TNS_ADMIN=$TNS_ADMIN" >> /usr/src/PRI/config/oracle_env && \
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> /usr/src/PRI/config/oracle_env && \
+echo "export ORACLE_HOME=$ORACLE_HOME" >> /usr/src/PRI/config/oracle_env && \
+echo "export PATH=$PATH" >> /usr/src/PRI/config/oracle_env && \
+dos2unix /usr/src/PRI/scripts/run_GIM.sh && \
+mv /usr/src/PRI/config/GIM_crontab.txt /etc/cron.d/GIM_crontab && \
+dos2unix /etc/cron.d/GIM_crontab && \
+chmod 0644 /etc/cron.d/GIM_crontab && \
+crontab -u apache /etc/cron.d/GIM_crontab
 
 
 # copy the Apache and SQLNet configurations and configure apache
-RUN mv /usr/src/ODS/config/httpd.conf /etc/httpd/conf/httpd.conf && \
-mv /usr/src/ODS/config/php81-php.conf /etc/httpd/conf.d/php81-php.conf && \
+RUN mv /usr/src/PRI/config/httpd.conf /etc/httpd/conf/httpd.conf && \
+mv /usr/src/PRI/config/php81-php.conf /etc/httpd/conf.d/php81-php.conf && \
 mkdir /etc/ssl/private && \
-mv /usr/src/ODS/config/domain.crt /etc/ssl/certs/domain.crt && \
-mv /usr/src/ODS/config/domain.key /etc/ssl/private/domain.key && \
-mv /usr/src/ODS/config/ssl-passphrase /etc/ssl/private/ssl-passphrase && \
+mv /usr/src/PRI/config/domain.crt /etc/ssl/certs/domain.crt && \
+mv /usr/src/PRI/config/domain.key /etc/ssl/private/domain.key && \
+mv /usr/src/PRI/config/ssl-passphrase /etc/ssl/private/ssl-passphrase && \
 mkdir /usr/lib/oracle/21/client64/network && \
 mkdir /usr/lib/oracle/21/client64/network/admin/ && \
-mv /usr/src/ODS/config/sqlnet.ora /usr/lib/oracle/21/client64/network/admin/sqlnet.ora && \
-mv /usr/src/ODS/config/php.ini /etc/opt/remi/php81/php.ini
+mv /usr/src/PRI/config/sqlnet.ora /usr/lib/oracle/21/client64/network/admin/sqlnet.ora && \
+mv /usr/src/PRI/config/php.ini /etc/opt/remi/php81/php.ini
 
 
 # change the ownership permissions of the data_exports and logs folders
-RUN chown -R apache:apache /usr/src/ODS/data_exports && \
-chown -R apache:apache /usr/src/ODS/logs
+RUN chown -R apache:apache /usr/src/PRI/logs
 
 # Set WORKDIR to webroot to set default context for remaining commands
 WORKDIR /var/www/html
