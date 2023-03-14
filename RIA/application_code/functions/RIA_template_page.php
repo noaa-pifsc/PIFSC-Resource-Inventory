@@ -14,7 +14,7 @@
 
 		//fixed background image div
 		$return_string .= "<div id=\"bg\">
-			<img src=\"./images/app_background.jpg\" alt=\"NOAA background image\">
+			<img src=\"./res/images/app_background.jpg\" alt=\"NOAA background image\">
 		</div>";
 
 		//fixed dev/test background image div
