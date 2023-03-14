@@ -22,15 +22,15 @@ git clone git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
 echo "rename configuration files"
 
 #rename the constants.dev.php to constants.php so it can be used as the active configuration file
-mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.dev.php $root_directory/docker/pridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.php
-mv $root_directory/docker/pridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.dev.php $root_directory/docker/pridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.php
+mv $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.dev.php $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.php
+mv $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.dev.php $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.php
 
 
 # remove the test, prod versions of constants.php
-rm $root_directory/docker/pridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.test.php
-rm $root_directory/docker/pridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.prod.php
-rm $root_directory/docker/pridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.test.php
-rm $root_directory/docker/pridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.prod.php
+rm $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.test.php
+rm $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/constants.prod.php
+rm $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.test.php
+rm $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/GIM/application_code/constants.prod.php
 
 #rename the httpd.dev.conf to httpd.conf so it can be used as the active configuration file
 mv $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/httpd.dev.conf $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/httpd.conf
@@ -98,7 +98,7 @@ cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/applicati
 cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/GIM/application_code/*  $root_directory/docker/pirridev/backend/GIM
 
 # rename the GIM "functions" folder to "includes"
-mv $root_directory/docker/pirridev/pifsc-resource-inventory/GIM/application_code/functions  $root_directory/docker/pirridev/pifsc-resource-inventory/GIM/application_code/includes
+mv $root_directory/docker/pirridev/backend/GIM/functions  $root_directory/docker/pirridev/backend/GIM/includes
 
 
 

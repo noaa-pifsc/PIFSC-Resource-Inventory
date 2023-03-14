@@ -62,9 +62,9 @@ mv /usr/src/PRI/config/domain.key /etc/ssl/private/domain.key && \
 mv /usr/src/PRI/config/ssl-passphrase /etc/ssl/private/ssl-passphrase && \
 mkdir /usr/lib/oracle/21/client64/network && \
 mkdir /usr/lib/oracle/21/client64/network/admin/ && \
-mv /usr/src/PRI/config/sqlnet.ora /usr/lib/oracle/21/client64/network/admin/sqlnet.ora && \
 mv /usr/src/PRI/config/php.ini /etc/opt/remi/php81/php.ini
 
+# mv /usr/src/PRI/config/sqlnet.ora /usr/lib/oracle/21/client64/network/admin/sqlnet.ora && \
 
 # change the ownership permissions of the data_exports and logs folders
 RUN chown -R apache:apache /usr/src/PRI/logs

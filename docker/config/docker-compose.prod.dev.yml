@@ -1,6 +1,6 @@
 version: '2'
 services:
-  pridev:
+  pirridev:
     ports:
       - "5030:80"
       - "5031:443"
