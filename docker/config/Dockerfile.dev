@@ -11,11 +11,10 @@ ENV TNS_ADMIN /usr/lib/oracle/21/client64/network/admin
 RUN yum -y update && yum clean all && yum -y install cronie dos2unix git epel-release httpd mod_ssl vim
 
 # Install Oracle RPM(s)
-ADD https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-sqlplus-21.4.0.0.0-1.x86_64.rpm /oracle-client-rpms/
+ADD https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm /oracle-client-rpms/
 
 RUN yum -y localinstall /oracle-client-rpms/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm && \
     yum -y localinstall /oracle-client-rpms/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm && \
-    yum -y localinstall /oracle-client-rpms/oracle-instantclient-sqlplus-21.4.0.0.0-1.x86_64.rpm && \
 		rm -rf /oracle-client-rpms/
 
 
@@ -29,12 +28,9 @@ RUN curl -O https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
 RUN yum -y install php81 \
                    php81-php \
                    php81-php-devel \
-                   php81-php-gd \
-                   php81-php-xml \
                    php81-php-cli \
                    php81-php-json \
                    php81-php-oci8 \
-                   php81-php-pecl-zip \
                     && yum clean all && rm -rf /var/cache/yum
 
 # copy the application source files:
