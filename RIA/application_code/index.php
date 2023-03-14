@@ -24,10 +24,10 @@
 	$inline_javascript = "var app_instance = '".APP_INSTANCE."';";
 
   //define the css include files for the initial HTML page content
-  $css_include = array("./css/template.css", "./css/tooltip.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", "./css/index.css");
+  $css_include = array("./res/css/template.css", "./res/css/tooltip.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", "./res/css/index.css");
 
 	//define the javascript include files for the initial HTML page content:
-	$javascript_include = array("./js/template.js", "./js/index.js", "./js/tooltip.js", "./js/RIA_tooltips.js");
+	$javascript_include = array("./res/js/template.js", "./res/js/index.js", "./res/js/tooltip.js", "./res/js/RIA_tooltips.js");
 
   //generate the javascript include files with the "defer" keyword
   $priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js");

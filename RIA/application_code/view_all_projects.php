@@ -54,13 +54,13 @@
 			//no arguments were passed to the page, this is the initial html page content request:
 
 			//define the css include files for the initial HTML page content
-			$css_include = array("./css/template.css", "./css/tooltip.css", "./css/RIA_project.css", "./css/tooltip.css", "./css/ajax_load.css", "./css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css");
+			$css_include = array("./res/css/template.css", "./res/css/tooltip.css", "./res/css/RIA_project.css", "./res/css/tooltip.css", "./res/css/ajax_load.css", "./res/css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css");
 
 			//define the javascript include files for the initial HTML page content:
-			$javascript_include = array("./js/template.js", "./js/tooltip.js");
+			$javascript_include = array("./res/js/template.js", "./res/js/tooltip.js");
 
 			//generate the javascript include files with the "defer" keyword
-			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/projects.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA_tooltips.js\"></script>";
+			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/projects.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA_tooltips.js\"></script>";
 
 
       //initialize the array to store the data_source_id and data_source_name to populate the select element:
