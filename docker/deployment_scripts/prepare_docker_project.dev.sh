@@ -66,7 +66,6 @@ mkdir $root_directory/docker/pirridev/backend/scripts
 mkdir $root_directory/docker/pirridev/backend/RIA
 mkdir $root_directory/docker/pirridev/backend/RIA/includes
 mkdir $root_directory/docker/pirridev/backend/GIM
-mkdir $root_directory/docker/pirridev/backend/GIM/includes
 mkdir $root_directory/docker/pirridev/backend/php-shared-library
 mkdir $root_directory/docker/pirridev/backend/config
 mkdir $root_directory/docker/pirridev/backend/logs
@@ -84,12 +83,21 @@ echo "copy the pifsc-resource-inventory ODS directory"
 cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/*  $root_directory/docker/pirridev/www
 # remove the functions folder
 rm -rf $root_directory/docker/pirridev/www/functions
+# remove the logs folder
+rm -rf $root_directory/docker/pirridev/www/logs
 
 
 # copy the php-shared-library (.php files only)
 echo "copy the php-shared-library directory"
 cp -r $root_directory/docker/pirridev/tmp/php-shared-library/*.php  $root_directory/docker/pirridev/backend/php-shared-library
-# TO DO: put in the backend PHP include files
+# copy the php-shared library client-side files
+
+echo "copy the php-shared-library directory"
+cp -r $root_directory/docker/pirridev/tmp/php-shared-library/css/*  $root_directory/docker/pirridev/www/php-shared-library/css
+cp -r $root_directory/docker/pirridev/tmp/php-shared-library/js/*  $root_directory/docker/pirridev/www/php-shared-library/js
+cp -r $root_directory/docker/pirridev/tmp/php-shared-library/img/*  $root_directory/docker/pirridev/www/php-shared-library/img
+
+
 
 # add in the source_data, scripts, SQL, includes, etc.
 cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/functions/*  $root_directory/docker/pirridev/backend/RIA/includes
