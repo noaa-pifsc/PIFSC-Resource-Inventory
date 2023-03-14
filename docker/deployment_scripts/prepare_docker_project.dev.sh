@@ -93,9 +93,10 @@ rm -rf $root_directory/docker/pirridev/www/functions
 rm -rf $root_directory/docker/pirridev/www/logs
 
 
-# copy the php-shared-library (.php files only)
+# copy the php-shared-library (.php and .inc files only)
 echo "copy the php-shared-library backend directory"
 cp -r $root_directory/docker/pirridev/tmp/php-shared-library/*.php  $root_directory/docker/pirridev/backend/php-shared-library
+cp -r $root_directory/docker/pirridev/tmp/php-shared-library/*.inc  $root_directory/docker/pirridev/backend/php-shared-library
 # copy the php-shared library client-side files
 
 echo "copy the php-shared-library client-side directory"

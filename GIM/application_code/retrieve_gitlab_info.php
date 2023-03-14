@@ -2,7 +2,7 @@
 
 
 //Note: example usage: php convert_download_package_to_bagit.php
-include_once ("constants.php");
+include_once ("/usr/src/PRI/GIM/constants.php");
 
 //include the PRI_gitlab class definition file:
 include_once(APPLICATION_INCLUDE_PATH."PRI_gitlab.php");
