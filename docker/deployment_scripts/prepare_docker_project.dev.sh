@@ -62,7 +62,6 @@ echo "create the docker project files structure"
 mkdir $root_directory/docker/pirridev/www
 mkdir $root_directory/docker/pirridev/backend
 
-mkdir $root_directory/docker/pirridev/backend/includes
 mkdir $root_directory/docker/pirridev/backend/scripts
 mkdir $root_directory/docker/pirridev/backend/RIA
 mkdir $root_directory/docker/pirridev/backend/RIA/includes

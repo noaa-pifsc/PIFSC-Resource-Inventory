@@ -5,9 +5,9 @@ services:
       - "5030:80"
       - "5031:443"
     volumes:
-      - "pri_logs:/usr/src/GIM/logs"
+      - "pri_logs:/usr/src/PRI/logs"
       - "/c/docker/pirridev/www:/var/www/html"
-      - "/c/docker/pirridev/backend:/usr/src/GIM"
+      - "/c/docker/pirridev/backend:/usr/src/PRI"
     environment:
       TZ: "Pacific/Honolulu"
 volumes:

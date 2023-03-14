@@ -5,7 +5,7 @@ services:
       - "5030:80"
       - "5031:443"
     volumes:
-      - "pri_logs:/usr/src/GIM/logs"
+      - "pri_logs:/usr/src/PRI/logs"
     environment:
       TZ: "Pacific/Honolulu"
 volumes:
