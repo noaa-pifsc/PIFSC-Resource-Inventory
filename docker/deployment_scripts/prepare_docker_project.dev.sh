@@ -58,10 +58,16 @@ cp $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/docker/config/Do
 
 # export the docker project files to make the image smaller
 
-echo "create the docker project files structure"
+echo "create the web folder structure"
 mkdir $root_directory/docker/pirridev/www
-mkdir $root_directory/docker/pirridev/backend
+mkdir $root_directory/docker/pirridev/www/res
+mkdir $root_directory/docker/pirridev/www/php-shared-library
+mkdir $root_directory/docker/pirridev/www/php-shared-library/css
+mkdir $root_directory/docker/pirridev/www/php-shared-library/js
+mkdir $root_directory/docker/pirridev/www/php-shared-library/img
 
+echo "create the backend folder structure"
+mkdir $root_directory/docker/pirridev/backend
 mkdir $root_directory/docker/pirridev/backend/scripts
 mkdir $root_directory/docker/pirridev/backend/RIA
 mkdir $root_directory/docker/pirridev/backend/RIA/includes
@@ -88,11 +94,11 @@ rm -rf $root_directory/docker/pirridev/www/logs
 
 
 # copy the php-shared-library (.php files only)
-echo "copy the php-shared-library directory"
+echo "copy the php-shared-library backend directory"
 cp -r $root_directory/docker/pirridev/tmp/php-shared-library/*.php  $root_directory/docker/pirridev/backend/php-shared-library
 # copy the php-shared library client-side files
 
-echo "copy the php-shared-library directory"
+echo "copy the php-shared-library client-side directory"
 cp -r $root_directory/docker/pirridev/tmp/php-shared-library/css/*  $root_directory/docker/pirridev/www/php-shared-library/css
 cp -r $root_directory/docker/pirridev/tmp/php-shared-library/js/*  $root_directory/docker/pirridev/www/php-shared-library/js
 cp -r $root_directory/docker/pirridev/tmp/php-shared-library/img/*  $root_directory/docker/pirridev/www/php-shared-library/img

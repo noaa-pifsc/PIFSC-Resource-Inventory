@@ -232,7 +232,7 @@ $(function()
           "<div class=\"card_label tooltip\" title=\"The name of the Resource's associated Project.  Clicking the Project icon or name will open a new tab to the Project page. Clicking the external link window will open the project resource in a new browser tab.\">Project</div>"+
             "<div class=\"card_avatar_name\">"+
               "<div class=\"card_name_container\">"+
-                "<a href=\""+data_array['vc_web_url']+"\" target=\"_blank\" class=\"proj_name_link\"><img class=\"avatar\" src=\""+((data_array['avatar_url'] == null) ? "./images/no image.png" : data_array['avatar_url'])+"\" alt=\"Project Avatar\"/></a>"+
+                "<a href=\""+data_array['vc_web_url']+"\" target=\"_blank\" class=\"proj_name_link\"><img class=\"avatar\" src=\""+((data_array['avatar_url'] == null) ? "./res/images/no image.png" : data_array['avatar_url'])+"\" alt=\"Project Avatar\"/></a>"+
                 "<div class=\"card_value_lj\"><a href=\"./view_project.php?PROJ_ID="+data_array['proj_id']+"\">"+data_array['proj_name']+"</a> <a href=\""+data_array['vc_web_url']+"\" target=\"_blank\"><span class=\"ui-icon ui-icon-extlink\"></span></a></div>"+
               "</div>"+
             "</div>"+
@@ -252,14 +252,14 @@ $(function()
             "<div class=\"card_label tooltip\" title=\"The creator of the Project.  Clicking the creator icon or name will open a new tab to the creator's user page.\">Creator</div>"+
             "<div class=\"card_avatar_name\">"+
               "<div class=\"card_name_container\">"+
-                "<a href=\""+data_array['creator_web_url']+"\" target=\"_blank\" class=\"proj_name_link\"><img class=\"avatar\" src=\""+(((data_array['creator_avatar_url']) == null) ? "./images/no image.png" : data_array['creator_avatar_url'])+"\" alt=\"Creator Avatar\"/></a>"+
+                "<a href=\""+data_array['creator_web_url']+"\" target=\"_blank\" class=\"proj_name_link\"><img class=\"avatar\" src=\""+(((data_array['creator_avatar_url']) == null) ? "./res/images/no image.png" : data_array['creator_avatar_url'])+"\" alt=\"Creator Avatar\"/></a>"+
                 "<div class=\"card_value\"><a href=\""+data_array['creator_web_url']+"\" target=\"_blank\">"+data_array['creator_user_name']+"</a> <a href=\""+data_array['creator_web_url']+"\" target=\"_blank\"></a></div>"+
               "</div>"+
             "</div>"+
             "<div class=\"card_label tooltip\" title=\"The owner of the Project.  Clicking the owner icon or name will open a new tab to the owner's user page.\">Owner</div>"+
             "<div class=\"card_avatar_name\">"+
               "<div class=\"card_name_container\">"+
-                ((data_array['owner_web_url'] == null) ? "": "<a href=\""+data_array['owner_web_url']+"\" target=\"_blank\" class=\"proj_name_link\">")+"<img class=\"avatar\" src=\""+((data_array['owner_avatar_url'] == null) ? "./images/no image.png" : data_array['owner_avatar_url'])+"\" alt=\"Owner Avatar\" />"+((data_array['owner_web_url'] == null) ? "" : "</a>")+
+                ((data_array['owner_web_url'] == null) ? "": "<a href=\""+data_array['owner_web_url']+"\" target=\"_blank\" class=\"proj_name_link\">")+"<img class=\"avatar\" src=\""+((data_array['owner_avatar_url'] == null) ? "./res/images/no image.png" : data_array['owner_avatar_url'])+"\" alt=\"Owner Avatar\" />"+((data_array['owner_web_url'] == null) ? "" : "</a>")+
                 "<div class=\"card_value\">"+((data_array['owner_web_url'] == null) ? "": "<a href=\""+data_array['owner_web_url']+"\" target=\"_blank\">")+data_array['owner_user_name']+((data_array['owner_web_url'] == null) ? "": "</a>")+"</div>"+
               "</div>"+
             "</div>"+
