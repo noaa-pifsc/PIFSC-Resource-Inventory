@@ -1,5 +1,6 @@
 <?php
 
+	ini_set("date.timezone", 'Pacific/Honolulu');
 
     //define application resource paths:
 		define ("APPLICATION_INCLUDE_PATH", "/usr/src/PRI/GIM/includes/");

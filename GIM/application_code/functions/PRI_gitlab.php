@@ -45,7 +45,7 @@
 		//class method to refresh the PRI project inventory with the GitLab information:
 		function refresh_projects ()
 		{
-			echo $this-> add_message("running refresh_projects(), Request all of the projects from the gitlab server", 1);
+			echo $this-> add_message("Request all of the projects from the gitlab server", 1);
 
 			//parse the JSON and loop through the return values to insert the DB records
 			$found_last_projects = false;
@@ -550,7 +550,7 @@
 		//class method to refresh the PRI user inventory with the GitLab information:
 		function refresh_users ()
 		{
-			echo $this-> add_message("running refresh_users(), Request all of the users from the gitlab server", 1);
+			echo $this-> add_message("Request all of the users from the gitlab server", 1);
 
 			//parse the JSON and loop through the return values to insert the DB records
 			$found_last_users = false;
