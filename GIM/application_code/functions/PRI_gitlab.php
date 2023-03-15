@@ -270,7 +270,7 @@
 			//initialize the return_val variable that will be returned from the function
 			$return_val = true;
 
-			echo $this->add_message("running replace_project_tags ($project_id, $gitlab_project_id, $existing_project)", 1);
+//			echo $this->add_message("running replace_project_tags ($project_id, $gitlab_project_id, $existing_project)", 1);
 
 
 			//delete all existing tags from the existing project so they can be replaced
@@ -460,7 +460,7 @@
 //						echo $this->add_message("\$json_content is: ".$json_content, 3);
 
 						//parse the JSON so each resource can be processed:
-//						$data = json_decode($json_content, true);
+						$data = json_decode($json_content, true);
 
 //						echo $this->add_message("The custom configuration file was found, parse the file for the resource information", 3);
 
