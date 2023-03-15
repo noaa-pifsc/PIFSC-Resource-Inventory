@@ -1,5 +1,5 @@
 _ copy the ODS docker documentation
-	_ revoke API key and save blank API key in the config
+	X revoke API key and save blank API key in the config
 	_ add in the API key to documentation setup instructions
 	
 	_ copy/modify ODS docker technical/user documentation
@@ -42,7 +42,7 @@ X Compile SOP for how to prepare your project for inclusion into the inventory
 		select RES_SCOPE_NAME, RES_CATEGORY, count(*) from PRI_PROJ_V where PROJ_VISIBILITY <> 'private' AND RES_ID IS NOT NULL group by RES_CATEGORY, RES_SCOPE_NAME order by RES_SCOPE_NAME, RES_CATEGORY;
 
 
-_ separate out the PHP include files into the file system instead of accessible directly via the web browser
+X separate out the PHP include files into the file system instead of accessible directly via the web browser
 
 _ deploy to test docker container
 

@@ -21,7 +21,7 @@ git clone git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
 
 echo "rename configuration files"
 
-#rename the constants.dev.php to constants.php so it can be used as the active configuration file
+#rename the constants.test.php to constants.php so it can be used as the active configuration file
 mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.test.php $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.php
 mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/constants.test.php $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/constants.php
 
@@ -32,28 +32,21 @@ rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_cod
 rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.dev.php
 rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.prod.php
 
-#rename the httpd.dev.conf to httpd.conf so it can be used as the active configuration file
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/httpd.dev.conf $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/httpd.conf
+#rename the httpd.test.conf to httpd.conf so it can be used as the active configuration file
+mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/httpd.test.conf $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/httpd.conf
 
-#rename the php81-php.dev.conf to php81-php.conf so it can be used as the active configuration file
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php81-php.dev.conf $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php81-php.conf
+#rename the php81-php.test.conf to php81-php.conf so it can be used as the active configuration file
+mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php81-php.test.conf $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php81-php.conf
 
-#rename the php.dev.ini to php.ini so it can be used as the active PHP configuration file
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php.dev.ini $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php.ini
+#rename the php.test.ini to php.ini so it can be used as the active PHP configuration file
+mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php.test.ini $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/php.ini
 
 
-
-echo "configure apache SSL"
-
-#rename the localhost.crt and localhost.key to cert.crt and cert.key so it can be used as the active SSL files
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/localhost.crt $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/domain.crt
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/localhost.key $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/domain.key
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/localhost.ssl-passphrase $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/ssl-passphrase
 
 echo "configure docker files"
-cp $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/docker-compose.prod.dev.yml $root_directory/docker/pirri/tmp/docker-compose.prod.yml
-cp $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/docker-compose.dev.yml $root_directory/docker/pirri/tmp/docker-compose.yml
-cp $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/Dockerfile.dev $root_directory/docker/pirri/tmp/Dockerfile
+cp $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/docker-compose.prod.test.yml $root_directory/docker/pirri/tmp/docker-compose.prod.yml
+cp $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/docker-compose.test.yml $root_directory/docker/pirri/tmp/docker-compose.yml
+cp $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/Dockerfile.test $root_directory/docker/pirri/tmp/Dockerfile
 
 
 # export the docker project files to make the image smaller
