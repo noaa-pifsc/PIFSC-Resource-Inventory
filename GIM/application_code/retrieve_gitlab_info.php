@@ -13,7 +13,9 @@ $start_time = time();
 $PRI_gitlab = new PRI_gitlab ("retrieve_gitlab_info_".date("Ymd_H_i").".log", 'retrieve_gitlab_info.php');
 
 
-echo $PRI_gitlab -> add_message ("Update the project and resource information - GITLAB_HOST_NAME: ".GITLAB_HOST_NAME, 1);
+$PRI_gitlab -> add_message ($temp_message = "Update the project and resource information - GITLAB_HOST_NAME: ".GITLAB_HOST_NAME, 1);
+
+echo date("Ymd h:i:s A")."\t".$temp_message."\r\n";
 
 //refresh user information from GitLab server
 $PRI_gitlab -> refresh_users();
@@ -25,6 +27,8 @@ $PRI_gitlab -> refresh_projects();
 $elapsed_time_sec = time() - $start_time;
 
 
-echo $PRI_gitlab -> add_message($summary_message = "The project and resource information update process has completed, the entire process took ".round (($elapsed_time_sec / 60), 1)." minutes", 1);
+$PRI_gitlab -> add_message($summary_message = "The project and resource information update process has completed, the entire process took ".round (($elapsed_time_sec / 60), 1)." minutes", 1);
+
+echo date("Ymd h:i:s A")."\t".$summary_message."\r\n";
 
 ?>
