@@ -84,8 +84,8 @@ cp $root_directory/docker/pirridev/tmp/docker-compose.prod.yml $root_directory/d
 
 
 
-echo "copy the pifsc-resource-inventory ODS directory"
-# copy the pifsc-resource-inventory ODS directory
+echo "copy the pifsc-resource-inventory RIA directory"
+# copy the pifsc-resource-inventory RIA directory
 cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/*  $root_directory/docker/pirridev/www
 # remove the functions folder
 rm -rf $root_directory/docker/pirridev/www/functions
@@ -106,7 +106,7 @@ cp -r $root_directory/docker/pirridev/tmp/php-shared-library/img/*  $root_direct
 
 
 
-# add in the source_data, scripts, SQL, includes, etc.
+# add in the backend scripts, includes, etc.
 cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/RIA/application_code/functions/*  $root_directory/docker/pirridev/backend/RIA/includes
 
 cp -r $root_directory/docker/pirridev/tmp/pifsc-resource-inventory/GIM/application_code/*  $root_directory/docker/pirridev/backend/GIM
