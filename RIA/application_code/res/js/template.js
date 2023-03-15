@@ -107,7 +107,7 @@
 				$("div.devtest_bg_image").css("background-image", 'url("./res/images/Dev Background.png")');
 
 				//append the " (DEVELOPMENT VERSION)" string to the end of the logo content
-				$("div.navigation_menu h3.page_header").append(" (DEVELOPMENT VERSION)");
+				$("div.navigation_menu div.page_header").append(" (DEVELOPMENT VERSION)");
 
 			}
 			else if (app_instance == 'test')	//this is the test server instance
@@ -115,10 +115,10 @@
 				//this is the test server, use the test background image and append a string to the header logo to indicate it is the test server
 
 				//set the background image to the test background
-				$("div.devtest_bg_image").css("background-image", 'url("./res/images/Dev Background.png")');
+				$("div.devtest_bg_image").css("background-image", 'url("./res/images/Test Background.png")');
 
 				//append the " (TEST VERSION)" string to the end of the logo content
-				$("div.navigation_menu h3.page_header").append(" (TEST VERSION)");
+				$("div.navigation_menu div.page_header").append(" (TEST VERSION)");
 
 			}
 		}
