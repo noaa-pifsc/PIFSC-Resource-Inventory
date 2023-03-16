@@ -15,5 +15,8 @@
 <designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="4E9348C6-EA82-86B2-5D4D-1E8BA4F603F2">
 <designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\pifsc-resource-inventory\docs\data_model</designStoragePath>
 </designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="B915885C-C53C-B849-732E-7944AE06DC84">
+<designStoragePath>C:\Users\jesse.abdul\Documents\Version Control\Git\pifsc-resource-inventory\docs\data_model</designStoragePath>
+</designDescr>
 </usedDesignStorageDescriptors>
 </OSDM_Design>
