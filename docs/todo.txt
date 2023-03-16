@@ -22,13 +22,13 @@ _ copy the ODS docker documentation
 
 
 	testing:
-		_ dev
+		X dev
 			X check web app
 			X check cron job
-			_ deployed to PICV014 with 6:30 AM cron job
-		_ dev (bind mount)
+			X deployed to PICV014 with 6:30 AM cron job
+		X dev (bind mount)
 			X check web app
-			_ check cron job
+			X check cron job (does not work and throws an error: Could not open input file: /usr/src/PRI/GIM/retrieve_gitlab_info.php - this could be a permissions problem)
 		X test
 			X check web app
 			X check cron job

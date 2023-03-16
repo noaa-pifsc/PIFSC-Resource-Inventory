@@ -13,7 +13,7 @@ mkdir $root_directory/docker/pirri/tmp
 echo "clone the project repository"
 
 #checkout the git projects into the same temporary docker directory
-git clone --branch branch_docker_first_try git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git $root_directory/docker/pirri/tmp/pifsc-resource-inventory
+git clone git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git $root_directory/docker/pirri/tmp/pifsc-resource-inventory
 
 echo "clone the project dependencies"
 
