@@ -1,29 +1,31 @@
-# ODS Docker User Documentation
+# PIFSC Resource Inventory Docker Application User Documentation
 
 ## Overview
-The [ODS Data Export Module (ODE)](./ODS%20Data%20Export%20Module%20documentation.md) and [ODS Report Generator Module (ORG)](./ODS%20Report%20Generator%20Technical%20Documentation.md) were implemented as a web application for ease of use.  The ODS docker implementation provides a web page to initiate the request on-demand for the ODE and ORG execution in sequence and users can download existing reports too.
+The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](./PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md) and [PRI Resource Inventory Application (RIA)](./PIFSC%20Resource%20Inventory%20Resource%20Inventory%20Application%20-%20Technical%20Documentation.md) were implemented as a [docker](https://www.docker.com/) container to make the application portable and not require users to install anything on their computers to run the two PRI modules.  The PRI docker implementation provides a cron job to execute the GIM to refresh the PRI database and the RIA web application to access the PRI database information.
 
 ## Application URLs:
--   Test Application: https://ahi.pifsc.gov/odsrptsd
+-   Test Application: https://ahi.pifsc.gov/pirri/
 -   Production Application: <TBD>
 
 ## Requirements:
 -   A connection to the PIFSC network is required to access the application
--   Google Chrome must be used to access the application in order to avoid PIFSC SSL certificate issues
+-   Users
+    -   Google Chrome must be used to access the application in order to avoid PIFSC SSL certificate issues
 
-## Automated Report Generation
--   The ODS Docker Project will automatically run at 5 AM on Mondays to generate the ODS reports.  The zip file for each set of ODS reports will be available on the web application
+## Features:
+-   Installed modules and database features (see [Database Documentation](./PIFSC%20Resource%20Inventory%20Database%20Documentation.md))
 
-## Report Generation/Download Procedure
--   Login to the web application using NOAA ICAM credentials
-    -   The username is your NOAA email address without the "@noaa.gov" and the password is your email password)
--   After a successful login by an authorized user the user will see a list of zip files that contain the .csv data export and the custom formatted reports for a given date
-    -   Users can click on any filename to download the zip file
--   To generate the ODS reports on-demand click the "Generate Reports" button to initiate the ODE and then the ORG
-    -   \*Note: this process can take up to 30 minutes
-    -   Download the zip file when prompted, the .csv data export and the custom formatted reports will be contained in the zip file
--   When the user is finished downloading the ODS reports they can click the logout link
-
-## User Authorization Procedure
--   The user must have an active NOAA email account
--   The user must be granted the "ODS_ADMIN" role using the AAM (contact application administrator to obtain access)
+## Web Application
+-   Web Pages:
+    -   Summary Reports (index.php)
+        -   This page contains summary information about projects and resources
+    -   View All Projects (view_all_projects.php)
+        -   This page lists all projects with links to the corresponding version control system and associated resources.  
+        -   The page allows users to filter projects by their Project Source and also provides a full text search.  Clicking the "Filter Projects" button will refresh the page with the corresponding list of filtered projects
+    -   View Project (view_project.php)
+        -   This page shows a specific project with links to the corresponding version control system and associated resources.
+    -   View All Resources (view_all_resources.php)
+        -   This page lists all resources with links to the corresponding version control system and associated projects.  
+        -   The page allows users to filter resources by their Resource Scope, Resource Type, Project Source and also provides a full text search.  Clicking the "Filter Projects" button will refresh the page with the corresponding list of filtered resources
+    -   View Resource (view_resource.php)
+        -   This page shows a specific resource with links to the corresponding version control system and associated projects.

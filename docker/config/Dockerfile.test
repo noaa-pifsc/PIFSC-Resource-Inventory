@@ -38,11 +38,7 @@ COPY ./backend /usr/src/PRI/
 COPY ./www /var/www/html/
 
 # copy/configure the crontab, export the oracle environment variables for use in cron job
-RUN echo "export TNS_ADMIN=$TNS_ADMIN" >> /usr/src/PRI/config/oracle_env && \
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> /usr/src/PRI/config/oracle_env && \
-echo "export ORACLE_HOME=$ORACLE_HOME" >> /usr/src/PRI/config/oracle_env && \
-echo "export PATH=$PATH" >> /usr/src/PRI/config/oracle_env && \
-dos2unix /usr/src/PRI/scripts/run_GIM.sh && \
+RUN dos2unix /usr/src/PRI/scripts/run_GIM.sh && \
 mv /usr/src/PRI/config/GIM_crontab.txt /etc/cron.d/GIM_crontab && \
 dos2unix /etc/cron.d/GIM_crontab && \
 chmod 0644 /etc/cron.d/GIM_crontab && \
@@ -52,8 +48,6 @@ crontab -u apache /etc/cron.d/GIM_crontab
 # copy the Apache/PHP configurations
 RUN mv /usr/src/PRI/config/httpd.conf /etc/httpd/conf/httpd.conf && \
 mv /usr/src/PRI/config/php81-php.conf /etc/httpd/conf.d/php81-php.conf && \
-mkdir /usr/lib/oracle/21/client64/network && \
-mkdir /usr/lib/oracle/21/client64/network/admin/ && \
 mv /usr/src/PRI/config/php.ini /etc/opt/remi/php81/php.ini
 
 
