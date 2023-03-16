@@ -6,10 +6,11 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 ## Resources:
 -   Version Control Information:
     -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git in the [RIA](../) folder
-    -   Application: 0.2 (Git tag: pifsc_resource_inventory_res_inv_app_v0.2)
+    -   Application: 1.0 (Git tag: pifsc_resource_inventory_res_inv_app_v1.0)
 -   [PRI Database Documentation](../../docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 -   [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx)
+-   [Docker Project Technical Documentation](../../docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
 
 ## Application URLs:
     -   Dev Application: https://localhost:5011/
@@ -31,7 +32,7 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 -   [DFD Documentation](../../docs/DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 
 ## Script setup:
--   [Docker Project Technical Documentation](PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
+-   [Docker Project Technical Documentation](../../docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
 
 ## Business Rules:
 -   The business rules for the RIA are defined in the [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx) with a Scope of "RIA" apply to this module and each rule with a Scope of "PRI Database" apply to the underlying database

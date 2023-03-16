@@ -1,7 +1,7 @@
 # PIFSC Resource Inventory Docker Application Technical Documentation
 
 ## Overview
-The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](./PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md) and [PRI Resource Inventory Application (RIA)](./PIFSC%20Resource%20Inventory%20Resource%20Inventory%20Application%20-%20Technical%20Documentation.md) were implemented as a [docker](https://www.docker.com/) container to make the application portable and not require users to install anything on their computers to run the two PRI modules.  The PRI docker implementation provides a cron job to execute the GIM to refresh the PRI database and the RIA web application to access the PRI database information.
+The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md) and [PRI Resource Inventory Application (RIA)](../RIA/docs/PIFSC%20Resource%20Inventory%20Resource%20Inventory%20Application%20-%20Technical%20Documentation.md) were implemented as a [docker](https://www.docker.com/) container to make the application portable and not require users to install anything on their computers to run the two PRI modules.  The PRI docker implementation provides a cron job to execute the GIM to refresh the PRI database and the RIA web application to access the PRI database information.
 
 ## Resources:
 -   Version Control Information:
@@ -27,7 +27,7 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](./PIFSC%20Resource%20
 
 ## Setup:
 -   #### Database Setup
-    -   [Installing or Upgrading the Database](../../docs/PIFSC%20Resource%20Inventory%20-%20Installing%20or%20Upgrading%20the%20Database.md)
+    -   [Installing or Upgrading the Database](./PIFSC%20Resource%20Inventory%20-%20Installing%20or%20Upgrading%20the%20Database.md)
 -   #### Docker Application Setup
     -   clone the [PRI repository](https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory) into a local folder
     -   Edit the appropriate deployment script (e.g. [prepare_docker_project.dev.sh](../docker/deployment_scripts/prepare_docker_project.dev.sh) for the development version) and docker build/deploy script (e.g. [build_deploy_project.dev.sh](../docker/deployment_scripts/build_deploy_project.dev.sh) for the development version) shell scripts to define the "root_directory" variable value to a local directory that can be used to build the image
@@ -91,7 +91,7 @@ sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  --bu
     -   Dockerfile - this is the docker image file used to specify the resources used when building the docker image (e.g. [Dockerfile.prod](../docker/config/Dockerfile.prod) for the production app server)
     -   docker-compose.yml - this is the docker compose configuration file used to specify the image building configuration of the docker image (e.g. [docker-compose.test.yml](../docker/config/docker-compose.prod.test.yml) for the test app server)
     -   docker-compose.prod.yml - this is the docker compose configuration file used to specify the runtime configuration of the docker container (e.g. [docker-compose.prod.dev.yml](../docker/config/docker-compose.prod.dev.yml) for the development app server)
-    -   constants.php - this is the PHP application's configuration file to specify application constant values used during runtime (e.g. [constants.prod.php](../application_code/constants.prod.php) for the production app server)
+    -   (RIA) app_instance_config.php - this is the PHP web application's configuration file to specify application instance values used during runtime (e.g. [app_instance_config.dev.php](../RIA/application_code/functions/app_instance_config.dev.php) for the development app server)
     -   httpd.conf - this is the apache server's configuration file (e.g. [httpd.test.conf](../docker/config/httpd.test.conf) for the test app server)
     -   php.ini - this is the PHP runtime configuration file (e.g. [php.dev.ini](../docker/config/php.dev.ini) for the development app server)
 

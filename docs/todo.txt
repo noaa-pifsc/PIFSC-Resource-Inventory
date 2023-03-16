@@ -1,8 +1,8 @@
-_ copy the ODS docker documentation
+X copy the ODS docker documentation
 	X revoke API key and save blank API key in the config
 	X add in the API key to documentation setup instructions
 
-	_ copy/modify ODS docker X technical/_ user documentation
+	X copy/modify ODS docker X technical/X user documentation
 	X update GIM documentation
 	X update RIA documentation
 
@@ -10,7 +10,7 @@ _ copy the ODS docker documentation
 		X test on ahi
 
 	X develop prod deployment scripts
-		_ test on PICV014
+		X test on PICV014 and ahi
 
 	_ merge squash commit
 	_ push and tag code
@@ -19,6 +19,16 @@ _ copy the ODS docker documentation
 		deployment scripts to setup project structure the way you want in docker, then copy them over in dockerfile (split into front end: www and backend folders)
 
 	_ notify the Software Team that the app is available
+
+
+
+_ tag merged revision (v 1.0 for RIA and GIM and docker project)
+
+Update documentation:
+	DB
+	DB diagram
+	DB naming conventions
+	X DFD
 
 
 	testing:

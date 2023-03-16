@@ -6,13 +6,13 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 ## Resources:
 -   Version Control Information:
     -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git in the [GIM](../) folder
-    -   Application: 0.5 (Git tag: pifsc_resource_inventory_git_info_app_v0.5)
+    -   Application: 1.0 (Git tag: pifsc_resource_inventory_git_info_app_v1.0)
 -   [PRI Database Documentation](../../docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 -   [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx)
 -   [Add or Remove Project SOP](../../docs/PIFSC%20Resource%20Inventory%20-%20Add%20or%20Remove%20Project%20SOP.md)
--   [Docker Project Technical Documentation](PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
-    -   [Docker Project User Documentation](PIFSC%20Resource%20Inventory%20Docker%20App%20-%20User%20Documentation.md)
+-   [Docker Project Technical Documentation](../../docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
+    -   [Docker Project User Documentation](../../docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20User%20Documentation.md)
 
 ## Requirements:
 -   PHP 8.x
@@ -31,7 +31,7 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 -   [DFD Documentation](../../docs/DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 
 ## Script setup:
--   [Docker Project Technical Documentation](PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
+-   [Docker Project Technical Documentation](../../docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
 
 ## Business Rules:
 -   The business rules for the GIM are defined in the [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx) with a Scope of "GIM" apply to this module and each rule with a Scope of "PRI Database" apply to the underlying database
