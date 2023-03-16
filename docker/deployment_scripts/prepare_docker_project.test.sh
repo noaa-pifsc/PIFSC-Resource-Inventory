@@ -1,8 +1,8 @@
 #! /bin/sh
 
-#development deployment script
+#test deployment script
 
-echo "running dev deployment script"
+echo "running test deployment script"
 
 root_directory="/c"
 
@@ -21,16 +21,14 @@ git clone git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
 
 echo "rename configuration files"
 
-#rename the constants.test.php to constants.php so it can be used as the active configuration file
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.test.php $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.php
-mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/constants.test.php $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/constants.php
+#rename the app_instance_config.test.php to app_instance_config.php so it can be used as the active configuration file
+mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/functions/app_instance_config.test.php $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/functions/app_instance_config.php
 
 
-# remove the test, prod versions of constants.php
-rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/constants.dev.php
-rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/constants.prod.php
-rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.dev.php
-rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/GIM/application_code/constants.prod.php
+# remove the dev, prod versions of app_instance_config.php
+rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/functions/app_instance_config.dev.php
+rm $root_directory/docker/pirri/tmp/pifsc-resource-inventory/RIA/application_code/functions/app_instance_config.prod.php
+
 
 #rename the httpd.test.conf to httpd.conf so it can be used as the active configuration file
 mv $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/httpd.test.conf $root_directory/docker/pirri/tmp/pifsc-resource-inventory/docker/config/httpd.conf
