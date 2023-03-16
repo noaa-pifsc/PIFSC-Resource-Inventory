@@ -22,14 +22,20 @@ _ copy the ODS docker documentation
 
 
 	testing:
-		X dev
+		_ dev
 			X check web app
 			X check cron job
-			X deployed to PICV014 with 6:30 AM cron job
-		test
+			_ deployed to PICV014 with 6:30 AM cron job
+		_ dev (bind mount)
+			X check web app
+			_ check cron job
+		X test
 			X check web app
 			X check cron job
 			X deployed to ahi with 6:00 AM cron job
+		X prod (ahi connecting to PICT)
+			X check web app
+			X check cron job
 
 
 

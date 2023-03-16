@@ -1,1 +1,1 @@
-30 5 * * 1-5 /usr/src/PRI/scripts/run_GIM.sh >> /usr/src/PRI/logs/cron.log 2>&1
+30 5 * * 1-5 sh /usr/src/PRI/scripts/run_GIM.sh >> /usr/src/PRI/logs/cron.log 2>&1
