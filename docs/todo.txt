@@ -1,13 +1,13 @@
 _ copy the ODS docker documentation
 	X revoke API key and save blank API key in the config
-	_ add in the API key to documentation setup instructions
+	X add in the API key to documentation setup instructions
 	
-	_ copy/modify ODS docker technical/user documentation
-	_ update GIM documentation
-	_ update RIA documentation
+	_ copy/modify ODS docker X technical/_ user documentation
+	X update GIM documentation
+	X update RIA documentation
 	
-	_ develop test deployment scripts
-		_ test on ahi 
+	X develop test deployment scripts
+		X test on ahi 
 
 	_ develop prod deployment scripts
 		_ test on PICV014
@@ -21,6 +21,10 @@ _ copy the ODS docker documentation
 	_ notify the Software Team that the app is available
 	
 	
+	bugs:
+		_ why are the gitlab images not rendering in the web app - no login required for most repositories?
+	
+	_ document the web application features (filtering, and ajax requests/responses)
 	
 	
 X implemented projects link does not go to the corresponding project (it goes to the associated project - change the link IDs)

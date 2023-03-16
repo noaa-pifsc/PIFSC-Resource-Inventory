@@ -18,29 +18,20 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 
 ## Requirements:
 -   PHP 8.x
+    -   Required PHP Libraries:
+        -   php OCI8 (required for interaction with the Oracle database)
 -   Oracle 12c or higher
+-   PIFSC PHP Shared Library repository
+    -   Version Control Information:
+        -   URL: git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
+        -   App: 1.11 (Git tag: php_shared_libary_v1.11)
 
 ## Data Flow:
 -   [Data Flow Diagram (DFD)](../../docs/DFD/PRI_DFD.drawio.png)
 -   [DFD Documentation](../../docs/DFD/PIFSC%20Resource%20Inventory%20Data%20Flow%20Diagram%20Documentation.md)
 
-## Requirements:
--   Required PHP Libraries:
-    -   php_oci8_11g.dll (required for interaction with the Oracle database)
-
-## Additional script setup:
--   Clone the PHP Shared Library repository to a local directory
-    -   Version Control Information:
-        -   URL: git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
-        -   Version: 1.11 (Git tag: php_shared_libary_v1.11)
--   Update the [constants.php](../application_code/constants.php) configuration file to specify the information listed below:
-    -   APPLICATION_INCLUDE_PATH is the directory location path of the working copy of the PRI repository for the GIM's application_code folder
-    -   SHARED_LIBRARY_INCLUDE_PATH is the directory location path for the local working copy of the PHP Shared Library
-    -   SHARED_LIBRARY_CLIENT_PATH is relative directory location path for the local working copy of the PHP Shared Library (this is used for the client-side files like .css and .js)
--   Update the [db_connection_info.php](../application_code/functions/db_connection_info.php) configuration file to specify the hostname/username/password for the application schema (PRI_RIA_APP) used for database interactions
-
-## Database Setup:
--   [Installing or Upgrading the Database](../../docs/PIFSC%20Resource%20Inventory%20-%20Installing%20or%20Upgrading%20the%20Database.md)
+## Script setup:
+-   [Docker Project Technical Documentation](PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
 
 ## Business Rules:
 -   The business rules for the RIA are defined in the [Business Rule Documentation](../../docs/PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/PRI%20Business%20Rule%20List.xlsx) with a Scope of "RIA" apply to this module and each rule with a Scope of "PRI Database" apply to the underlying database
