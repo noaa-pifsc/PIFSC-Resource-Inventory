@@ -38,14 +38,14 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](./PIFSC%20Resource%20
     -   Development Deployments (PICV014 - localhost)
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirridev/backend/GIM/includes/ods_db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
-            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirridev/backend/GIM/constants.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
+            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirridev/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
             -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirridev/backend/RIA/includes/ods_db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
         -   \*Note: to facilitate rapid development a bind mount version of the development deployment script is available ([prepare_docker_project.dev.mount.sh](../docker/deployment_scripts/prepare_docker_project.dev.mount.sh)) to mount the www and backend folders from the exported docker project directory in the docker container so that changes to the docker project directory are reflected in the running container
         -   Execute the [build_deploy_project.dev.sh](../docker/deployment_scripts/build_deploy_project.dev.sh) shell script to build and deploy the docker project
     -   Test Deployments (docker host machine: ahi.pifsc.gov)
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirri/backend/GIM/includes/ods_db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
-            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirri/backend/GIM/constants.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
+            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirri/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
             -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirri/backend/RIA/includes/ods_db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
         -   Using an SFTP client copy all exported docker project files (e.g. $root_directory/docker/pirri) to the test docker host machine in the /tmp/[user] folder where [user] is the username for the ssh account  
         -   SSH into the docker host machine (ahi.pifsc.gov)
@@ -84,7 +84,7 @@ sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  --bu
     -   Production Deployments (docker host machine: ahi.pifsc.gov)
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirrip/backend/GIM/includes/ods_db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
-            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirrip/backend/GIM/constants.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
+            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirrip/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
             -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirrip/backend/RIA/includes/ods_db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
         -   <mark>(Process is TBD)
 
