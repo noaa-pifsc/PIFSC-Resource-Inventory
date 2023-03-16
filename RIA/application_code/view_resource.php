@@ -1,6 +1,6 @@
 <?php
 
-	include_once ("constants.php");
+	include_once ("/usr/src/PRI/RIA/includes/constants.php");
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."html_page.php");
 	include_once (APPLICATION_INCLUDE_PATH."RIA_template_page.php");
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."output_message.php");
