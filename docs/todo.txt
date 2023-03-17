@@ -28,26 +28,26 @@ X Update documentation:
 
 
 	testing:
-		X dev
-			X check web app
-			X check cron job
-			X deployed to PICV014 with 6:30 AM cron job
+		XX dev
+			XX check web app
+			XX check cron job
+			XX deployed to PICV014 with 6:30 AM cron job
 		X dev (bind mount)
 			X check web app
 			X check cron job (does not work and throws an error: Could not open input file: /usr/src/PRI/GIM/retrieve_gitlab_info.php - this could be a permissions problem)
-		X test
-			X check web app
-			X check cron job
-			X deployed to ahi with 6:00 AM cron job
+		XX test
+			XX check web app
+			XX check cron job
+			XX deployed to ahi with 6:00 AM cron job
 		X prod (ahi connecting to PICT)
 			X check web app
 			X check cron job
 
 
 (To Do) version 1.1:
-	_ remove the "PRI." prefix on the DB references in PRI_gitlab.php and confirm the synonyms work properly
+	X remove the "PRI." prefix on the DB references in PRI_gitlab.php and confirm the synonyms work properly
 	bugs:
-		_ why are the gitlab images not rendering in the web app - no login required for most repositories?
+		X (content security policy - updated in httpd.x.conf) why are the gitlab images not rendering in the web app - no login required for most repositories?
 
 
 

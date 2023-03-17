@@ -51,7 +51,7 @@
               <div class=\"card_name_container\">
                 <a href=\"".$data['VC_WEB_URL']."\" target=\"_blank\" class=\"proj_name_link\"><img
                 class=\"avatar\"
-                src=\"".((empty($data['AVATAR_URL'])) ? "./images/no image.png" : $data['AVATAR_URL'])."\"
+                src=\"".((empty($data['AVATAR_URL'])) ? "./res/images/no image.png" : $data['AVATAR_URL'])."\"
                 alt=\"Project Avatar\"
                 /></a>
                 <div class=\"card_value_lj\"><a href=\"./view_project.php?PROJ_ID=".$data['PROJ_ID']."\">".$data['PROJ_NAME']."</a> <a href=\"".$data['VC_WEB_URL']."\" target=\"_blank\"><span class=\"ui-icon ui-icon-extlink\"></span></a></div>
@@ -75,7 +75,7 @@
               <div class=\"card_name_container\">
                 <a href=\"".$data['CREATOR_WEB_URL']."\" target=\"_blank\" class=\"proj_name_link\"><img
                 class=\"avatar\"
-                src=\"".((empty($data['CREATOR_AVATAR_URL'])) ? "./images/no image.png" : $data['CREATOR_AVATAR_URL'])."\"
+                src=\"".((empty($data['CREATOR_AVATAR_URL'])) ? "./res/images/no image.png" : $data['CREATOR_AVATAR_URL'])."\"
                 alt=\"Creator Avatar\"
                 /></a>
                 <div class=\"card_value\"><a href=\"".$data['CREATOR_WEB_URL']."\" target=\"_blank\">".$data['CREATOR_USER_NAME']."</a> <a href=\"".$data['CREATOR_WEB_URL']."\" target=\"_blank\"></a></div>
@@ -86,7 +86,7 @@
               <div class=\"card_name_container\">
                 ".((is_null($data['OWNER_WEB_URL'])) ? "": "<a href=\"".$data['OWNER_WEB_URL']."\" target=\"_blank\" class=\"proj_name_link\">")."<img
                 class=\"avatar\"
-                src=\"".((empty($data['OWNER_AVATAR_URL'])) ? "./images/no image.png" : $data['OWNER_AVATAR_URL'])."\"
+                src=\"".((empty($data['OWNER_AVATAR_URL'])) ? "./res/images/no image.png" : $data['OWNER_AVATAR_URL'])."\"
                 alt=\"Owner Avatar\"
                 />".((is_null($data['OWNER_WEB_URL'])) ? "" : "</a>")."
 

@@ -108,7 +108,7 @@
 //							echo $this->add_message(var_export($data[$j], true), 3);
 
 							//check if the PRI_PROJ record already exists:
-							$SQL = "SELECT PROJ_ID FROM PRI.PRI_PROJ WHERE VC_PROJ_ID = :id and DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source))";
+							$SQL = "SELECT PROJ_ID FROM PRI_PROJ WHERE VC_PROJ_ID = :id and DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source))";
 							$bind_array = array(array(':id', $data[$j]['id']), array(':proj_source', ($temp = PROJ_SOURCE)));
 
 							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
@@ -123,7 +123,7 @@
 //									echo $this->add_message("the PRI_PROJ already exists (".$row['PROJ_ID'].")", 3);
 
 									//the PRI_PROJ does not already exist:
-									$SQL = "UPDATE PRI.PRI_PROJ SET VC_PROJ_ID = :vc_proj_id, PROJ_NAME = :proj_name, PROJ_DESC = :proj_desc, SSH_URL = :ssh_url, HTTP_URL = :http_url, README_URL = :readme_url, AVATAR_URL = :avatar_url, PROJ_CREATE_DTM = TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), PROJ_UPDATE_DTM = (CASE WHEN :proj_update_dtm IS NOT NULL THEN TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), PROJ_VISIBILITY = :proj_visibility, PROJ_NAME_SPACE = :proj_name_space, DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source)), VC_OWNER_ID = :owner_id, VC_CREATOR_ID = :creator_id, VC_WEB_URL = :web_url, VC_OPEN_ISSUES_COUNT = :open_issues_count, VC_COMMIT_COUNT = :commit_count, VC_REPO_SIZE = :repository_size WHERE PROJ_ID = :proj_id";
+									$SQL = "UPDATE PRI_PROJ SET VC_PROJ_ID = :vc_proj_id, PROJ_NAME = :proj_name, PROJ_DESC = :proj_desc, SSH_URL = :ssh_url, HTTP_URL = :http_url, README_URL = :readme_url, AVATAR_URL = :avatar_url, PROJ_CREATE_DTM = TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), PROJ_UPDATE_DTM = (CASE WHEN :proj_update_dtm IS NOT NULL THEN TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), PROJ_VISIBILITY = :proj_visibility, PROJ_NAME_SPACE = :proj_name_space, DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source)), VC_OWNER_ID = :owner_id, VC_CREATOR_ID = :creator_id, VC_WEB_URL = :web_url, VC_OPEN_ISSUES_COUNT = :open_issues_count, VC_COMMIT_COUNT = :commit_count, VC_REPO_SIZE = :repository_size WHERE PROJ_ID = :proj_id";
 
 									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":owner_id", (isset($data[$j]['owner']['id']) ? $data[$j]['owner']['id'] : null )), array(":creator_id", $data[$j]['creator_id']), array(":web_url", $data[$j]['web_url']), array(":open_issues_count", $data[$j]['open_issues_count']), array(":commit_count", $data[$j]['statistics']['commit_count']),  array(":repository_size", $data[$j]['statistics']['repository_size']), array(':proj_id', $row['PROJ_ID']));
 
@@ -188,7 +188,7 @@
 
 //									echo $this->add_message("The project record does not exist, create a new project record", 3);
 
-									$SQL = "INSERT INTO PRI.PRI_PROJ (VC_PROJ_ID, PROJ_NAME, PROJ_DESC, SSH_URL, HTTP_URL, README_URL, AVATAR_URL, PROJ_CREATE_DTM, PROJ_UPDATE_DTM, PROJ_VISIBILITY, PROJ_NAME_SPACE, DATA_SOURCE_ID, VC_OWNER_ID, VC_CREATOR_ID, VC_WEB_URL, VC_OPEN_ISSUES_COUNT, VC_COMMIT_COUNT, VC_REPO_SIZE) VALUES (:vc_proj_id, :proj_name, :proj_desc, :ssh_url, :http_url, :readme_url, :avatar_url, TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), (CASE WHEN :proj_update_dtm IS NOT NULL THEN  TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), :proj_visibility, :proj_name_space, (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source)), :owner_id, :creator_id, :web_url, :open_issues_count, :commit_count, :repository_size) RETURNING PROJ_ID INTO :RETURN_ID";
+									$SQL = "INSERT INTO PRI_PROJ (VC_PROJ_ID, PROJ_NAME, PROJ_DESC, SSH_URL, HTTP_URL, README_URL, AVATAR_URL, PROJ_CREATE_DTM, PROJ_UPDATE_DTM, PROJ_VISIBILITY, PROJ_NAME_SPACE, DATA_SOURCE_ID, VC_OWNER_ID, VC_CREATOR_ID, VC_WEB_URL, VC_OPEN_ISSUES_COUNT, VC_COMMIT_COUNT, VC_REPO_SIZE) VALUES (:vc_proj_id, :proj_name, :proj_desc, :ssh_url, :http_url, :readme_url, :avatar_url, TO_DATE(REGEXP_SUBSTR(:proj_create_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_create_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'), (CASE WHEN :proj_update_dtm IS NOT NULL THEN  TO_DATE(REGEXP_SUBSTR(:proj_update_dtm, '([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}(\.[0-9]{3})?Z', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:proj_update_dtm, '[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})(\.[0-9]{3})?Z', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS') ELSE NULL END), :proj_visibility, :proj_name_space, (SELECT DATA_SOURCE_ID FROM PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source)), :owner_id, :creator_id, :web_url, :open_issues_count, :commit_count, :repository_size) RETURNING PROJ_ID INTO :RETURN_ID";
 									$bind_array = array(array(":vc_proj_id", $data[$j]['id']), array(':proj_name', $data[$j]['name']), array(':proj_desc', $data[$j]['description']), array(':ssh_url', $data[$j]['ssh_url_to_repo']), array(':http_url', $data[$j]['http_url_to_repo']), array(':readme_url', $data[$j]['readme_url']), array(':avatar_url', $data[$j]['avatar_url']), array(':proj_create_dtm', $data[$j]['created_at']), array(':proj_update_dtm', $data[$j]['last_activity_at']), array(':proj_visibility', $data[$j]['visibility']), array(':proj_name_space', $data[$j]['path_with_namespace']), array(':proj_source', ($temp = PROJ_SOURCE)), array(":owner_id", (isset($data[$j]['owner']['id']) ? $data[$j]['owner']['id'] : null )), array(":creator_id", $data[$j]['creator_id']), array(":web_url", $data[$j]['web_url']), array(":open_issues_count", $data[$j]['open_issues_count']), array(":commit_count", $data[$j]['statistics']['commit_count']),  array(":repository_size", $data[$j]['statistics']['repository_size']), array(":RETURN_ID", $return_id = null));
 
 									if ($rc = $this->oracle_db->query($SQL, $result, $return_id, $bind_array, OCI_NO_AUTO_COMMIT))
@@ -274,7 +274,7 @@
 
 
 			//delete all existing tags from the existing project so they can be replaced
-			$SQL = "DELETE FROM PRI.PRI_PROJ_TAGS WHERE PROJ_ID = :proj_id";
+			$SQL = "DELETE FROM PRI_PROJ_TAGS WHERE PROJ_ID = :proj_id";
 			$bind_array = array(array(":proj_id", $project_id));
 
 			//if this is not an existing project then do not remove the existing tags, if the project does exist then remove the existing tags:
@@ -332,7 +332,7 @@
 //							echo $this->add_message("there are one or more project tags, loop through each of the Gitlab project tags and insert them into the database", 3);
 
 							//construct insert statement:
-							$SQL = "INSERT INTO PRI.PRI_PROJ_TAGS (PROJ_ID, TAG_NAME, TAG_MSG, TAG_COMMIT_AUTHOR, TAG_COMMIT_DTM) VALUES (:proj_id, :tag_name, :tag_msg, :tag_author, TO_DATE(REGEXP_SUBSTR(:tag_dtm, '^([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:tag_dtm, '^[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'))";
+							$SQL = "INSERT INTO PRI_PROJ_TAGS (PROJ_ID, TAG_NAME, TAG_MSG, TAG_COMMIT_AUTHOR, TAG_COMMIT_DTM) VALUES (:proj_id, :tag_name, :tag_msg, :tag_author, TO_DATE(REGEXP_SUBSTR(:tag_dtm, '^([0-9]{4}\-[0-9]{2}\-[0-9]{2})T[0-9]{2}\:[0-9]{2}\:[0-9]{2}', 1, 1, 'i', 1) || ' ' ||REGEXP_SUBSTR(:tag_dtm, '^[0-9]{4}\-[0-9]{2}\-[0-9]{2}T([0-9]{2}\:[0-9]{2}\:[0-9]{2})', 1, 1, 'i', 1), 'YYYY-MM-DD HH24:MI:SS'))";
 
 							//loop through each of the Gitlab project tags and insert them into the database:
 							for ($i = 0; $i < count($data); $i++)
@@ -465,7 +465,7 @@
 //						echo $this->add_message("The custom configuration file was found, parse the file for the resource information", 3);
 
 						//delete all existing project resources from the existing project so they can be replaced
-						$SQL = "DELETE FROM PRI.PRI_PROJ_RES WHERE PROJ_ID = :proj_id";
+						$SQL = "DELETE FROM PRI_PROJ_RES WHERE PROJ_ID = :proj_id";
 						$bind_array = array(array(":proj_id", $project_id));
 
 						//if this is not an existing project then do not remove the existing tags, if the project does exist then remove the existing tags:
@@ -479,7 +479,7 @@
 							$data = $data['PRI_config'];
 
 							//delete all existing tags from the existing project so they can be replaced
-							$SQL = "INSERT INTO PRI.PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC, RES_DEMO_URL) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI.PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI.PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc, :res_demo_url)";
+							$SQL = "INSERT INTO PRI_PROJ_RES (PROJ_ID, RES_CATEGORY, RES_SCOPE_ID, RES_TYPE_ID, RES_TAG_CONV, RES_NAME, RES_COLOR_CODE, RES_URL, RES_DESC, RES_DEMO_URL) VALUES (:proj_id, :res_category, (SELECT RES_SCOPE_ID FROM PRI_RES_SCOPES WHERE UPPER(RES_SCOPE_CODE) = UPPER(TRIM(:res_scope_id))), (SELECT RES_TYPE_ID FROM PRI_RES_TYPES WHERE UPPER(RES_TYPE_CODE) = UPPER(TRIM(:res_type_id))), :res_tag_conv, :res_name, :res_color_code, :res_url, :res_desc, :res_demo_url)";
 
 							//loop through each of the resources in the JSON data and insert them into the database:
 							for ($i = 0; $i < count($data); $i++)
@@ -613,7 +613,7 @@
 //							echo $this->add_message(var_export($data[$j], true), 3);
 
 							//check if the PRI_VC_USERS record already exists:
-							$SQL = "SELECT USER_ID FROM PRI.PRI_VC_USERS WHERE VC_USER_ID = :id and DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source))";
+							$SQL = "SELECT USER_ID FROM PRI_VC_USERS WHERE VC_USER_ID = :id and DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) = UPPER(:proj_source))";
 							$bind_array = array(array(':id', $data[$j]['id']), array(':proj_source', ($temp = PROJ_SOURCE)));
 
 							if ($rc = $this->oracle_db->query($SQL, $result, $dummy, $bind_array, OCI_NO_AUTO_COMMIT))
@@ -628,7 +628,7 @@
 //									echo $this->add_message("the PRI_VC_USERS already exists (".$row['USER_ID'].")", 3);
 
 									//the PRI_VC_USERS does not already exist:
-									$SQL = "UPDATE PRI.PRI_VC_USERS SET VC_USER_ID = :vc_user_id, USERNAME = :username, USER_NAME = :user_name, USER_EMAIL = :user_email, AVATAR_URL = :avatar_url, WEB_URL = :web_url, DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) =  UPPER(:data_source_code)) WHERE USER_ID = :user_id";
+									$SQL = "UPDATE PRI_VC_USERS SET VC_USER_ID = :vc_user_id, USERNAME = :username, USER_NAME = :user_name, USER_EMAIL = :user_email, AVATAR_URL = :avatar_url, WEB_URL = :web_url, DATA_SOURCE_ID = (SELECT DATA_SOURCE_ID FROM PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) =  UPPER(:data_source_code)) WHERE USER_ID = :user_id";
 
 
 									$bind_array = array(array(":vc_user_id", $data[$j]['id']), array(':username', $data[$j]['username']), array(':user_name', $data[$j]['name']), array(':user_email', $data[$j]['email']), array(':avatar_url', $data[$j]['avatar_url']), array(':web_url', $data[$j]['web_url']), array(':data_source_code', ($temp = PROJ_SOURCE)), array(":user_id", $row['USER_ID']));
@@ -653,7 +653,7 @@
 
 //									echo $this->add_message("The user record does not exist, create a new user record", 3);
 
-									$SQL = "INSERT INTO PRI.PRI_VC_USERS (VC_USER_ID, USERNAME, USER_NAME, USER_EMAIL, AVATAR_URL, WEB_URL, DATA_SOURCE_ID) VALUES (:vc_user_id, :username, :user_name, :user_email, :avatar_url, :web_url, (SELECT DATA_SOURCE_ID FROM PRI.PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) =  UPPER(:data_source_code)))";
+									$SQL = "INSERT INTO PRI_VC_USERS (VC_USER_ID, USERNAME, USER_NAME, USER_EMAIL, AVATAR_URL, WEB_URL, DATA_SOURCE_ID) VALUES (:vc_user_id, :username, :user_name, :user_email, :avatar_url, :web_url, (SELECT DATA_SOURCE_ID FROM PRI_DATA_SOURCES WHERE UPPER(DATA_SOURCE_CODE) =  UPPER(:data_source_code)))";
 
 
 
