@@ -1,3 +1,59 @@
+X copy the ODS docker documentation
+X 	X revoke API key and save blank API key in the config
+	X add in the API key to documentation setup instructionX s
+
+	X copy/modify ODS docker X technical/X user documentation
+	X update GIM documeX ntation
+	X update RIA documentation
+
+	X develop test deployment scripts
+		X test on ahi
+
+	X develop prod deployment scripts
+		X test on PICV014 and ahi
+
+	X merge squash commit
+	X push and tag code
+
+	_ document docker best practices
+		deployment scripts to setup project structure the way you want in docker, then copy them over in dockerfile (split into front end: www and backend folders)
+
+X tag merged revision (v 1.0 for RIA and GIM and docker project)
+
+X Update documentation:
+	X DB
+	X DB diagram
+	X DB naming conventions
+	X DFD
+
+
+	testing:
+		X dev
+			X check web app
+			X check cron job
+			X deployed to PICV014 with 6:30 AM cron job
+		X dev (bind mount)
+			X check web app
+			X check cron job (does not work and throws an error: Could not open input file: /usr/src/PRI/GIM/retrieve_gitlab_info.php - this could be a permissions problem)
+		X test
+			X check web app
+			X check cron job
+			X deployed to ahi with 6:00 AM cron job
+		X prod (ahi connecting to PICT)
+			X check web app
+			X check cron job
+
+
+(To Do) version 1.1:
+	_ remove the "PRI." prefix on the DB references in PRI_gitlab.php and confirm the synonyms work properly
+	bugs:
+		_ why are the gitlab images not rendering in the web app - no login required for most repositories?
+
+
+
+	X document the web application features (filtering, and ajax requests/responses)
+
+
 X implemented projects link does not go to the corresponding project (it goes to the associated project - change the link IDs)
 
 X Compile SOP for how to prepare your project for inclusion into the inventory
@@ -8,6 +64,30 @@ X Compile SOP for how to prepare your project for inclusion into the inventory
 		X Tag your repository with all modules installed
 
 	X (Resource Definition SOP) add information about validating the JSON config files with the JSON template definition
+
+	X dev/test background
+	Index page should have simple dashboard reports available (summary of number of projects, resources, groups)
+		** Don't spend too much time on this until the data model is updated to allow many-to-many relationship between resource scopes and types
+		Queries:
+		select PROJ_VISIBILITY, count(*) from pri_proj where PROJ_VISIBILITY <> 'private' group by PROJ_VISIBILITY;
+		select RES_SCOPE_NAME, RES_CATEGORY, count(*) from PRI_PROJ_V where PROJ_VISIBILITY <> 'private' AND RES_ID IS NOT NULL group by RES_CATEGORY, RES_SCOPE_NAME order by RES_SCOPE_NAME, RES_CATEGORY;
+
+
+X separate out the PHP include files into the file system instead of accessible directly via the web browser
+
+_ deploy to test docker container
+
+
+
+	_ document the dev.mount.yml file as the bind mount version to allow changes to be made on the fly without having to rebuild the image repetitively
+		_ create a deployment script to use the bind mounts to make it easier to switch between the two versions
+
+_ compile the docker documentation based on ODS docker implementation
+X implement an index.php page for the default (simple summary page placeholder for now)
+_ implement cron job for git data refresh
+_ implement on demand web request for the data to be refreshed (don't wait for it, just say it needs to be refreshed - please be patient - a couple of minutes)
+_ implement github with their API and URLs
+_ loading graphic when the page is loaded from initialization to response
 
 
 X Add "tag your repository" language to the Code Commit SOP for installing/implementing/upgrading resources

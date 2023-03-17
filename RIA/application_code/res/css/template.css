@@ -1,0 +1,109 @@
+/*
+div.body_content_div
+{
+  background-image: url(../images/app_background.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+/*
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-size: cover;
+
+}
+*/
+
+/*background image definition START*/
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+  opacity: 0.7;
+}
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+/*background image definition END*/
+
+/*navigation menu START*/
+div.navigation_menu {
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	position: relative;}
+
+div.navigation_menu div.menu_link_container {
+	text-align:center;
+	width: 100%;
+	background-color: #e9e9e9;
+	padding: 10px 0px;
+}
+
+div.navigation_menu a, div.navigation_menu span {padding: 0px 8px;}
+
+
+
+/*navigation menu END*/
+
+
+div.page_heading_div {margin-top: 20px;
+	}
+
+
+div.navigation_menu div.page_header {
+	display: block;
+	font-size: large;
+	font-weight: bold;
+	background-color: #d4d4d4;
+	padding: 10px;
+}
+
+/*background dev/test image START*/
+
+
+div.devtest_bg_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+	z-index: -1;
+}
+/*define the styling for the dev/test background image*/
+div.devtest_bg_image {
+  background-size: repeat;
+}
+/*background dev/test image END*/
+
+
+
+    h1.page_heading {text-align:center; padding: 5px 0px;}
+
+/*    div.PRI_project_table, div.form_container {text-align: center; width: 100%;}
+
+    div.RIA_table_label {font-weight: bold; text-align: center; padding: 8px 0px; font-size: 16px;}
+*/
+/*BEGIN display table CSS definition*/
+
+body {margin: 0px; padding: 0px;}

@@ -6,7 +6,7 @@
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>2434D392-1450-CF1D-7230-63D33D9A7922</segment>
+<segment>2C0A4058-F823-9C1F-90C5-BB9A2CD1564D</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -80,7 +80,7 @@
 <createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_VC_USERS_I1" id="6584791E-05C3-6306-2934-49FDB82B9D14">
@@ -88,7 +88,7 @@
 <createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_VC_USERS_U1" id="D1E4F8CE-C005-B3DD-6780-525007AED758">
@@ -96,7 +96,7 @@
 <createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="PRI_VC_USERS_I2" id="F2141E7F-ABC7-2589-92F6-9308F8CCC374">
@@ -104,7 +104,7 @@
 <createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <schemaObject>0220F8F4-37A8-A590-E3C1-5CF83FD35F0A</schemaObject>
-<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -120,10 +120,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
-<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <existingIndex>20DB45D0-09A9-C84B-17C3-0857B008BA36</existingIndex>
-<indexSegment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</indexSegment>
+<indexSegment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
@@ -133,10 +133,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2022-06-01 20:38:03 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
-<segment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</segment>
+<segment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</segment>
 <tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
 <existingIndex>D1E4F8CE-C005-B3DD-6780-525007AED758</existingIndex>
-<indexSegment>62D9EE72-7369-30D2-D3F4-6BCB82C358A2</indexSegment>
+<indexSegment>C8C23FF7-0267-5CB5-1BCE-113E7CC5AEC1</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </UniqueKey>

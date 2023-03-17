@@ -1,0 +1,60 @@
+# Start build from official CentOS 7 / Perl 524 image
+FROM centos:centos7
+
+# Set ENV variables
+ENV LD_LIBRARY_PATH /usr/lib/oracle/21/client64/lib
+ENV PATH /usr/lib/oracle/21/client64/lib:/usr/lib/oracle/21/client64/bin:${PATH}
+ENV ORACLE_HOME /usr/lib/oracle/21/client64
+ENV TNS_ADMIN /usr/lib/oracle/21/client64/network/admin
+
+# Basic package udpate and cleanup and Apache
+RUN yum -y update && yum clean all && yum -y install cronie dos2unix git epel-release httpd mod_ssl vim
+
+# Install Oracle RPM(s)
+ADD https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm https://download.oracle.com/otn_software/linux/instantclient/214000/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm /oracle-client-rpms/
+
+RUN yum -y localinstall /oracle-client-rpms/oracle-instantclient-basic-21.4.0.0.0-1.x86_64.rpm && \
+    yum -y localinstall /oracle-client-rpms/oracle-instantclient-devel-21.4.0.0.0-1.x86_64.rpm && \
+		rm -rf /oracle-client-rpms/
+
+
+# Install remi repository for PHP packages
+RUN curl -O https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+    && rpm -ivh remi-release-7.rpm \
+    && yum -y update \
+    && rm remi-release-7.rpm
+
+# Install PHP and all dependencies and cleanup yum cache at end
+RUN yum -y install php81 \
+                   php81-php \
+                   php81-php-devel \
+                   php81-php-cli \
+                   php81-php-json \
+                   php81-php-oci8 \
+                    && yum clean all && rm -rf /var/cache/yum
+
+# copy the application source files:
+COPY ./backend /usr/src/PRI/
+COPY ./www /var/www/html/
+
+# copy/configure the crontab, export the oracle environment variables for use in cron job
+RUN dos2unix /usr/src/PRI/scripts/run_GIM.sh && \
+mv /usr/src/PRI/config/GIM_crontab.txt /etc/cron.d/GIM_crontab && \
+dos2unix /etc/cron.d/GIM_crontab && \
+chmod 0644 /etc/cron.d/GIM_crontab && \
+crontab -u apache /etc/cron.d/GIM_crontab
+
+
+# copy the Apache/PHP configurations
+RUN mv /usr/src/PRI/config/httpd.conf /etc/httpd/conf/httpd.conf && \
+mv /usr/src/PRI/config/php81-php.conf /etc/httpd/conf.d/php81-php.conf && \
+mv /usr/src/PRI/config/php.ini /etc/opt/remi/php81/php.ini
+
+
+# change the ownership permissions of the data_exports and logs folders
+RUN chown -R apache:apache /usr/src/PRI/logs
+
+# Set WORKDIR to webroot to set default context for remaining commands
+WORKDIR /var/www/html
+
+CMD crond && /usr/sbin/httpd -D FOREGROUND

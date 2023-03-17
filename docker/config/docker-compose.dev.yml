@@ -1,0 +1,8 @@
+version: "2"
+services:
+  pirridev:
+    build:
+      context: .
+    image: noaa/pirridev:latest
+    container_name: pirridev
+    restart: always

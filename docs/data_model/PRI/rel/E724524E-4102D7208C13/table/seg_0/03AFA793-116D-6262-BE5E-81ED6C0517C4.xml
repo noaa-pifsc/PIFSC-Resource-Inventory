@@ -377,22 +377,6 @@ This table contains the different projects in the PIFSC Resource Inventory]]></c
 <ownDataTypeParameters>,*,0</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="PROJ_SOURCE" id="43E7EB27-B307-881F-9083-4009AEEA5CC0">
-<sourceConnName>PICD_PRI</sourceConnName>
-<sourceObjSchema>PRI_PROJ</sourceObjSchema>
-<sourceObjName>PROJ_SOURCE</sourceObjName>
-<createdBy>Jesse.Abdul</createdBy>
-<createdTime>2022-01-11 00:59:05 UTC</createdTime>
-<commentInRDBMS><![CDATA[the source of the project record (e.g. PIFSC GitLab, GitHub, manual entry)]]></commentInRDBMS>
-<ownerDesignName>PRI</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>100 BYTE</dataTypeSize>
-<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="8462946B-F69A-C99C-29C0-A60609CC140E" name="PRI_PROJ_PK">

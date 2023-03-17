@@ -1,0 +1,12 @@
+version: '2'
+services:
+  pirridev:
+    ports:
+      - "5030:80"
+      - "5031:443"
+    volumes:
+      - "pri_logs:/usr/src/PRI/logs"
+    environment:
+      TZ: "Pacific/Honolulu"
+volumes:
+  pri_logs:

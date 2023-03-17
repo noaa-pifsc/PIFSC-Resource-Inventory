@@ -1,7 +1,8 @@
 <?php
 
-	include_once ("constants.php");
+	include_once ("/usr/src/PRI/RIA/includes/constants.php");
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."html_page.php");
+	include_once (APPLICATION_INCLUDE_PATH."RIA_template_page.php");
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."output_message.php");
   include_once (APPLICATION_INCLUDE_PATH."resource.php");
 	include_once (APPLICATION_INCLUDE_PATH."db_connection_info.php");
@@ -28,12 +29,14 @@
 	{
 		//the current request does not have the "req" parameter defined, this is an initial page request:
 //		echo $resource->add_message("There is no request parameters, respond with full HTML page content", 3);
+		//define a variable in the javascript to indicate the application instance
+		$inline_javascript = "var app_instance = '".APP_INSTANCE."';";
 
 		//initialize the html_page parameters
 		$css_include = array();
 		$javascript_include = array();
 		$priority_header_content = '';
-		$inline_javascript = '';
+//		$inline_javascript = '';
 
 		//check if the oracle database connection was successful:
 		if (!$oracle_db->is_connected($error_info))
@@ -51,40 +54,13 @@
 			//no arguments were passed to the page, this is the initial html page content request:
 
 			//define the css include files for the initial HTML page content
-			$css_include = array("./css/template.css", "./css/RIA_resource.css", "./css/tooltip.css", "./css/ajax_load.css", "./css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", );
+			$css_include = array("./res/css/template.css", "./res/css/RIA_resource.css", "./res/css/tooltip.css", "./res/css/ajax_load.css", "./res/css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", );
 
 			//define the javascript include files for the initial HTML page content:
-			$javascript_include = array();
+			$javascript_include = array("./res/js/template.js", "./res/js/tooltip.js");
 
 			//generate the javascript include files with the "defer" keyword
-			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/resources.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./js/RIA_tooltips.js\"></script>";
-
-
-			//generate the main HTML content:
-
-			//this is the disabled_content_overlay div, this is used to disable the user interface when the application is working on an AJAX request or the original javascript code is being executed
-			$string_buffer .= "<div id=\"disabled_content_overlay\" style=\"display:none;\"></div>";
-
-			//this is the HTML for the loading graphic when the user interface is disabled:
-			$string_buffer .= "<div id=\"ajax_loading_graphic\"><strong>Please Wait...</strong></div>";
-
-      //this is the page heading content:
-      $string_buffer .= "<div class=\"navigation_menu\">
-      <a href=\"./view_all_projects.php\">View All Projects</a> <span>View All Resources</span>
-      </div>";
-
-      //fixed background image div
-      $string_buffer .= "<div id=\"bg\">
-        <img src=\"./images/app_background.jpg\" alt=\"NOAA background image\">
-      </div>";
-
-			//this is the page heading content:
-			$string_buffer .= div_tag(h1_tag("All Resources", array("class=\"page_heading\"")), array("class=\"page_heading_div\""));
-
-
-
-			//define the main content div (display:none to address the flash of unstyled content problem - hide the content until the javascript code has finished executing)
-			$string_buffer .= "<div class=\"main_content_div\" style=\"display:none;\">";
+			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/resources.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA_tooltips.js\"></script>";
 
 
       //initialize the array to store the res_scope_id and res_scope_name to populate the select element:
@@ -253,7 +229,7 @@
       				echo $resource->add_message("The PIFSC Resources query was not successful");
 
       				//define the html page arguments for the page so the error can be displayed (no need to load the js and css because the content request failed):
-      				$inline_javascript = '';
+//      				$inline_javascript = '';
       				$javascript_include = array();
       				$css_include = array();
       			}
@@ -265,9 +241,6 @@
 
             $resource->add_message("The data source query failed");
 
-            //close the main_content_div
-            $string_buffer .= "</div>";
-
           }
 
         }
@@ -277,9 +250,6 @@
           $string_buffer .= b_tag("There was a problem with the database and your request could not be processed, please try again later");
 
           $resource->add_message("The resource type query failed");
-
-          //close the main_content_div
-          $string_buffer .= "</div>";
 
         }
 
@@ -292,15 +262,15 @@
 
         $resource->add_message("The resource scope query failed");
 
-        //close the main_content_div
-        $string_buffer .= "</div>";
-
-
       }
 
 
 
 		}
+
+		//generate the main HTML content:
+		$string_buffer = RIA_template_page("All Resources", $string_buffer, "view_all_resources.php");
+
 
 		//output the HTML page content with $string_buffer in the <body> tag:
 		echo html_page ('All Resources', $string_buffer, array(), $inline_javascript, $javascript_include, '', $css_include, false, array(), array(), $priority_header_content);

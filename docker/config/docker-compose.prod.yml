@@ -1,0 +1,15 @@
+version: '2'
+services:
+  pirrip:
+    build:
+      context: .
+    image: noaa/pirrip:latest
+    container_name: pirrip
+    restart: always
+    ports:
+      - "5016:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"

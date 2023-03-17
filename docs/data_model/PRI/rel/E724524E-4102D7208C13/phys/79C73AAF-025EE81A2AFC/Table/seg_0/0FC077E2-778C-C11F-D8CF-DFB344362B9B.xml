@@ -121,48 +121,9 @@
 </ForeignKey>
 </foreignKeys>
 <lobStorages>
-<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000512503C00010$$" id="54DAE8E7-6235-2DD7-2DB8-EAF1133C7D57">
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000719371C00010$$" id="39F19DCF-721F-3D5A-6854-2085931F42A7">
 <createdBy>Jesse.Abdul</createdBy>
-<createdTime>2022-01-11 00:59:16 UTC</createdTime>
-<ownerDesignName>PRI</ownerDesignName>
-<cache>NOCACHE</cache>
-<chunk>8192</chunk>
-<column>ISS_DESC</column>
-<compression>NO</compression>
-<duplication>KEEP_DUPLICATES</duplication>
-<logging>YES</logging>
-<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
-<lobStorageType>SECUREFILE</lobStorageType>
-</LobStorage>
-<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000575934C00010$$" id="2308D462-8402-D860-9757-9ED163C68F8D">
-<createdBy>Jesse.Abdul</createdBy>
-<createdTime>2022-05-18 03:12:09 UTC</createdTime>
-<ownerDesignName>PRI</ownerDesignName>
-<cache>NOCACHE</cache>
-<chunk>8192</chunk>
-<column>ISS_DESC</column>
-<compression>NO</compression>
-<duplication>KEEP_DUPLICATES</duplication>
-<logging>YES</logging>
-<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
-<lobStorageType>SECUREFILE</lobStorageType>
-</LobStorage>
-<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000583298C00010$$" id="DC0E95EC-190D-CBD5-82B5-870FC2FC4497">
-<createdBy>Jesse.Abdul</createdBy>
-<createdTime>2022-06-01 20:38:04 UTC</createdTime>
-<ownerDesignName>PRI</ownerDesignName>
-<cache>NOCACHE</cache>
-<chunk>8192</chunk>
-<column>ISS_DESC</column>
-<compression>NO</compression>
-<duplication>KEEP_DUPLICATES</duplication>
-<logging>YES</logging>
-<tableSpace>6586B29B-C0C5-6FB2-E076-4B6183B2E4A0</tableSpace>
-<lobStorageType>SECUREFILE</lobStorageType>
-</LobStorage>
-<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000583551C00010$$" id="C7708C11-E32E-74E6-08BE-C71721F0F9B0">
-<createdBy>Jesse.Abdul</createdBy>
-<createdTime>2022-06-01 20:48:26 UTC</createdTime>
+<createdTime>2023-03-16 23:36:39 UTC</createdTime>
 <ownerDesignName>PRI</ownerDesignName>
 <cache>NOCACHE</cache>
 <chunk>8192</chunk>
