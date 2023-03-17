@@ -96,7 +96,7 @@ function load_projects (data)
   debug_console('running load_projects()');
 
   //parse the JSON response and store the json data in the data variable so it can be processed
-  data = jQuery.parseJSON(data)
+//  data = jQuery.parseJSON(data)
 
   debug_console ("the value of data['RETURN_CODE'] is: "+data['RETURN_CODE']);
 

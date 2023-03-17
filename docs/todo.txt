@@ -28,17 +28,17 @@ X Update documentation:
 
 
 	testing:
-		XX dev
-			XX check web app
-			XX check cron job
-			XX deployed to PICV014 with 6:30 AM cron job
+		XXXX dev
+			XXXX check web app
+			XXXX  check cron job
+			XXXX deployed to PICV014 with 6:30 AM cron job
 		X dev (bind mount)
 			X check web app
 			X check cron job (does not work and throws an error: Could not open input file: /usr/src/PRI/GIM/retrieve_gitlab_info.php - this could be a permissions problem)
-		XX test
-			XX check web app
-			XX check cron job
-			XX deployed to ahi with 6:00 AM cron job
+		XXXX test
+			XXXX check web app
+			XXXX check cron job
+			XXXX deployed to ahi with 6:00 AM cron job
 		X prod (ahi connecting to PICT)
 			X check web app
 			X check cron job
@@ -49,6 +49,19 @@ X Update documentation:
 	bugs:
 		X (content security policy - updated in httpd.x.conf) why are the gitlab images not rendering in the web app - no login required for most repositories?
 
+(To Do) version 1.2:
+	X throw an error if the gitlab API key is not defined
+	X set keepalive in the http configuration for performance reasons
+	X ajax request not working on resource page (updated to not convert ajax response content to json format since it is now explicitly sent as JSON via PHP based on HTTP headers)
+		parsing error: change the PICV014 and ahi instances to point to the same DB and check if the same issue is happening (compare the json directly)
+		tried to set header to json before sending json content in view_all_x.php
+	X filter resources button is not aligned properly in PICV014 (defined padding and overflow-y: hidden)
+	X allow https://secure.gravatar.com images for the content security policy
+
+
+
+copy files without Filezilla:
+	scp -rp C:\docker\pirri\* jabdul@ahi.pifsc.gov:/tmp/jabdul
 
 
 	X document the web application features (filtering, and ajax requests/responses)

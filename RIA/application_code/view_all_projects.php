@@ -208,6 +208,8 @@
         //send back the JSON response for the unsuccessful query:
         $json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"Could not connect to the database, please try again later");
 
+				header("Content-Type: application/json");
+
         //return the encoded json content:
         echo json_encode($json_array);
       }
@@ -269,6 +271,8 @@
             //construct the JSON response for the invalid parameters:
             $json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"There were one or more invalid parameters that were sent with the request, please reload the page and try again");
 
+						header("Content-Type: application/json");
+
             //return the encoded json content:
             echo json_encode($json_array);
 
@@ -319,6 +323,8 @@
             //  						echo $project->add_message("output the JSON data for the filtered resources", 3);
 
               //the query was successful, respond with a JSON array of values (the str_replace() call is to handle a bug with the way that PHP encodes JSON by escaping forward slashes):
+							header("Content-Type: application/json");
+
               echo str_replace('\\/', '/', json_encode($json_array));
             }
             else
@@ -333,6 +339,8 @@
 
               echo $project->add_message("output the JSON data for the Projects", 3);
 
+							header("Content-Type: application/json");
+
               //return the encoded json content:
               echo json_encode($json_array);
             }
@@ -346,6 +354,8 @@
           echo $project->add_message("This is an invalid request, the parameters for the request are: ".var_export($_REQUEST, true));
           //send back the JSON response for the unsuccessful query:
           $json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"The request contained invalid parameters, please reload the page and try again");
+
+					header("Content-Type: application/json");
           //return the encoded json content:
           echo json_encode($json_array);
         }

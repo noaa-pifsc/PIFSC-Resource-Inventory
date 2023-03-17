@@ -9,7 +9,8 @@
 body {margin: 0px; padding: 0px;}
 
 
-
+/*report filter accordion styling */
+div.form_container div.ui-accordion div.ui-accordion-content {padding: 15px; overflow-y: hidden;}
 
 
 /*tooltip START*/
