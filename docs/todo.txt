@@ -28,28 +28,28 @@ X Update documentation:
 
 
 	testing:
-		XXXX dev
-			XXXX check web app
-			XXXX  check cron job
-			XXXX deployed to PICV014 with 6:30 AM cron job
+		XXXXX dev
+			XXXXX check web app
+			XXXXX check cron job
+			XXXXX deployed to PICV014 with 6:30 AM cron job
 		X dev (bind mount)
 			X check web app
 			X check cron job (does not work and throws an error: Could not open input file: /usr/src/PRI/GIM/retrieve_gitlab_info.php - this could be a permissions problem)
-		XXXX test
-			XXXX check web app
-			XXXX check cron job
-			XXXX deployed to ahi with 6:00 AM cron job
+		XXXXX test
+			XXXXX check web app
+			XXXXX check cron job
+			XXXXX deployed to ahi with 6:00 AM cron job
 		X prod (ahi connecting to PICT)
 			X check web app
 			X check cron job
 
 
-(To Do) version 1.1:
+(To Do) X version 1.1:
 	X remove the "PRI." prefix on the DB references in PRI_gitlab.php and confirm the synonyms work properly
 	bugs:
 		X (content security policy - updated in httpd.x.conf) why are the gitlab images not rendering in the web app - no login required for most repositories?
 
-(To Do) version 1.2:
+(To Do) X version 1.2:
 	X throw an error if the gitlab API key is not defined
 	X set keepalive in the http configuration for performance reasons
 	X ajax request not working on resource page (updated to not convert ajax response content to json format since it is now explicitly sent as JSON via PHP based on HTTP headers)
@@ -58,7 +58,18 @@ X Update documentation:
 	X filter resources button is not aligned properly in PICV014 (defined padding and overflow-y: hidden)
 	X allow https://secure.gravatar.com images for the content security policy
 
+(To Do) _ version 1.3:
+	when a field is blank the javascript shows it as "null" but the initial web application load shows a blank (change the javascript to change null to blank)
+	resolve flash of unstyled content issue when page first loads (show the loading graphic as soon as the animated gif has loaded otherwise keep the main div hidden or just show "Please wait" until the styling has been loaded
 
+(To Do) production deployment:
+	create JIRA ticket for the new DB schemas (PRI, PRI_GIM_APP, PRI_RIA_APP)
+		temporary create synonym system privilege for PRI_GIM_APP and PRI_RIA_APP schemas
+	fill out SCR for the production deployment
+	create JIRA ticket for SCR
+	production deployment
+	update documentation
+	pau
 
 copy files without Filezilla:
 	scp -rp C:\docker\pirri\* jabdul@ahi.pifsc.gov:/tmp/jabdul

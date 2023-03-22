@@ -12,7 +12,7 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20R
 
 ## Application URLs:
 -   Dev Application: https://localhost:5031/
--   Test Application: https://ahi.pifsc.gov/pirri/
+-   Test Application: https://picahi.nmfs.local/pirri/
 -   Production Application: <TBD>
 
 ## Requirements:
