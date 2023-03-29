@@ -13,9 +13,9 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 -   [Docker Project Technical Documentation](../../docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md)
 
 ## Application URLs:
-    -   Dev Application: https://localhost:5011/
-    -   Test Application: https://ahi.pifsc.gov/pirri/
-    -   Production Application: <TBD>
+-   Dev Application: https://localhost:5011/
+-   Test Application: https://picahi.nmfs.local/pirri/
+-   Production Application: <TBD>
 
 ## Requirements:
 -   PHP 8.x
