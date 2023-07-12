@@ -16,3 +16,4 @@
 @@upgrades/pifsc_resource_inventory_DDL_DML_upgrade_v0.3.sql
 @@upgrades/pifsc_resource_inventory_DDL_DML_upgrade_v0.4.sql
 @@upgrades/pifsc_resource_inventory_DDL_DML_upgrade_v0.5.sql
+@@upgrades/pifsc_resource_inventory_DDL_DML_upgrade_v1.0.sql

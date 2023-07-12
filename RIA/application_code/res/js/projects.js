@@ -195,7 +195,7 @@ function generate_project_content (data_array)
         "</div>"+
         "<div class=\"card_desc_container\">"+
           "<div class=\"card_label tooltip\" title=\"The description for the Project\">Description</div>"+
-          "<div class=\"card_value_lj\">"+data_array['proj_desc']+"</div>"+
+          "<div class=\"card_value_lj\">"+((data_array['proj_desc'] == null) ? '' : data_array['proj_desc'])+"</div>"+
         "</div>"+
       "</div>"+
       "<div class=\"spacer\"></div>"+

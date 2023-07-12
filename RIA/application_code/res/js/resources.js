@@ -220,7 +220,7 @@ $(function()
               "<div class=\"card_label tooltip\" title=\"The number of Projects that have implemented the given Resource that are not the same as the current version\"># Old Version</div>"+
               "<div class=\"card_value\">"+data_array['old_vers_count']+"</div>"+
               "<div class=\"card_label tooltip\" title=\"The live demonstration URL for the Project Resource\">Live Demo</div>"+
-              "<div class=\"card_value\">"+((data_array['res_demo_url'] == null) ? "<a href=\""+data_array['RES_DEMO_URL']+"\" target=\"_blank\">Live Demo</a>": "N/A")+"</div>"+
+              "<div class=\"card_value\">"+((data_array['res_demo_url'] != null) ? "<a href=\""+data_array['res_demo_url']+"\" target=\"_blank\">Live Demo</a>": "N/A")+"</div>"+
           "</div>"+
           "<div class=\"spacer\"></div>"+
           "<div class=\"res_proj_div card_container card_desc_container\">"+
@@ -244,7 +244,7 @@ $(function()
             "<div class=\"card_label tooltip\" title=\"Link to the Project's README file (if defined)\">README Link</div>"+
             "<div class=\"card_value\">"+((data_array['readme_url'] == null) ? "N/A": " <a href=\""+data_array['readme_url']+"\" target=\"_blank\">README</a>")+"</div>"+
             "<div class=\"card_label tooltip\" title=\"The description for the Project\">Description</div>"+
-            "<div class=\"card_value_lj\">"+data_array['proj_desc']+"</div>"+
+            "<div class=\"card_value_lj\">"+((data_array['proj_desc'] == null) ? '' : data_array['proj_desc'])+"</div>"+
             "</div>"+
           "</div>"+
           "<div class=\"spacer\"></div>"+

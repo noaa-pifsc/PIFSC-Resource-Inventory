@@ -12,7 +12,7 @@
 
 
   //create the new project object:
-  $project = new project("PIFSC_view_all_projects_".date("Ymd_H_i").".log", $_SERVER["SCRIPT_FILENAME"]);
+  $project = new project("/usr/src/PRI/logs/web.error.log", $_SERVER["SCRIPT_FILENAME"]);
 
   //return the $oracle_db resource so it can be used to query the DB:
   $oracle_db = $project->return_oracle_db();
@@ -42,7 +42,7 @@
 		if (!$oracle_db->is_connected($error_info))
 		{
 			//the database connection was unsuccessful:
-			echo $project->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
+			$project->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
 
 			//send back the HTML content to indicate the failed DB connection:
 			$string_buffer .= b_tag("Could not connect to the database, please try again later");
@@ -54,13 +54,13 @@
 			//no arguments were passed to the page, this is the initial html page content request:
 
 			//define the css include files for the initial HTML page content
-			$css_include = array("./res/css/template.css", "./res/css/tooltip.css", "./res/css/RIA_project.css", "./res/css/tooltip.css", "./res/css/ajax_load.css", "./res/css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css");
+			$css_include = array("./res/css/template.css", "./res/css/tooltip.css", "./res/css/RIA_project.css", "./res/css/tooltip.css", "./res/css/ajax_load.css", "./res/css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui.min.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui.theme.min.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui.structure.min.css");
 
 			//define the javascript include files for the initial HTML page content:
 			$javascript_include = array("./res/js/template.js", "./res/js/tooltip.js");
 
 			//generate the javascript include files with the "defer" keyword
-			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/projects.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA_tooltips.js\"></script>";
+			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/projects.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA_tooltips.js\"></script><link rel=\"icon\" href=\"favicon.ico\" type=\"image/vnd.microsoft.icon\" />";
 
 
       //initialize the array to store the data_source_id and data_source_name to populate the select element:
@@ -156,7 +156,7 @@
   				$string_buffer .= b_tag("There was a problem with the database and your request could not be processed, please try again later");
 
   				//log the failed database query:
-  				echo $project->add_message("The PIFSC Projects query was not successful");
+  				$project->add_message("The PIFSC Projects query was not successful");
 
   				//define the html page arguments for the page so the error can be displayed (no need to load the js and css because the content request failed):
 //  				$inline_javascript = '';
@@ -203,7 +203,7 @@
         //the oracle connection was unsuccessful
 
         //log the unsuccessful database connection:
-        echo $project->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
+        $project->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
 
         //send back the JSON response for the unsuccessful query:
         $json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"Could not connect to the database, please try again later");
@@ -221,7 +221,9 @@
         if ($_POST['req'] == 'filter')
         {
           //this is a filter request:
-  //  				echo $project->add_message("This is a filter resources request", 3);
+		// $project->add_message("This is a filter resources request", 3);
+		// $project->add_message(var_export($_POST, true), 3);
+					
 
           //additional where clause for the query based on request parameters:
           $SQL_where = '';
@@ -265,7 +267,7 @@
             //there was one or more invalid parameters:
 
             //log the error condition
-            echo $resource->add_message("there were one or more invalid parameters sent with the request, the request is invalid");
+            $resource->add_message("there were one or more invalid parameters sent with the request, the request is invalid");
 
 
             //construct the JSON response for the invalid parameters:
@@ -332,12 +334,12 @@
               //query was unsuccessful:
 
               //log the error information for the database query:
-              echo $project->add_message("The database query was unsuccessful, error: ".var_export(oci_error($stid), true));
+              $project->add_message("The database query was unsuccessful, error: ".var_export(oci_error($stid), true));
 
               //send back the JSON response for the unsuccessful query:
               $json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"The database query for the filtered Projects was unsuccessful, please try again later");
 
-              echo $project->add_message("output the JSON data for the Projects", 3);
+//              echo $project->add_message("output the JSON data for the Projects", 3);
 
 							header("Content-Type: application/json");
 
@@ -351,7 +353,7 @@
         else
         {
           //this is an invalid request, the parameters sent with the request are not acceptable parameters:
-          echo $project->add_message("This is an invalid request, the parameters for the request are: ".var_export($_REQUEST, true));
+          $project->add_message("This is an invalid request, the parameters for the request are: ".var_export($_REQUEST, true));
           //send back the JSON response for the unsuccessful query:
           $json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"The request contained invalid parameters, please reload the page and try again");
 

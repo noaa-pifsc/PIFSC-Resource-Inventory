@@ -24,7 +24,7 @@ The PIFSC Resource Inventory (PRI) Git Info Module (GIM) was developed to retrie
 -   PIFSC PHP Shared Library repository
     -   Version Control Information:
         -   URL: git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
-        -   App: 1.11 (Git tag: php_shared_libary_v1.11)
+        -   App: 1.13 (Git tag: php_shared_libary_v1.13)
 
 ## Data Flow:
 -   [Data Flow Diagram (DFD)](../../docs/DFD/PRI_DFD.drawio.png)

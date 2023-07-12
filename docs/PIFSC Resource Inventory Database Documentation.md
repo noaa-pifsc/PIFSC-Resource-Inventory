@@ -6,7 +6,7 @@ This database provides the core database objects required to run the PIFSC Resou
 ## Resources:
 -   PRI Version Control Information:
     -   URL:git@picgitlab.nmfs.local:centralized-data-tools/pifsc-resource-inventory.git
-    -   Database: 0.5 (Git tag: pifsc_resource_inventory_db_v0.5)
+    -   Database: 1.0 (Git tag: pifsc_resource_inventory_db_v1.0)
 -   [View Comments](PRI_view_comments.xlsx)
 -   [PRI Database Naming Conventions](PIFSC%20Resource%20Inventory%20DB%20Naming%20Conventions.md)
 -   [PL/SQL Coding Conventions](./PIFSC%20Resource%20Inventory%20-%20PLSQL%20Coding%20Conventions.md)
@@ -32,17 +32,17 @@ This database provides the core database objects required to run the PIFSC Resou
         -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/db-module-packager.git
         -   DMP Version: 0.4 (git tag: db_module_packager_v0.4)
         -   The DMP Scientific Database use case was implemented on the PRI
-            -   Database: 0.5 (Git tag: DMP_Scientific_v0.5)
+            -   Database: 1.0 (Git tag: DMP_Scientific_v1.0)
 -   DB Version Control Module (VCM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git
     -   Database Version: 0.2 (git tag: db_vers_ctrl_db_v0.2)
     -   SOP Version: 1.0 (git tag: db_vers_ctrl_v1.0)
 -   DB Logging Module (DLM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBLoggingModule.git
-    -   Version: 0.2 (git tag: db_log_db_v0.2)
+    -   Version: 0.3 (git tag: db_log_db_v0.3)
 -   Data Validation Module (DVM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DataValidationModule.git
-    -   Version: 1.3 (git tag: DVM_db_v1.3)
+    -   Version: 1.4 (git tag: DVM_db_v1.4)
 
 ## Business Rules:
 -   The business rules for the PRI are defined in the [Business Rule Documentation](./PIFSC%20Resource%20Inventory%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](./PRI%20Business%20Rule%20List.xlsx) with a Scope of "PRI Database" apply to the underlying database

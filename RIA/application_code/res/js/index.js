@@ -9,7 +9,7 @@ $(function()
   //the main content has been rendered show the main content div:
   $("div.main_content_div").show();
 
-	//the map plugin has finished loading, re-enable the application:
+	//the page has finished loading, re-enable the application:
   deactivate_disabled_content_overlay();
 
 });

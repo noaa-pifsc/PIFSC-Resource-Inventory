@@ -11,7 +11,7 @@
 	include_once (SHARED_LIBRARY_INCLUDE_PATH."sanitize_values.php");
 
   //create the new resource object
-  $resource = new resource("PIFSC_view_all_resources_".date("Ymd_H_i").".log", $_SERVER["SCRIPT_FILENAME"]);
+  $resource = new resource("/usr/src/PRI/logs/web.error.log", $_SERVER["SCRIPT_FILENAME"]);
 
   //return the $oracle_db resource so it can be used to query the DB:
   $oracle_db = $resource->return_oracle_db();
@@ -42,7 +42,7 @@
 		if (!$oracle_db->is_connected($error_info))
 		{
 			//the database connection was unsuccessful:
-			echo $resource->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
+			$resource->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
 
 			//send back the HTML content to indicate the failed DB connection:
 			$string_buffer .= b_tag("Could not connect to the database, please try again later");
@@ -54,13 +54,13 @@
 			//no arguments were passed to the page, this is the initial html page content request:
 
 			//define the css include files for the initial HTML page content
-			$css_include = array("./res/css/template.css", "./res/css/RIA_resource.css", "./res/css/tooltip.css", "./res/css/ajax_load.css", "./res/css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui-1.12.1.min.css", );
+			$css_include = array("./res/css/template.css", "./res/css/RIA_resource.css", "./res/css/tooltip.css", "./res/css/ajax_load.css", "./res/css/display_card.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui.min.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui.theme.min.css", SHARED_LIBRARY_CLIENT_PATH."css/smoothness/jquery-ui.structure.min.css");
 
 			//define the javascript include files for the initial HTML page content:
 			$javascript_include = array("./res/js/template.js", "./res/js/tooltip.js");
 
 			//generate the javascript include files with the "defer" keyword
-			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-1.7.2.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.tablescroll.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui-1.12.1.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/resources.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA_tooltips.js\"></script>";
+			$priority_header_content = external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery.min.js").external_javascript(SHARED_LIBRARY_CLIENT_PATH."js/jquery-ui.min.js")."<script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/resources.js\"></script><script type=\"text/javascript\" defer=\"defer\" src=\"./res/js/RIA_tooltips.js\"></script><link rel=\"icon\" href=\"favicon.ico\" type=\"image/vnd.microsoft.icon\" /><link rel=\"icon\" href=\"favicon.ico\" type=\"image/vnd.microsoft.icon\" />";
 
 
       //initialize the array to store the res_scope_id and res_scope_name to populate the select element:
@@ -226,7 +226,7 @@
       				$string_buffer .= b_tag("There was a problem with the database and your request could not be processed, please try again later");
 
       				//log the failed database query:
-      				echo $resource->add_message("The PIFSC Resources query was not successful");
+      				$resource->add_message("The PIFSC Resources query was not successful");
 
       				//define the html page arguments for the page so the error can be displayed (no need to load the js and css because the content request failed):
 //      				$inline_javascript = '';
@@ -289,7 +289,7 @@
   			//the oracle connection was unsuccessful
 
   			//log the unsuccessful database connection:
-  			echo $resource->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
+  			$resource->add_message("database connection was unsuccessful, oci_error(): ".var_export($error_info, true));
 
   			//send back the JSON response for the unsuccessful query:
   			$json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"Could not connect to the database, please try again later");
@@ -374,7 +374,7 @@
             //there was one or more invalid parameters:
 
             //log the error condition
-            echo $resource->add_message("there were one or more invalid parameters sent with the request, the request is invalid");
+            $resource->add_message("there were one or more invalid parameters sent with the request, the request is invalid");
 
 
             //construct the JSON response for the invalid parameters:
@@ -439,12 +439,12 @@
   						//query was unsuccessful:
 
   						//log the error information for the database query:
-  						echo $resource->add_message("The database query was unsuccessful, error: ".var_export(oci_error($stid), true));
+  						$resource->add_message("The database query was unsuccessful, error: ".var_export(oci_error($stid), true));
 
   						//send back the JSON response for the unsuccessful query:
   						$json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"The database query for the filtered Resources was unsuccessful, please try again later");
 
-  						echo $resource->add_message("output the JSON data for the Resources", 3);
+//  						$resource->add_message("output the JSON data for the Resources", 3);
 
 							header("Content-Type: application/json");
   						//return the encoded json content:
@@ -455,7 +455,7 @@
   			else
   			{
   				//this is an invalid request, the parameters sent with the request are not acceptable parameters:
-  				echo $resource->add_message("This is an invalid request, the parameters for the request are: ".var_export($_REQUEST, true));
+  				$resource->add_message("This is an invalid request, the parameters for the request are: ".var_export($_REQUEST, true));
   				//send back the JSON response for the unsuccessful query:
   				$json_array = array("RETURN_CODE"=>1, "SUCCESS_CODE"=>-1, "ERROR_MESSAGE"=>"The request contained invalid parameters, please reload the page and try again");
   				//return the encoded json content:

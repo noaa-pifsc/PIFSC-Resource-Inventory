@@ -6,19 +6,15 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20R
 ## Resources:
 -   Version Control Information:
     -   URL: <git@picgitlab.nmfs.local:centralized-data-tools/parr-tools.git> in the "PRI" folder
-    -   Application: 1.2 (Git tag: PRI_docker_app_v1.2)
+    -   Application: 1.3 (Git tag: PRI_docker_app_v1.3)
 -   [End User Documentation](./PIFSC%20Resource%20Inventory%20Docker%20App%20-%20User%20Documentation.md)
--   [Data Set Database (DSD) Documentation](./PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
-
-## Application URLs:
--   Dev Application: https://localhost:5031/
--   Test Application: https://picahi.nmfs.local/pirri/
--   Production Application: <TBD>
+-   [PRI Database Documentation](./PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
+-   [GIM Documentation](../GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md)
+-   [RIA Documentation](../RIA/docs/PIFSC%20Resource%20Inventory%20Resource%20Inventory%20Application%20-%20Technical%20Documentation.md)
+-   [Docker Project Testing Documentation](./PIFSC%20Resource%20Inventory%20Docker%20App%20Testing%20Documentation.md)
 
 ## Requirements:
 -   A connection to the PIFSC network is required to access the application
--   Users
-    -   Google Chrome must be used to access the application in order to avoid PIFSC SSL certificate issues
 -   Developers/System Administrators
     -   Docker host platform
 
@@ -40,13 +36,26 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20R
             -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirridev/backend/RIA/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
         -   \*Note: to facilitate rapid development a bind mount version of the development deployment script is available ([prepare_docker_project.dev.mount.sh](../docker/deployment_scripts/prepare_docker_project.dev.mount.sh)) to mount the www and backend folders from the exported docker project directory in the docker container so that changes to the docker project directory are reflected in the running container
         -   Execute the [build_deploy_project.dev.sh](../docker/deployment_scripts/build_deploy_project.dev.sh) shell script to build and deploy the docker project
-    -   Test Deployments (docker host machine: ahi.pifsc.gov)
+    -   Test Deployments (docker host machine: picahi.nmfs.local)
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirri/backend/GIM/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
             -   (GIM) Edit the PHP constants file ($root_directory/docker/pirri/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
             -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirri/backend/RIA/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
-        -   Using an SFTP client copy all exported docker project files (e.g. $root_directory/docker/pirri) to the test docker host machine in the /tmp/[user] folder where [user] is the username for the ssh account  
-        -   SSH into the docker host machine (ahi.pifsc.gov)
+        -   Copy all exported docker project files 
+            -   Open SSH method (Windows)
+                -   Open command line windows
+                -   Change to the temporary exported docker directory (e.g. $root_directory/docker/pirri)
+```
+cd [root_directory]/docker/pirri where [root_directory] is the root directory for the exported temporary exported docker directory
+```
+                -   copy the files to the /tmp/[user] directory where [user] is the username for the ssh account
+```
+scp -rp ./ [user]@picahi.nmfs.local:/tmp/[user]
+```
+                -   Enter the SSH password for the docker host server
+            -   SFTP client method
+                -   Using an SFTP client copy all exported docker project files (e.g. $root_directory/docker/pirri) to the test docker host machine in the /tmp/[user] folder where [user] is the username for the ssh account  
+        -   SSH into the docker host machine (picahi.nmfs.local)
         -   Change to the temporary docker project files directory
 ```
 cd /tmp/[user] where [user] is the username for the ssh account
@@ -79,7 +88,7 @@ sudo docker-compose down
 ```
 sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  --build
 ```
-    -   Production Deployments (docker host machine: ahi.pifsc.gov)
+    -   Production Deployments (docker host machine: picahi.nmfs.local)
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirrip/backend/GIM/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
             -   (GIM) Edit the PHP constants file ($root_directory/docker/pirrip/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges

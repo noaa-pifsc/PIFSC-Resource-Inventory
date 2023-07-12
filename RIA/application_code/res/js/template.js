@@ -89,7 +89,6 @@
 		{
 			if (debug_mode)
 			{
-					if (!($.browser.msie))
 				console.log(text);
 			}
 		}
