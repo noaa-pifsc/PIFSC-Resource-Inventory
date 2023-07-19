@@ -6,7 +6,7 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20R
 ## Resources:
 -   Version Control Information:
     -   URL: <git@picgitlab.nmfs.local:centralized-data-tools/parr-tools.git> in the "PRI" folder
-    -   Application: 1.3 (Git tag: PRI_docker_app_v1.3)
+    -   Application: 1.4 (Git tag: PRI_docker_app_v1.4)
 -   [End User Documentation](./PIFSC%20Resource%20Inventory%20Docker%20App%20-%20User%20Documentation.md)
 -   [PRI Database Documentation](./PIFSC%20Resource%20Inventory%20Database%20Documentation.md)
 -   [GIM Documentation](../GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md)

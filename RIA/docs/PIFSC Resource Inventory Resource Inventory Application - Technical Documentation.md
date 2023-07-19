@@ -26,7 +26,7 @@ The PIFSC Resource Inventory (PRI) Resource Inventory App (RIA) was developed to
 -   PIFSC PHP Shared Library repository
     -   Version Control Information:
         -   URL: git@picgitlab.nmfs.local:centralized-data-tools/php-shared-library.git
-        -   App: 1.13 (Git tag: php_shared_libary_v1.13)
+        -   App: 1.14 (Git tag: php_shared_libary_v1.14)
 
 ## Data Flow:
 -   [Data Flow Diagram (DFD)](../../docs/DFD/PRI_DFD.drawio.png)
