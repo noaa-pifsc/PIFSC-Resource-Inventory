@@ -25,18 +25,75 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20R
 -   #### Database Setup
     -   [Installing or Upgrading the Database](./PIFSC%20Resource%20Inventory%20-%20Installing%20or%20Upgrading%20the%20Database.md)
 -   #### Docker Application Setup
-    -   clone the [PRI repository](https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory) into a local folder
-    -   Edit the appropriate deployment script (e.g. [prepare_docker_project.dev.sh](../docker/deployment_scripts/prepare_docker_project.dev.sh) for the development version) and docker build/deploy script (e.g. [build_deploy_project.dev.sh](../docker/deployment_scripts/build_deploy_project.dev.sh) for the development version) shell scripts to define the "root_directory" variable value to a local directory that can be used to build the image
-        -   Execute the appropriate preparation script (e.g. [prepare_docker_project.test.sh](../docker/deployment_scripts/prepare_docker_project.test.sh) for the test version) shell script to deploy the docker project files to a given directory
-        -   \*Note: the preparation script will clone the necessary repositories into the corresponding "root_directory" folder and use the appropriate configuration files for the corresponding folder structure to prepare the docker project for deployment  
-    -   Development Deployments (PICV014 - localhost)
+    -   ##### Project Preparation
+        -   clone the [PRI repository](https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory) into a local folder
+        -   Edit the appropriate deployment script (e.g. [prepare_docker_project.dev.sh](../docker/deployment_scripts/prepare_docker_project.dev.sh) for the development version) and docker build/deploy script (e.g. [build_deploy_project.dev.sh](../docker/deployment_scripts/build_deploy_project.dev.sh) for the development version) shell scripts to define the "root_directory" variable value to a local directory that can be used to build the image
+            -   Execute the appropriate preparation script (e.g. [prepare_docker_project.test.sh](../docker/deployment_scripts/prepare_docker_project.test.sh) for the test version) shell script to deploy the docker project files to a given directory
+            -   \*Note: the preparation script will clone the necessary repositories into the corresponding "root_directory" folder and use the appropriate configuration files for the corresponding folder structure to prepare the docker project for deployment  
+    -   ##### Development Deployments
+        -   \*Note: the docker host is the docker desktop instance used for development
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirridev/backend/GIM/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
             -   (GIM) Edit the PHP constants file ($root_directory/docker/pirridev/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
             -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirridev/backend/RIA/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
         -   \*Note: to facilitate rapid development a bind mount version of the development deployment script is available ([prepare_docker_project.dev.mount.sh](../docker/deployment_scripts/prepare_docker_project.dev.mount.sh)) to mount the www and backend folders from the exported docker project directory in the docker container so that changes to the docker project directory are reflected in the running container
         -   Execute the [build_deploy_project.dev.sh](../docker/deployment_scripts/build_deploy_project.dev.sh) shell script to build and deploy the docker project
-    -   Test Deployments (docker host machine: picahi.nmfs.local)
+    -   ##### Test Deployments 
+        -   \*Note: docker host machine: picahi.nmfs.local
+        -   Edit the database connection details for the corresponding database instance:
+            -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirrid/backend/GIM/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
+            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirrid/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
+            -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirrid/backend/RIA/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
+        -   Copy all exported docker project files 
+            -   Open SSH method (Windows)
+                -   Open command line windows
+                -   Change to the temporary exported docker directory (e.g. [root_directory]/docker/pirrid) where [root_directory] is the root directory for the exported temporary exported docker directory
+                    -   ```
+                        cd [root_directory]/docker/pirrid
+                        ```
+                -   copy the files to the /tmp/[user] directory where [user] is the username for the ssh account
+                    -   ```
+                        scp -rp ./ [user]@picahi.nmfs.local:/tmp/[user]
+                        ```
+
+                -   Enter the SSH password for the docker host server
+            -   SFTP client method
+                -   Using an SFTP client copy all exported docker project files (e.g. $root_directory/docker/pirrid) to the test docker host machine in the /tmp/[user] folder where [user] is the username for the ssh account  
+        -   SSH into the docker host machine (picahi.nmfs.local)
+        -   Change to the temporary docker project files directory
+            -   ```
+                cd /tmp/[user] where [user] is the username for the ssh account
+                ```
+        -   Update permissions on temporary docker project files
+            -   ```
+                chmod -R 755 *
+                ```
+        -   Switch to the webd docker user
+            -   ```
+                sudo su - webd
+                ```
+        -   switch to the pirrid docker source directory
+            -   ```
+                cd docker/pirrid/
+                ```
+        -   remove the existing files in the pirrid docker source directory
+            -   ```
+                rm -rf *
+                ```
+        -   copy the temporary docker project files to the pirrid docker source directory where [user] is the username for the ssh account
+            -   ```
+                rsync -aP /tmp/[user]]/* ./
+                ```
+        -   (if the docker container is already running) stop the container
+            -   ```
+                sudo docker-compose down
+                ```
+        -   create and deploy the docker container
+            -   ```
+                sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  --build
+                ```
+    -   ##### Production Deployments
+        -   \*Note: docker host machine: picahi.nmfs.local
         -   Edit the database connection details for the corresponding database instance:
             -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirri/backend/GIM/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
             -   (GIM) Edit the PHP constants file ($root_directory/docker/pirri/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
@@ -45,55 +102,49 @@ The [PIFSC Resource Inventory (PRI) Git Info Module (GIM)](../GIM/docs/PIFSC%20R
             -   Open SSH method (Windows)
                 -   Open command line windows
                 -   Change to the temporary exported docker directory (e.g. $root_directory/docker/pirri)
-```
-cd [root_directory]/docker/pirri where [root_directory] is the root directory for the exported temporary exported docker directory
-```
+                    -   ```
+                        cd [root_directory]/docker/pirri where [root_directory] is the root directory for the exported temporary exported docker directory
+                        ```
                 -   copy the files to the /tmp/[user] directory where [user] is the username for the ssh account
-```
-scp -rp ./ [user]@picahi.nmfs.local:/tmp/[user]
-```
+                    -   ```
+                        scp -rp ./ [user]@picahi.nmfs.local:/tmp/[user]
+                        ```
                 -   Enter the SSH password for the docker host server
             -   SFTP client method
                 -   Using an SFTP client copy all exported docker project files (e.g. $root_directory/docker/pirri) to the test docker host machine in the /tmp/[user] folder where [user] is the username for the ssh account  
         -   SSH into the docker host machine (picahi.nmfs.local)
         -   Change to the temporary docker project files directory
-```
-cd /tmp/[user] where [user] is the username for the ssh account
-```
+            -   ```
+                cd /tmp/[user] where [user] is the username for the ssh account
+                ```
         -   Update permissions on temporary docker project files
-```
-chmod -R 755 *
-```
+            -   ```
+                chmod -R 755 *
+                ```
         -   Switch to the webd docker user
-```
-sudo su - webd
-```
+            -   ```
+                sudo su - webd
+                ```
         -   switch to the pirri docker source directory
-```
-cd docker/pirri/
-```
+            -   ```
+                cd docker/pirri/
+                ```
         -   remove the existing files in the pirri docker source directory
-```
-rm -rf *
-```
+            -   ```
+                rm -rf *
+                ```
         -   copy the temporary docker project files to the pirri docker source directory where [user] is the username for the ssh account
-```
-rsync -aP /tmp/[user]]/* ./
-```
+            -   ```
+                rsync -aP /tmp/[user]]/* ./
+                ```
         -   (if the docker container is already running) stop the container
-```
-sudo docker-compose down
-```
+            -   ```
+                sudo docker-compose down
+                ```
         -   create and deploy the docker container
-```
-sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  --build
-```
-    -   Production Deployments (docker host machine: picahi.nmfs.local)
-        -   Edit the database connection details for the corresponding database instance:
-            -   (GIM) Edit the PHP credentials file ($root_directory/docker/pirrip/backend/GIM/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_GIM_APP schema database password
-            -   (GIM) Edit the PHP constants file ($root_directory/docker/pirrip/backend/GIM/includes/gitlab_config.php) to define the GITLAB_API_KEY constant to a GitLab access token with "read_api" privileges
-            -   (RIA) Edit the PHP credentials file ($root_directory/docker/pirrip/backend/RIA/includes/db_connection_info.php) to define the DB_PASS constant as the password for the PRI_RIA_APP schema database password
-        -   <mark>(Process is TBD)
+            -   ```
+                sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d  --build
+                ```
 
 # Server Instance Configurations
 -   Each server instance has its own set of server-specific configuration files that are automatically used when the corresponding deployment script is used, the following is a list of those files.  Update the corresponding version of the given file to update the configuration for the corresponding server instance:

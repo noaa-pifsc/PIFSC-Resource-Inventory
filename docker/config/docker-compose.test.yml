@@ -1,13 +1,13 @@
 version: '2'
 services:
-  pirri:
+  pirrid:
     build:
       context: .
-    image: noaa/pirri:latest
-    container_name: pirri
+    image: noaa/pirrid:latest
+    container_name: pirrid
     restart: always
     ports:
-      - "5006:80"
+      - "5007:80"
     logging:
       driver: "json-file"
       options:

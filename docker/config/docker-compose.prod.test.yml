@@ -1,8 +1,8 @@
 version: '2'
 services:
-  pirri:
+  pirrid:
     ports:
-      - "5006:80"
+      - "5007:80"
     logging:
       driver: "journald"
     volumes:

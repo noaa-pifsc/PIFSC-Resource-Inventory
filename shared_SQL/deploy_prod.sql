@@ -1,7 +1,7 @@
 /************************************************************************************
  Filename   : deploy_dev.sql
  Author     :
- Purpose    : Automated deployment script for the PIFSC Resource Inventory database, this is intended for use on the test environment
+ Purpose    : Automated deployment script for the PIFSC Resource Inventory database, this is intended for use on the production environment
  Description: The release included: data model deployment on a blank schema
  Usage: Using Windows X open a command line window and change the directory to the [SQL Directory] directory in the working copy of the repository and execute the script using the "@" syntax.  When prompted enter the server credentials in the format defined in the corresponding code comments
 ************************************************************************************/
@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'PIFSC Resource Inventory_deploy_qa_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'PIFSC Resource Inventory_deploy_prod_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 

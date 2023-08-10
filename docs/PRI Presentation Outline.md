@@ -68,14 +68,14 @@ This document provides an outline for presenting the differet components and imp
     -   This is a rough prototype that was developed in about a week while working on other projects.  
         -   More functionality is planned but I haven't had time to work on these additional features yet, these will be addressed after the demonstration
     -   Demonstration:
-        -   (show the [view all projects page](https://ahi.pifsc.gov/pirri/view_all_projects.php))
+        -   (show the [view all projects page](https://picahi.nmfs.local/pirrid/view_all_projects.php))
             -   This report excludes private projects
             -   Show the data layout for projects and resources (the intent was to fit a lot of information in without having to scroll horizontally)
             -   There are tooltips for all headings to indicate what type of information is provided
             -   The new window icons link directly to GitLab so people can review the documentation and other project resources
             -   Each project lists the resources that are defined within the project
             -   Each project also lists the external resources that are implemented within the project
-        -   (show the [view all resources page](https://ahi.pifsc.gov/pirri/view_all_resources.php))
+        -   (show the [view all resources page](https://picahi.nmfs.local/pirrid/view_all_resources.php))
             -   This report excludes resources defined within private projects
             -   The Resource name and description are shown on the left
                 -   The new window icon links directly to the resource URL so people can review the resource.  Typically this would be the documentation for the resource but it could also be the URL for the resource itself

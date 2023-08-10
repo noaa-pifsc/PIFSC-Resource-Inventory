@@ -1,0 +1,142 @@
+URL: (https://docs.google.com/forms/d/e/1FAIpQLSfCgGMowm-4B4TtS2YEZIAAofR4EyWSSZUp9ocWTCobv68UmA/viewform?edit2=2_ABaOnuf-IM3a2n6G9bHJKPRwilwV5u7YT-W75EUcwX1kNw_OC1O_y4FhfzNRCJ9VNEkn6Bw)
+
+Organization: NMFS/PIFSC/SOD
+
+Phone: 8087255470
+
+Date: 8/10/2023
+
+Team Federal Leader/Official Approved: Yes
+Your answer: Leonora Fukuda has authorized the request as project sponsor by commenting in the JIRA ticket (https://apps-st.fisheries.noaa.gov/jira/browse/PICITS-197285)
+
+System Change Request:
+System Change Request
+
+Application:
+Application
+
+Emergency: Routine
+
+Priority: Medium
+
+SCR Title:
+PIFSC Resource Inventory Deployment Request (Version 1.4)
+
+Site Name (URL or Name of Application or Name of Project):
+https://picahi.nmfs.local/pirri/
+
+
+Why is proposed change needed?
+The PIFSC Resource Inventory (PRI) database stores information about the different projects and resources that are available within PIFSC.  The PRI Git Info Module (GIM) was developed to retrieve information from the PIFSC GitLab version control system and refresh a local database with Git project information.  The PRI Resource Inventory App (RIA) was developed to display project and resource information from the PIFSC GitLab version control system that is refreshed in a local database.  
+
+Description of Proposed Change:
+The system change deploys three new production database schemas, one data schema (PRI) for storing the data objects used in the applications.  One application schema (PRI_RIA_APP) used by the RIA application to access specific data schema objects.  One application schema (PRI_GIM_APP) used by the GIM application to access specific data schema objects.  A docker image that contains both applications will be deployed to the docker host machine in the "pirri" folder.
+
+The systems affected will be:
+* PIFSC docker host server - picahi.nmfs.local
+* PIFSC Oracle production database - pickaku.nmfs.local (PIC)
+
+Has your change been tested?
+Yes
+
+How and where was the change tested?
+Developer testing was conducted on the PICD development database and docker development machine (PICV014).  On 4/18/2023 the PIFSC ISSO stated that there were no major findings in the security report after scanning the docker container using the Qualys security tool.  I recently updated the container to make it more secure so I am currently waiting for an updated security scan (https://apps-st.fisheries.noaa.gov/jira/browse/PICITS-191904) before attempting to deploy it to production.
+
+
+Roles and Responsibilities:
+Leonora Fukuda is the sponsor of the project, Leo will authorize all JIRA requests associated with this project.  Jesse Abdul is the developer of the database and application.  Jesse will deploy the database and application to the production servers following an approved System Change Request.  The PIC production database administrator will need to create the three database schemas and assign the required privileges which have been specified in the JIRA request (https://apps-st.fisheries.noaa.gov/jira/browse/PICITS-197286).  Jesse will deploy the production docker project to the existing docker container (pirri) that will be used for the production application, a new test docker container (pirrid) was requested for testing purposes based on the naming conventions in the JIRA request (https://apps-st.fisheries.noaa.gov/jira/browse/PICITS-197287).  
+
+Implementation Start Date:
+8/18/2023
+
+Start Time (Eastern)
+1:00 PM
+
+Implementation End Date:
+8/18/2023
+
+End Time (Eastern)
+1:30 PM
+
+Detailed implementation dates and information
+If your SCR has multiple implementation steps then enter your detailed dates and information here
+
+A:
+Once the PIC production database schemas have been created Jesse will execute the database deployment scripts to deploy the data model to the data schema and provision the application schemas.  Jesse will prepare (https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md?ref_type=heads#project-preparation) and deploy (https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md?ref_type=heads#production-deployments) the production Docker App using the provided linked documentation.  Jesse will access the application and attempt to verify the docker application is working properly, if not the rollback plan will be used to rollback the deployment.
+
+
+Provide/Explain rollback plan:
+A:
+There is no existing production database/application so the rollback will remove the objects.  Jesse will execute the automated rollback scripts that were developed and tested to rollback the database to a blank state and remove the application from the docker host.  The detailed plan can be accessed in the GitLab repository (https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/docs/releases/1.4/Deployment_Scripts/README.md).
+
+Resources:
+Jesse Abdul will deploy the database and application code following formal System Change Request approval.
+
+Estimated total time to recover?
+Worst case situation estimate (e.g., 30 minutes, 1 hour)
+30 minutes
+
+
+Are all required resources on site *
+Yes
+
+Will there be an outage?
+No
+
+
+Business/User Impact (Enter N/A, if not applicable) *
+Describe how this change impacts business requirements, users, services, core functionality, project inter-dependencies, and scope.
+
+A:
+This change will provide users the ability to search for project and resource information from the PIFSC GitLab version control system that is refreshed in a local database.
+
+Software/Module(s) Impact (Enter N/A, if not applicable) *
+List any software or modules impacted by this change. If this release impacts code modules or packaged software that are in production, list major impacts to production here.
+
+A:
+PIFSC docker host server: picahi.nmfs.local
+PIFSC's production Oracle production database: PIC
+PRI data schema on PIC instance
+PRI_GIM_APP application schema on PIC instance for the GIM application
+PRI_RIA_APP application schema on PIC instance for the RIA application
+
+Network Impact (Enter N/A, if not applicable) *
+Describe any impact this SCR will have on availability, reliability, or access to existing networks; including potential down time, patches, and other upgrades.
+
+A:
+The PRI docker app will be within PIFSC network.
+The systems affected will be:
+* PIFSC docker host server - picahi.nmfs.local
+* PIFSC Oracle production database - pickaku.nmfs.local (PIC)
+
+Help Desk Impact (Enter N/A, if not applicable) *
+Describe any impacts this SCR has on Help Desk procedures, training, and Help Desk service level
+agreements, etc.. Enter N/A if not applicable
+
+A:
+N/A
+
+Security Impact (Enter N/A, if not applicable) *
+Describe any impacts this SCR has on Network Security, Firewall Configuration, User Access, Single Sign On, Vulnerabilities, etc
+
+A:
+The data system was scanned using the Qualys security tool and the PIFSC ISSO reported there were no major findings
+
+
+Other Impacts (Enter N/A, if not applicable) *
+State any other impacts that have been considered: Consider any other impacts to existing requirements, system and software quality, Change Requests in progress, Operating System patches/technical re-fresh activities, etc.
+
+A:
+Client-side requirements:
+Firefox/Google Chrome web browser and PIFSC network access via onsite IRC ethernet or PIFSC VPN connection.
+
+
+SCR Attachments & Support Documents
+Upload and share your Google Doc(s). Copy/Paste your Google Doc url(s), file server path, or web url(s)
+
+A:
+(https://apps-st.fisheries.noaa.gov/jira/browse/PICITS-197285) contains the actual system change request for ITS including a link to all supporting documentation managed on the PIFSC version control system (https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory).  
+Database Documentation: https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/docs/PIFSC%20Resource%20Inventory%20Database%20Documentation.md
+Docker Documentation: https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/docs/PIFSC%20Resource%20Inventory%20Docker%20App%20-%20Technical%20Documentation.md
+GIM Documentation: https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/GIM/docs/PIFSC%20Resource%20Inventory%20Git%20Info%20Module%20-%20Technical%20Documentation.md
+RIA Documentation: https://picgitlab.nmfs.local/centralized-data-tools/pifsc-resource-inventory/-/blob/master/RIA/docs/PIFSC%20Resource%20Inventory%20Resource%20Inventory%20Application%20-%20Technical%20Documentation.md 
