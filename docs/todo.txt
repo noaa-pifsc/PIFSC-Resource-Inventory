@@ -40,6 +40,12 @@ _ docker version 1.4
 		X update SCR JIRA ticket to say the SCR has been submitted
 		
 
+RIA web app v1.3 updates
+	_ implement URL arguments in the web app so that we can embed the arguments in a given link for a given resource/project type (e.g. view_all_resources.php?res_scope_select[]=Software%20Development&res_type_select_id[]=Software%20Tool) then we can link from the Google Site and other apps directly to the pertinent information
+	
+	
+
+
 Upgrade and Rollback Developer Testing (7/26/23):
 	X Dev
 		X combined DB deployment
